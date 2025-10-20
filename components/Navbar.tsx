@@ -25,27 +25,44 @@ export default function Navbar() {
     { name: 'Contact', href: '/#contact' },
   ]
 
-  const scrollToSection = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
-    // Allow normal navigation for non-hash links (like /blog)
-    if (!href.startsWith('#')) {
-      setIsMobileMenuOpen(false)
-      return
-    }
-
-    e.preventDefault()
-    setIsMobileMenuOpen(false)
-
-    const element = document.querySelector(href)
-    if (element) {
-      const offset = 80 // navbar height
-      const elementPosition = element.getBoundingClientRect().top
-      const offsetPosition = elementPosition + window.pageYOffset - offset
-
+  const handleLogoClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    // If on homepage, scroll to top
+    if (window.location.pathname === '/') {
+      e.preventDefault()
       window.scrollTo({
-        top: offsetPosition,
+        top: 0,
         behavior: 'smooth'
       })
     }
+    // Otherwise, allow normal navigation to homepage
+  }
+
+  const scrollToSection = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+    setIsMobileMenuOpen(false)
+
+    // Handle hash links on the homepage (/#about)
+    if (href.startsWith('/#')) {
+      // Check if we're already on the homepage
+      if (window.location.pathname === '/') {
+        e.preventDefault()
+        const hash = href.substring(1) // Remove the leading /
+        const element = document.querySelector(hash)
+        if (element) {
+          const offset = 80 // navbar height
+          const elementPosition = element.getBoundingClientRect().top
+          const offsetPosition = elementPosition + window.pageYOffset - offset
+
+          window.scrollTo({
+            top: offsetPosition,
+            behavior: 'smooth'
+          })
+        }
+      }
+      // If not on homepage, allow normal navigation - Next.js will handle the hash
+      return
+    }
+
+    // Allow normal navigation for other links (like /blog)
   }
 
   return (
@@ -60,7 +77,7 @@ export default function Navbar() {
         <div className="container mx-auto px-6">
           <div className="flex items-center justify-between h-20">
             {/* Logo */}
-            <Link href="#hero" onClick={(e) => scrollToSection(e, '#hero')} className="flex items-center gap-3 group">
+            <Link href="/" onClick={handleLogoClick} className="flex items-center gap-3 group">
               <div className="w-10 h-10 relative transition-transform duration-300 group-hover:scale-110">
                 <Image
                   src="/phoenix-logo-transparent.png"
@@ -96,8 +113,8 @@ export default function Navbar() {
             {/* CTA Button - Desktop */}
             <div className="hidden md:block">
               <Link
-                href="#download"
-                onClick={(e) => scrollToSection(e, '#download')}
+                href="/#download"
+                onClick={(e) => scrollToSection(e, '/#download')}
                 className="px-6 py-3 bg-phoenix-gradient text-white font-semibold rounded-full transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-primary-orange/50 inline-block"
               >
                 Join Waitlist
@@ -164,8 +181,8 @@ export default function Navbar() {
 
           {/* Mobile CTA */}
           <Link
-            href="#download"
-            onClick={(e) => scrollToSection(e, '#download')}
+            href="/#download"
+            onClick={(e) => scrollToSection(e, '/#download')}
             className="mt-8 px-8 py-4 bg-phoenix-gradient text-white font-semibold rounded-full transition-all duration-300 hover:scale-105 hover:shadow-2xl hover:shadow-primary-orange/50 text-xl"
           >
             Join Waitlist
