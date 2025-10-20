@@ -1,0 +1,88 @@
+---
+title: "SkillQuest Week 1 - Project Setup & Architecture"
+date: "2025-10-15"
+project: "SkillQuest"
+tags: ["architecture", "setup", "kotlin", "android"]
+summary: "De eerste week van SkillQuest development: project setup, architecture beslissingen en database design."
+author: "Hans"
+published: true
+---
+
+# SkillQuest Week 1 - Project Setup & Architecture
+
+Deze week ben ik begonnen met de development van **SkillQuest**, de skill tracking app die gebruikers helpt hun vaardigheden te masteren.
+
+## Wat is er gebeurd?
+
+### Project Setup
+
+De basis is gelegd voor de Android app:
+
+- **Kotlin** als primaire programmeertaal
+- **Jetpack Compose** voor de UI
+- **Room Database** voor lokale data opslag
+- **MVVM architecture** voor clean code separatie
+
+### Architecture Beslissingen
+
+Na onderzoek heb ik gekozen voor een **single-activity architecture** met Compose Navigation. Dit geeft ons:
+
+1. Snellere navigatie tussen screens
+2. Betere state management
+3. Minder memory overhead
+4. Modern Android development pattern
+
+### Database Schema
+
+Het initiele database schema is opgezet voor:
+
+```kotlin
+// Skill entity
+@Entity(tableName = "skills")
+data class Skill(
+    @PrimaryKey(autoGenerate = true)
+    val id: Long = 0,
+    val name: String,
+    val category: String,
+    val targetHours: Int,
+    val currentHours: Float = 0f,
+    val createdAt: Long = System.currentTimeMillis()
+)
+
+// Focus session entity
+@Entity(tableName = "focus_sessions")
+data class FocusSession(
+    @PrimaryKey(autoGenerate = true)
+    val id: Long = 0,
+    val skillId: Long,
+    val duration: Long,
+    val startTime: Long,
+    val endTime: Long,
+    val notes: String? = null
+)
+```
+
+## Uitdagingen
+
+### Challenge 1: Database Migraties
+
+Room Database migraties kunnen complex zijn. Ik heb geleerd om vanaf het begin een goed migration strategy te hebben.
+
+**Oplossing**: Gebruik maken van `fallbackToDestructiveMigration()` tijdens development, en later proper migrations implementeren voor production.
+
+### Challenge 2: Compose State Management
+
+State management in Compose is anders dan traditionele Android development.
+
+**Oplossing**: Gebruik van `ViewModel` met `StateFlow` voor reactieve updates naar de UI.
+
+## Volgende Week
+
+Planning voor week 2:
+
+- [ ] Implementeer skill creation screen
+- [ ] Build skill list overview
+- [ ] Focus timer basis functionaliteit
+- [ ] Statistics tracking setup
+
+Stay tuned voor meer updates!
