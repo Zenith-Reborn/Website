@@ -38,8 +38,9 @@ export async function generateStaticParams() {
   }))
 }
 
-export async function generateMetadata({ params }: { params: { slug: string } }) {
-  const post = await getPostBySlug(params.slug)
+export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }) {
+  const { slug } = await params
+  const post = await getPostBySlug(slug)
 
   if (!post) {
     return {
@@ -60,8 +61,9 @@ export async function generateMetadata({ params }: { params: { slug: string } })
   }
 }
 
-export default async function BlogPostPage({ params }: { params: { slug: string } }) {
-  const post = await getPostBySlug(params.slug)
+export default async function BlogPostPage({ params }: { params: Promise<{ slug: string }> }) {
+  const { slug } = await params
+  const post = await getPostBySlug(slug)
 
   if (!post || !post.published) {
     notFound()
