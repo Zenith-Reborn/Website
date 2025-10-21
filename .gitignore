@@ -52,3 +52,6 @@ Thumbs.db
 
 # Windows quirks
 nul
+
+# MCP Configuration (contains sensitive tokens)
+.mcp.json
