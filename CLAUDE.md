@@ -113,6 +113,30 @@ The blog supports color-coded project badges. Each project (SkillQuest, ZenFocus
 4. Posts are automatically included in the blog listing
 5. Unpublished posts (`published: false`) are filtered out
 
+### Blog Content Guidelines (CRITICAL)
+
+When generating blog posts (via `/write-blog-post` or manually):
+
+**Content Accuracy:**
+- ✅ ONLY write about features/changes that were actually implemented
+- ✅ Base content on actual git commits and code changes
+- ❌ NEVER add "What's Next?" or future roadmap sections without explicit user request
+- ❌ NEVER suggest features that weren't built
+- ❌ NEVER add speculative content to make posts "more complete"
+
+**Review Process:**
+- ✅ ALWAYS show full blog post to user before saving
+- ✅ WAIT for explicit approval before saving to `content/posts/`
+- ✅ If user requests changes, update and show again
+- ❌ NEVER auto-save blog posts without confirmation
+
+**Tone & Style:**
+- Write in English
+- Professional yet accessible tone
+- Focus on "why" alongside "what"
+- Include concrete examples and code snippets
+- Use clear structure with headings and lists
+
 ## Key Architectural Decisions
 
 1. **File-based blog** - MDX files in `content/posts/` instead of CMS/database for version control and simplicity

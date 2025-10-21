@@ -71,6 +71,23 @@ Your task is to automatically generate a blog post for the Zenith Reborn website
 - Use **headings and lists** for structure
 - Add **code snippets** with syntax highlighting
 
+## CRITICAL RULES - Content Accuracy:
+
+**ONLY write about what was actually built/changed:**
+- ❌ DO NOT add "What's Next?" or future features sections
+- ❌ DO NOT suggest improvements that weren't implemented
+- ❌ DO NOT add features to make the post "more complete"
+- ❌ DO NOT speculate about future plans
+- ✅ ONLY describe actual commits, changes, and implemented features
+- ✅ Stick to factual information from git history
+- ✅ If unsure about something, ask the user first
+
+**Preview & Approval Required:**
+- ALWAYS show the full blog post content to the user before saving
+- WAIT for explicit approval ("yes", "perfect", "save it", etc.)
+- If user requests changes, update and show again
+- NEVER auto-save without user confirmation
+
 ## Example workflow:
 
 ```
