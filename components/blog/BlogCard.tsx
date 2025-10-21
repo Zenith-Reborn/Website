@@ -38,7 +38,7 @@ export default function BlogCard({ post }: BlogCardProps) {
     badgeGlow: 'shadow-neutral-gray/50'
   }
 
-  const formattedDate = new Date(post.date).toLocaleDateString('nl-NL', {
+  const formattedDate = new Date(post.date).toLocaleDateString('en-US', {
     year: 'numeric',
     month: 'long',
     day: 'numeric',
@@ -86,7 +86,7 @@ export default function BlogCard({ post }: BlogCardProps) {
         )}
 
         <div className={`mt-4 font-semibold ${colors.text} flex items-center group-hover:text-primary-gold transition-colors`}>
-          Lees meer
+          Read more
           <svg className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
           </svg>

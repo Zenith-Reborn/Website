@@ -34,7 +34,7 @@ export default function BlogFilter({
         <div className="relative">
           <input
             type="text"
-            placeholder="Zoek in blog posts..."
+            placeholder="Search blog posts..."
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
             className="w-full px-4 py-3 pl-10 bg-neutral-darkBg border border-neutral-gray/30 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-gold text-neutral-lightText placeholder-neutral-gray"
@@ -58,14 +58,14 @@ export default function BlogFilter({
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         <div>
           <label className="block text-sm font-semibold text-neutral-lightText mb-2">
-            Filter op Project
+            Filter by Project
           </label>
           <select
             value={selectedProject}
             onChange={(e) => onProjectChange(e.target.value)}
             className="w-full px-4 py-2 bg-neutral-darkBg border border-neutral-gray/30 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-gold text-neutral-lightText"
           >
-            <option value="">Alle projecten</option>
+            <option value="">All projects</option>
             {projects.map((project) => (
               <option key={project} value={project}>
                 {project}
@@ -76,14 +76,14 @@ export default function BlogFilter({
 
         <div>
           <label className="block text-sm font-semibold text-neutral-lightText mb-2">
-            Filter op Tag
+            Filter by Tag
           </label>
           <select
             value={selectedTag}
             onChange={(e) => onTagChange(e.target.value)}
             className="w-full px-4 py-2 bg-neutral-darkBg border border-neutral-gray/30 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-gold text-neutral-lightText"
           >
-            <option value="">Alle tags</option>
+            <option value="">All tags</option>
             {tags.map((tag) => (
               <option key={tag} value={tag}>
                 #{tag}
@@ -95,7 +95,7 @@ export default function BlogFilter({
 
       {(selectedProject || selectedTag || searchQuery) && (
         <div className="mt-4 flex items-center gap-2">
-          <span className="text-sm text-neutral-gray">Actieve filters:</span>
+          <span className="text-sm text-neutral-gray">Active filters:</span>
           <div className="flex flex-wrap gap-2">
             {selectedProject && (
               <button

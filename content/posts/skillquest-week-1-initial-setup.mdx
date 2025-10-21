@@ -3,38 +3,38 @@ title: "SkillQuest Week 1 - Project Setup & Architecture"
 date: "2025-10-15"
 project: "SkillQuest"
 tags: ["architecture", "setup", "kotlin", "android"]
-summary: "De eerste week van SkillQuest development: project setup, architecture beslissingen en database design."
+summary: "The first week of SkillQuest development: project setup, architecture decisions, and database design."
 author: "Hans"
 published: true
 ---
 
 # SkillQuest Week 1 - Project Setup & Architecture
 
-Deze week ben ik begonnen met de development van **SkillQuest**, de skill tracking app die gebruikers helpt hun vaardigheden te masteren.
+This week I started development on **SkillQuest**, the skill tracking app that helps users master their skills.
 
-## Wat is er gebeurd?
+## What happened?
 
 ### Project Setup
 
-De basis is gelegd voor de Android app:
+The foundation has been laid for the Android app:
 
-- **Kotlin** als primaire programmeertaal
-- **Jetpack Compose** voor de UI
-- **Room Database** voor lokale data opslag
-- **MVVM architecture** voor clean code separatie
+- **Kotlin** as the primary programming language
+- **Jetpack Compose** for the UI
+- **Room Database** for local data storage
+- **MVVM architecture** for clean code separation
 
-### Architecture Beslissingen
+### Architecture Decisions
 
-Na onderzoek heb ik gekozen voor een **single-activity architecture** met Compose Navigation. Dit geeft ons:
+After research, I chose a **single-activity architecture** with Compose Navigation. This gives us:
 
-1. Snellere navigatie tussen screens
-2. Betere state management
-3. Minder memory overhead
+1. Faster navigation between screens
+2. Better state management
+3. Less memory overhead
 4. Modern Android development pattern
 
 ### Database Schema
 
-Het initiele database schema is opgezet voor:
+The initial database schema has been set up for:
 
 ```kotlin
 // Skill entity
@@ -62,27 +62,27 @@ data class FocusSession(
 )
 ```
 
-## Uitdagingen
+## Challenges
 
-### Challenge 1: Database Migraties
+### Challenge 1: Database Migrations
 
-Room Database migraties kunnen complex zijn. Ik heb geleerd om vanaf het begin een goed migration strategy te hebben.
+Room Database migrations can be complex. I learned to have a good migration strategy from the start.
 
-**Oplossing**: Gebruik maken van `fallbackToDestructiveMigration()` tijdens development, en later proper migrations implementeren voor production.
+**Solution**: Use `fallbackToDestructiveMigration()` during development, and implement proper migrations later for production.
 
 ### Challenge 2: Compose State Management
 
-State management in Compose is anders dan traditionele Android development.
+State management in Compose is different from traditional Android development.
 
-**Oplossing**: Gebruik van `ViewModel` met `StateFlow` voor reactieve updates naar de UI.
+**Solution**: Use `ViewModel` with `StateFlow` for reactive updates to the UI.
 
-## Volgende Week
+## Next Week
 
-Planning voor week 2:
+Planning for week 2:
 
-- [ ] Implementeer skill creation screen
+- [ ] Implement skill creation screen
 - [ ] Build skill list overview
-- [ ] Focus timer basis functionaliteit
+- [ ] Focus timer basic functionality
 - [ ] Statistics tracking setup
 
-Stay tuned voor meer updates!
+Stay tuned for more updates!

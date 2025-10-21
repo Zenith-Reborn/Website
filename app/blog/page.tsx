@@ -63,7 +63,7 @@ export default function BlogPage() {
         <div className="container mx-auto px-4 py-16">
           <div className="text-center">
             <div className="inline-block animate-spin rounded-full h-12 w-12 border-b-2 border-primary-gold"></div>
-            <p className="mt-4 text-neutral-lightText">Blog posts laden...</p>
+            <p className="mt-4 text-neutral-lightText">Loading blog posts...</p>
           </div>
         </div>
       </div>
@@ -85,7 +85,7 @@ export default function BlogPage() {
               Zenith Blog
             </h1>
             <p className="text-xl text-neutral-lightText/90">
-              Wekelijkse updates over onze apps en development journey
+              Weekly updates about our apps and development journey
             </p>
           </div>
         </div>
@@ -122,18 +122,18 @@ export default function BlogPage() {
               />
             </svg>
             <h3 className="text-2xl font-playfair font-semibold text-neutral-lightText mb-2">
-              Geen blog posts gevonden
+              No blog posts found
             </h3>
             <p className="text-neutral-gray">
               {posts.length === 0
-                ? 'Er zijn nog geen blog posts gepubliceerd.'
-                : 'Probeer je filters aan te passen.'}
+                ? 'No blog posts have been published yet.'
+                : 'Try adjusting your filters.'}
             </p>
           </div>
         ) : (
           <>
             <div className="mb-6 text-neutral-lightText/70">
-              {filteredPosts.length} {filteredPosts.length === 1 ? 'post' : 'posts'} gevonden
+              {filteredPosts.length} {filteredPosts.length === 1 ? 'post' : 'posts'} found
             </div>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
               {filteredPosts.map(post => (

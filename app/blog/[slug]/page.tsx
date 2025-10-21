@@ -76,7 +76,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
     badgeGlow: 'shadow-neutral-gray/50'
   }
 
-  const formattedDate = new Date(post.date).toLocaleDateString('nl-NL', {
+  const formattedDate = new Date(post.date).toLocaleDateString('en-US', {
     year: 'numeric',
     month: 'long',
     day: 'numeric',

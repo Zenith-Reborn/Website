@@ -1,63 +1,63 @@
 ---
-title: "Zenith Reborn Blog Systeem - Van Idee naar Productie in Één Dag"
+title: "Zenith Reborn Blog System - From Idea to Production in One Day"
 date: "2025-10-20"
 project: "Zenith Reborn"
 tags: ["feature", "blog", "automation", "mdx", "mcp"]
-summary: "Vandaag hebben we een volledig geautomatiseerd blog systeem gebouwd met MDX, MCP server integratie, en automatische deployment naar Vercel."
+summary: "Today we built a fully automated blog system with MDX, MCP server integration, and automatic deployment to Vercel."
 author: "Hans"
 published: true
 ---
 
-# Zenith Reborn Blog Systeem - Van Idee naar Productie
+# Zenith Reborn Blog System - From Idea to Production
 
-Vandaag hebben we iets bijzonders gebouwd: een volledig geautomatiseerd blog systeem dat naadloos integreert met onze development workflow. Van het eerste idee tot live deployment - alles werkt nu automatisch.
+Today we built something special: a fully automated blog system that seamlessly integrates with our development workflow. From the first idea to live deployment - everything now works automatically.
 
-## 🎯 Wat Hebben We Gebouwd?
+## 🎯 What Did We Build?
 
-### Blog Infrastructuur
+### Blog Infrastructure
 
-Een complete blog oplossing met:
+A complete blog solution with:
 
-- **MDX Support** - Markdown met React componenten
-- **Syntax Highlighting** - Mooie code snippets in blog posts
-- **Dark Theme** - Perfect matching met de hoofdwebsite
-- **Filtering & Zoeken** - Filter op project (SkillQuest, ZenFocus, etc.) en tags
-- **Responsive Design** - Werkt perfect op desktop en mobile
+- **MDX Support** - Markdown with React components
+- **Syntax Highlighting** - Beautiful code snippets in blog posts
+- **Dark Theme** - Perfectly matching the main website
+- **Filtering & Search** - Filter by project (SkillQuest, ZenFocus, etc.) and tags
+- **Responsive Design** - Works perfectly on desktop and mobile
 
-### Automatische Blog Generatie
+### Automatic Blog Generation
 
-Het unieke aan dit systeem is de volledige automatisering:
+The unique aspect of this system is the full automation:
 
 ```bash
-# In een project directory
+# In a project directory
 /write-blog-post
 ```
 
-Dat is alles! Claude Code:
-1. Analyseert git commits van de laatste week
-2. Genereert een professionele blog post in Nederlands
-3. Slaat de post op als MDX bestand
-4. Commit en push naar GitHub
-5. Vercel deployed automatisch
+That's it! Claude Code:
+1. Analyzes git commits from the last week
+2. Generates a professional blog post in English
+3. Saves the post as an MDX file
+4. Commits and pushes to GitHub
+5. Vercel deploys automatically
 
-**Geen handmatige stappen meer!**
+**No more manual steps!**
 
-## 🏗️ Technische Architectuur
+## 🏗️ Technical Architecture
 
 ### Frontend Stack
 
-- **Next.js 15** - React framework met App Router
-- **MDX** - Markdown met JSX componenten
+- **Next.js 15** - React framework with App Router
+- **MDX** - Markdown with JSX components
 - **Tailwind CSS** - Utility-first styling
 - **TypeScript** - Type-safe development
 
-### Blog Componenten
+### Blog Components
 
-We hebben custom componenten gebouwd voor elk onderdeel:
+We built custom components for each part:
 
 **BlogCard Component**
 ```typescript
-// Toont blog posts met project-specifieke kleuren
+// Shows blog posts with project-specific colors
 const projectColors = {
   SkillQuest: { badge: 'bg-gradient-to-r from-blue-600 to-blue-500' },
   ZenFocus: { badge: 'bg-gradient-to-r from-purple-600 to-purple-500' },
@@ -65,149 +65,149 @@ const projectColors = {
 }
 ```
 
-Elk project krijgt zijn eigen visuele identiteit met gradients en glow effects.
+Each project gets its own visual identity with gradients and glow effects.
 
 **BlogFilter Component**
-- Real-time zoeken door posts
-- Filter op project naam
-- Filter op tags
-- Actieve filters zijn duidelijk zichtbaar
+- Real-time search through posts
+- Filter by project name
+- Filter by tags
+- Active filters are clearly visible
 
 **MDXComponents**
-- Custom styling voor alle markdown elementen
-- Code blocks met syntax highlighting
-- Responsive afbeeldingen
-- Mooie blockquotes en tabellen
+- Custom styling for all markdown elements
+- Code blocks with syntax highlighting
+- Responsive images
+- Beautiful blockquotes and tables
 
-### MCP Server Integratie
+### MCP Server Integration
 
-De automatisering wordt mogelijk gemaakt door een custom MCP (Model Context Protocol) server:
+The automation is powered by a custom MCP (Model Context Protocol) server:
 
-**Functies:**
-- `analyze_project_changes` - Git history analyse
-- `generate_blog_post` - MDX generatie met frontmatter
-- `save_blog_post` - Opslaan in content directory
-- `list_blog_posts` - Overzicht van alle posts
+**Functions:**
+- `analyze_project_changes` - Git history analysis
+- `generate_blog_post` - MDX generation with frontmatter
+- `save_blog_post` - Save to content directory
+- `list_blog_posts` - Overview of all posts
 
 **Tech Stack:**
 - Python 3.13
-- GitPython voor repository analyse
-- MCP SDK voor Claude Code integratie
+- GitPython for repository analysis
+- MCP SDK for Claude Code integration
 
-## 🎨 Design Keuzes
+## 🎨 Design Choices
 
-### Donker Thema
+### Dark Theme
 
-De blog gebruikt hetzelfde donkere thema als de hoofdwebsite:
+The blog uses the same dark theme as the main website:
 
-- Achtergrond: `#0F0F0F` (deep black)
-- Primaire kleuren: Goud, oranje, rood (Phoenix gradient)
-- Accenten: Semi-transparante cards met gekleurde borders
-- Text: Lichte kleuren voor optimale leesbaarheid
+- Background: `#0F0F0F` (deep black)
+- Primary colors: Gold, orange, red (Phoenix gradient)
+- Accents: Semi-transparent cards with colored borders
+- Text: Light colors for optimal readability
 
-### Navigatie
+### Navigation
 
-Een belangrijk design principe: **je zit nooit vast**.
+An important design principle: **you're never stuck**.
 
-Op elke pagina kun je:
-- Klik op logo → Terug naar homepage
-- Klik op "Blog" → Naar blog overzicht
-- Klik op sectie links → Direct naar die sectie (ook vanuit blog)
+On every page you can:
+- Click on logo → Back to homepage
+- Click on "Blog" → To blog overview
+- Click on section links → Directly to that section (even from blog)
 
-Smooth scrolling zorgt voor een premium gebruikerservaring.
+Smooth scrolling ensures a premium user experience.
 
 ## 🚀 Deployment Pipeline
 
 ### Git Workflow
 
-Volledig geautomatiseerd met Personal Access Token:
+Fully automated with Personal Access Token:
 
 ```bash
 git add .
 git commit -m "New blog post"
-git push  # Gebeurt automatisch!
+git push  # Happens automatically!
 ```
 
 ### Vercel Integration
 
-Push naar GitHub → Vercel detecteert wijziging → Bouwt automatisch → Deployed!
+Push to GitHub → Vercel detects change → Builds automatically → Deployed!
 
-**Build tijd:** ~2 minuten
+**Build time:** ~2 minutes
 **Uptime:** 99.9%
 **Global CDN:** Instant worldwide
 
-## 📊 Features Overzicht
+## 📊 Features Overview
 
 | Feature | Status | Details |
 |---------|--------|---------|
-| MDX Support | ✅ | Markdown met React componenten |
+| MDX Support | ✅ | Markdown with React components |
 | Syntax Highlighting | ✅ | GitHub Dark theme |
 | Project Filtering | ✅ | SkillQuest, ZenFocus, Zenith |
 | Tag Filtering | ✅ | Dynamic tag generation |
-| Search | ✅ | Real-time zoeken |
+| Search | ✅ | Real-time search |
 | Auto Generation | ✅ | Via MCP server |
 | Auto Deployment | ✅ | Via Vercel |
-| Mobile Responsive | ✅ | Perfect op alle schermen |
+| Mobile Responsive | ✅ | Perfect on all screens |
 
 ## 💡 Lessons Learned
 
-### 1. MDX is Krachtig
+### 1. MDX is Powerful
 
-De mogelijkheid om React componenten in Markdown te gebruiken opent veel mogelijkheden:
-- Interactieve demos
+The ability to use React components in Markdown opens many possibilities:
+- Interactive demos
 - Custom layouts
 - Embedded content
 
-### 2. Automatisering Verhoogt Productiviteit
+### 2. Automation Increases Productivity
 
-Door het blog post proces te automatiseren:
-- Geen excuus om niet te bloggen
-- Consistente kwaliteit
-- Meer tijd voor development
+By automating the blog post process:
+- No excuse not to blog
+- Consistent quality
+- More time for development
 
 ### 3. Git + Vercel = Magic
 
-De combinatie van:
-- Git voor version control
-- GitHub voor hosting
-- Vercel voor deployment
+The combination of:
+- Git for version control
+- GitHub for hosting
+- Vercel for deployment
 
-Zorgt voor een developer experience die niet te verslaan is.
+Creates an unbeatable developer experience.
 
-## 🔮 Wat Komt Er Nu?
+## 🔮 What's Next?
 
-### Korte Termijn
+### Short Term
 
-- **RSS Feed** - Voor blog readers
-- **Comments Systeem** - Community interaction
-- **Analytics** - Track populaire posts
-- **Related Posts** - Suggesties onder posts
+- **RSS Feed** - For blog readers
+- **Comments System** - Community interaction
+- **Analytics** - Track popular posts
+- **Related Posts** - Suggestions under posts
 
-### Lange Termijn
+### Long Term
 
 - **Newsletter Integration** - Email updates
 - **Series Support** - Multi-part blog posts
-- **Code Playgrounds** - Interactieve code voorbeelden
+- **Code Playgrounds** - Interactive code examples
 - **Dark/Light Toggle** - Theme switching
 
-## 🎉 Conclusie
+## 🎉 Conclusion
 
-In één dag hebben we een production-ready blog systeem gebouwd dat:
+In one day we built a production-ready blog system that:
 
-✅ Professional oogt
-✅ Fully automated is
-✅ Schaalbaar is voor meerdere projecten
-✅ Developer-friendly is
-✅ SEO-optimized is
+✅ Looks professional
+✅ Is fully automated
+✅ Scales for multiple projects
+✅ Is developer-friendly
+✅ Is SEO-optimized
 
-Het mooiste? **Het werkt gewoon.** Geen gedoe, geen handmatige stappen, geen frustratie.
+The best part? **It just works.** No hassle, no manual steps, no frustration.
 
-Type `/write-blog-post`, en binnen een minuut staat je nieuwe blog post live.
+Type `/write-blog-post`, and within a minute your new blog post is live.
 
-**Dat is de kracht van moderne tooling gecombineerd met AI-assistentie.**
+**That's the power of modern tooling combined with AI assistance.**
 
 ---
 
-**Benieuwd naar de technische details?** Check de [GitHub repository](https://github.com/Zenith-Reborn/Website) of de documentatie in `BLOG_WORKFLOW.md`.
+**Curious about the technical details?** Check the [GitHub repository](https://github.com/Zenith-Reborn/Website) or the documentation in `BLOG_WORKFLOW.md`.
 
-**Wil je zelf zo'n systeem?** Alle code is open source en goed gedocumenteerd!
+**Want such a system yourself?** All code is open source and well documented!
