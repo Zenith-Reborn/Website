@@ -1,0 +1,26 @@
+# Dependencies
+node_modules/
+
+# Build outputs
+.next/
+out/
+dist/
+build/
+
+# Cache
+.turbo/
+.vercel/
+
+# Environment files
+.env*
+
+# Next.js generated files
+next-env.d.ts
+
+# Lock files
+package-lock.json
+yarn.lock
+pnpm-lock.yaml
+
+# MDX content (linting optional)
+content/posts/*.mdx
