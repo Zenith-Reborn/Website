@@ -68,6 +68,7 @@ zenith-reborn-website/
 
 - **Modern Landing Page** - Responsive, phoenix-themed design with smooth scrolling and animations
 - **MDX-Powered Blog** - Rich blog posts with code syntax highlighting and GitHub Flavored Markdown
+- **RSS Feed** - Automatic RSS 2.0 feed with auto-discovery for blog subscribers
 - **SkillQuest Showcase** - Interactive feature presentation with app screenshots
 - **Contact & Waitlist** - User engagement through contact forms and early access signup
 - **SEO Optimized** - Meta tags, semantic HTML, and performance optimization
@@ -168,6 +169,18 @@ The blog system uses MDX files stored in `content/posts/`. Each post includes:
 - **MDX Content** - Rich content with React components
 - **Syntax Highlighting** - Code blocks with automatic highlighting
 - **Filtering & Search** - Category and tag-based filtering
+- **RSS Feed** - Automatic feed generation at `/blog/rss.xml`
+
+### RSS Feed
+
+The blog includes an RSS 2.0 feed that automatically updates with new posts:
+
+- **Feed URL:** `https://zenithreborn.com/blog/rss.xml`
+- **Auto-discovery:** Browsers automatically detect the feed on all pages
+- **Content:** Includes post title, summary, publication date, author, and tags
+- **Caching:** 1-hour cache with stale-while-revalidate for optimal performance
+
+Subscribe in your favorite RSS reader (Feedly, Inoreader, etc.) to get notified of new posts!
 
 For more details, see [BLOG_SETUP.md](BLOG_SETUP.md) and [BLOG_WORKFLOW.md](BLOG_WORKFLOW.md).
 

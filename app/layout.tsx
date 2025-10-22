@@ -55,6 +55,14 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className="scroll-smooth">
+      <head>
+        <link
+          rel="alternate"
+          type="application/rss+xml"
+          title="Zenith Reborn Blog RSS Feed"
+          href="/blog/rss.xml"
+        />
+      </head>
       <body className={`${lora.variable} ${playfair.variable} font-serif`}>{children}</body>
     </html>
   )

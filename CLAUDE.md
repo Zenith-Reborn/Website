@@ -94,6 +94,19 @@ The blog supports color-coded project badges. Each project (SkillQuest, ZenFocus
 1. Add `project: "ProjectName"` to MDX frontmatter
 2. Optionally add custom colors to the `projectColors` object for themed badges
 
+### RSS Feed
+
+The blog includes an automatic RSS 2.0 feed at `/blog/rss.xml`:
+
+**Implementation:**
+- [app/blog/rss.xml/route.ts](app/blog/rss.xml/route.ts) - Route handler that generates RSS XML
+- [app/layout.tsx:58-65](app/layout.tsx#L58-L65) - Auto-discovery link in HTML head
+- Uses `getAllPosts()` from [lib/blog.ts](lib/blog.ts) to fetch all published posts
+- Includes: title, link, summary, publication date, author, tags
+- Caching: 1-hour with stale-while-revalidate for performance
+
+**Feed URL:** `https://zenithreborn.com/blog/rss.xml`
+
 ## Adding New Blog Posts
 
 1. Create a new file in `content/posts/` with `.mdx` extension
@@ -110,7 +123,7 @@ The blog supports color-coded project badges. Each project (SkillQuest, ZenFocus
    ---
    ```
 3. Write MDX content (supports full React components)
-4. Posts are automatically included in the blog listing
+4. Posts are automatically included in the blog listing AND RSS feed
 5. Unpublished posts (`published: false`) are filtered out
 
 ### Blog Content Guidelines (CRITICAL)
