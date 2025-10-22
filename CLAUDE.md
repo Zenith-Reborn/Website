@@ -20,7 +20,61 @@ npm start
 
 # Run linter
 npm run lint
+
+# Bundle size analysis
+npm run analyze
 ```
+
+### Bundle Size Analysis
+
+**Tool:** `@next/bundle-analyzer` v16.0.0
+
+**Purpose:** Analyze JavaScript bundle sizes to monitor performance and identify optimization opportunities.
+
+**How it works:**
+
+1. Builds production bundle with `ANALYZE=true` environment variable
+2. Generates three HTML reports in `.next/analyze/`:
+   - `client.html` - Client-side JavaScript bundles (main analysis focus)
+   - `edge.html` - Edge runtime bundles
+   - `nodejs.html` - Node.js server bundles
+3. Automatically opens reports in browser
+
+**Configuration:**
+
+- [next.config.ts:8-15](next.config.ts#L8-L15) - Bundle analyzer wrapper around Next.js config
+- [package.json:10](package.json#L10) - `npm run analyze` script with cross-env for Windows
+
+**Current bundle sizes (as of 2025-10-22):**
+
+| Route | First Load JS | Target | Status |
+|-------|---------------|--------|--------|
+| Homepage | 116 kB | 200 kB | ✅ 42% under |
+| Blog listing | 114 kB | 200 kB | ✅ 43% under |
+| Blog posts | 112 kB | 200 kB | ✅ 44% under |
+
+**Shared JS:** 102 kB across all pages (excellent code splitting)
+
+**When to run:**
+
+- Before adding major features or dependencies
+- After significant refactoring
+- Monthly performance audits
+- When First Load JS approaches 150 kB (warning threshold)
+
+**Interpreting results:**
+
+- Each colored block represents a JavaScript module
+- Larger blocks = larger file sizes = potential optimization targets
+- Look for: duplicate dependencies, unexpectedly large libraries, unused code
+- Focus on the **client bundle** as it impacts user experience most
+
+**Best practices:**
+
+- Keep First Load JS under 200 kB (current: ~115 kB average)
+- Maintain shared chunk strategy (reduces per-page overhead)
+- Use dynamic imports for large optional features
+- Tree-shake unused code by importing only what you need
 
 ## Core Architecture Patterns
 
@@ -268,6 +322,7 @@ After deployment, test with:
 5. **Phoenix theme as identity** - Brand colors and gradients central to the design system
 6. **Project-based theming** - Different badge colors per project for visual organization
 7. **Vercel Analytics & Speed Insights** - Integrated monitoring for page views and Core Web Vitals
+8. **Bundle size monitoring** - `@next/bundle-analyzer` for performance optimization and preventing bundle bloat
 
 ## TypeScript & Type Safety
 
