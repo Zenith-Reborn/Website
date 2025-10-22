@@ -102,30 +102,61 @@ Track blog post views and popular content.
 
 ### Long Term (Bigger Features)
 
-#### 4. Comments System
+#### 4. Comments System ✅ COMPLETED
 
 **Priority:** Medium
 **Effort:** Medium-High
 **Impact:** High
+**Completed:** 2025-10-22
 
 Enable community interaction on blog posts.
 
-**Options:**
+**Status:** ✅ Implemented using Giscus
 
-**A. Third-party Solutions (Recommended)**
+**What was implemented:**
 
-- **Giscus** - GitHub Discussions based (free, privacy-friendly)
-- **Utterances** - GitHub Issues based (simpler, free)
-- **Disqus** - Popular but privacy concerns
+- ✅ Installed `@giscus/react` v3.1.0 package
+- ✅ Created `components/blog/GiscusComments.tsx` component
+- ✅ Phoenix theme integration (dark mode with gold gradient heading)
+- ✅ Lazy loading for performance optimization
+- ✅ Integrated into blog post template after author section
+- ✅ GitHub Discussions configured for comment storage
+- ✅ Privacy-friendly (no tracking, GDPR compliant)
+- ✅ Full moderation via GitHub interface
 
-**B. Custom Solution**
+**Features enabled:**
 
-- Database required (Vercel Postgres, Supabase)
-- Authentication needed (NextAuth.js)
-- Moderation tools necessary
-- Higher maintenance
+- **GitHub Authentication:** Sign in with GitHub to comment
+- **Reactions:** Users can react to comments with emojis
+- **Notifications:** Email notifications for comment replies
+- **Moderation:** Edit, delete, lock, hide comments via GitHub
+- **Data Ownership:** All comments stored in your GitHub repository
+- **Responsive Design:** Works on mobile, tablet, and desktop
 
-**Recommended:** Start with Giscus for minimal maintenance.
+**Files created/modified:**
+
+- `components/blog/GiscusComments.tsx` - Comments component
+- `app/blog/[slug]/page.tsx` - Integrated comments section
+- `package.json` - Added @giscus/react dependency
+- `GISCUS_SETUP.md` - Setup documentation (can be deleted after setup)
+- `CLAUDE.md` - Documented comments system
+
+**Configuration:**
+
+- Repository: Configured with actual repo details
+- Category: "Blog Comments" in GitHub Discussions
+- Mapping: pathname (URL-based, each post = unique discussion)
+- Theme: transparent_dark to match phoenix design
+- Loading: lazy (performance optimized)
+
+**Why Giscus:**
+
+- ✅ Free and open source
+- ✅ Privacy-friendly (no ads, no tracking)
+- ✅ Low maintenance (GitHub handles infrastructure)
+- ✅ Built-in spam protection
+- ✅ Professional and reliable
+- ✅ You own the data (stored in your repo)
 
 ---
 
@@ -763,17 +794,16 @@ jobs:
 
 ### Short Term (Next 1-2 months)
 
-### Medium Term (2-4 months)
+9. Testing setup - Code confidence
+10. Newsletter - Audience building
 
-9. Comments system - Community building
-10. Testing setup - Code confidence
-11. Newsletter - Audience building
+### Medium Term (2-4 months)
 
 ### Long Term (4+ months)
 
-12. Series support - Content organization
-13. Dark/light toggle - User preference
-14. Code playgrounds - Interactive learning
+11. Series support - Content organization
+12. Dark/light toggle - User preference
+13. Code playgrounds - Interactive learning
 
 ---
 
@@ -794,9 +824,9 @@ jobs:
 
 **Next steps:**
 
-9. Content creation - Start writing blog posts
-10. Social media promotion - Share existing content
-11. Consider comments system for community engagement
+9. ✅ Comments system (COMPLETED)
+10. Content creation - Start writing blog posts
+11. Social media promotion - Share existing content
 
 **Why:**
 
@@ -861,7 +891,7 @@ npm run build          # Test production build
 
 ---
 
-**Last Updated:** 2025-10-22 (Bundle Size Analysis completed)
+**Last Updated:** 2025-10-22 (Comments System completed)
 **Maintained By:** Hans
 
 **Note:** This roadmap is a living document. Priorities may shift based on user feedback, analytics, and project needs.

@@ -6,6 +6,7 @@ import Navbar from "@/components/Navbar";
 import { getPostBySlug, getAllPosts, getRelatedPosts } from "@/lib/blog";
 import { MDXComponents } from "@/components/blog/MDXComponents";
 import RelatedPosts from "@/components/blog/RelatedPosts";
+import GiscusComments from "@/components/blog/GiscusComments";
 import { generateBlogPostingSchema } from "@/lib/structuredData";
 import { MDXRemote } from "next-mdx-remote/rsc";
 import rehypeHighlight from "rehype-highlight";
@@ -227,6 +228,9 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
               </p>
             </div>
           )}
+
+          {/* Comments */}
+          <GiscusComments />
 
           {/* Related Posts */}
           <RelatedPosts posts={relatedPosts} />

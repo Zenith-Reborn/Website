@@ -171,6 +171,41 @@ The blog includes an automatic RSS 2.0 feed at `/blog/rss.xml`:
 
 **Feed URL:** `https://zenithreborn.com/blog/rss.xml`
 
+### Comments System
+
+The blog includes a GitHub Discussions-based commenting system powered by Giscus.
+
+**Implementation:**
+
+- [components/blog/GiscusComments.tsx](components/blog/GiscusComments.tsx) - Comments component with phoenix theme
+- [app/blog/[slug]/page.tsx:233](app/blog/[slug]/page.tsx#L233) - Integrated after author section, before related posts
+- Uses `@giscus/react` package for React integration
+
+**Features:**
+
+- **GitHub Authentication:** Users sign in with GitHub to comment
+- **Phoenix Theme:** Transparent dark theme with gold gradient heading
+- **Lazy Loading:** Comments load only when user scrolls to section
+- **Privacy-Friendly:** No tracking, GDPR compliant, all data stored in GitHub
+- **Moderation:** Full control via GitHub Discussions interface
+- **Reactions:** Users can react to comments with emojis
+- **Notifications:** GitHub notifications for comment replies
+
+**Configuration:**
+
+- Repository: Configured in component via `repo` prop
+- Mapping: `pathname` - each blog post URL maps to unique GitHub Discussion
+- Category: "Blog Comments" in GitHub Discussions
+- Theme: `transparent_dark` to match site design
+
+**Moderation:**
+
+All comments are stored as GitHub Discussions, allowing you to:
+- Edit/delete comments via GitHub interface
+- Lock discussions to prevent new comments
+- Hide spam comments
+- Use GitHub permissions for moderation
+
 ## Adding New Blog Posts
 
 1. Create a new file in `content/posts/` with `.mdx` extension
@@ -323,6 +358,7 @@ After deployment, test with:
 6. **Project-based theming** - Different badge colors per project for visual organization
 7. **Vercel Analytics & Speed Insights** - Integrated monitoring for page views and Core Web Vitals
 8. **Bundle size monitoring** - `@next/bundle-analyzer` for performance optimization and preventing bundle bloat
+9. **Giscus comments** - GitHub Discussions-based commenting system for community engagement
 
 ## TypeScript & Type Safety
 
