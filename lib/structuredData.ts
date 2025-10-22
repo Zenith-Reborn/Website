@@ -36,17 +36,22 @@ export function generateWebSiteSchema() {
  * Implements BlogPosting schema for rich search results
  */
 export function generateBlogPostingSchema(post: BlogPost, url: string) {
+  // Convert date to ISO 8601 format with timezone
+  const datePublished = new Date(post.date).toISOString();
+  const dateModified = new Date(post.date).toISOString();
+
   return {
     "@context": "https://schema.org",
     "@type": "BlogPosting",
     headline: post.title,
     description: post.summary,
     image: post.coverImage || "https://zenithreborn.com/phoenix-logo-transparent.png",
-    datePublished: post.date,
-    dateModified: post.date, // Can be updated later if we track modification dates
+    datePublished: datePublished,
+    dateModified: dateModified, // Can be updated later if we track modification dates
     author: {
       "@type": "Person",
       name: post.author || "Zenith Reborn",
+      url: "https://zenithreborn.com",
     },
     publisher: {
       "@type": "Organization",
