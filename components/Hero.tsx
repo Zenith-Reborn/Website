@@ -1,12 +1,15 @@
-'use client'
+"use client";
 
-import Image from 'next/image'
+import Image from "next/image";
 
 export default function Hero() {
   return (
-    <section id="hero" className="relative min-h-screen flex items-center justify-center overflow-hidden pt-20">
+    <section
+      id="hero"
+      className="relative flex min-h-screen items-center justify-center overflow-hidden pt-20"
+    >
       {/* Background gradient overlay */}
-      <div className="absolute inset-0 bg-hero-gradient z-10"></div>
+      <div className="bg-hero-gradient absolute inset-0 z-10"></div>
 
       {/* Subtle background gradient - clean and professional */}
 
@@ -15,14 +18,14 @@ export default function Hero() {
         {/* Phoenix logo */}
         <div className="mb-8 flex justify-center">
           <div className="relative">
-            <div className="absolute inset-0 bg-phoenix-gradient opacity-30 blur-3xl rounded-full"></div>
-            <div className="relative w-32 h-32 md:w-40 md:h-40 animate-pulse">
+            <div className="bg-phoenix-gradient absolute inset-0 rounded-full opacity-30 blur-3xl"></div>
+            <div className="relative h-32 w-32 animate-pulse md:h-40 md:w-40">
               <Image
                 src="/phoenix-logo-transparent.png"
                 alt="Zenith Reborn Phoenix"
                 width={160}
                 height={160}
-                className="w-full h-full object-contain drop-shadow-2xl"
+                className="h-full w-full object-contain drop-shadow-2xl"
                 priority
               />
             </div>
@@ -30,41 +33,41 @@ export default function Hero() {
         </div>
 
         {/* Main heading */}
-        <h1 className="text-5xl md:text-7xl font-bold mb-6 text-gradient phoenix-glow">
+        <h1 className="text-gradient phoenix-glow mb-6 text-5xl font-bold md:text-7xl">
           Zenith Reborn
         </h1>
 
         {/* Subheading */}
-        <p className="text-2xl md:text-3xl text-neutral-lightText mb-4 font-light">
+        <p className="text-neutral-lightText mb-4 text-2xl font-light md:text-3xl">
           Rise to Your Potential
         </p>
 
         {/* Tagline */}
-        <p className="text-xl md:text-2xl text-neutral-gray mb-12 max-w-3xl mx-auto">
+        <p className="text-neutral-gray mx-auto mb-12 max-w-3xl text-xl md:text-2xl">
           Master Your Skills, One Session at a Time
         </p>
 
         {/* CTA Button */}
-        <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+        <div className="flex flex-col items-center justify-center gap-4 sm:flex-row">
           <a
             href="#skillquest"
-            className="group relative px-8 py-4 bg-phoenix-gradient text-white font-semibold rounded-full text-lg overflow-hidden transition-all duration-300 hover:scale-105 hover:shadow-2xl hover:shadow-primary-orange/50"
+            className="group bg-phoenix-gradient hover:shadow-primary-orange/50 relative overflow-hidden rounded-full px-8 py-4 text-lg font-semibold text-white transition-all duration-300 hover:scale-105 hover:shadow-2xl"
           >
             <span className="relative z-10">Discover SkillQuest</span>
           </a>
 
           <a
             href="#contact"
-            className="px-8 py-4 border-2 border-primary-gold text-primary-gold font-semibold rounded-full text-lg transition-all duration-300 hover:bg-primary-gold hover:text-neutral-darkBg hover:scale-105"
+            className="border-primary-gold text-primary-gold hover:bg-primary-gold hover:text-neutral-darkBg rounded-full border-2 px-8 py-4 text-lg font-semibold transition-all duration-300 hover:scale-105"
           >
             Get in Touch
           </a>
         </div>
 
         {/* Scroll indicator */}
-        <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
+        <div className="absolute bottom-8 left-1/2 -translate-x-1/2 transform animate-bounce">
           <svg
-            className="w-6 h-6 text-primary-gold"
+            className="text-primary-gold h-6 w-6"
             fill="none"
             strokeLinecap="round"
             strokeLinejoin="round"
@@ -77,5 +80,5 @@ export default function Hero() {
         </div>
       </div>
     </section>
-  )
+  );
 }

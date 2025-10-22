@@ -1,34 +1,34 @@
-'use client'
+"use client";
 
-import { useEffect } from 'react'
-import Navbar from '@/components/Navbar'
-import Hero from '@/components/Hero'
-import About from '@/components/About'
-import SkillQuest from '@/components/SkillQuest'
-import Download from '@/components/Download'
-import Contact from '@/components/Contact'
-import Footer from '@/components/Footer'
+import { useEffect } from "react";
+import Navbar from "@/components/Navbar";
+import Hero from "@/components/Hero";
+import About from "@/components/About";
+import SkillQuest from "@/components/SkillQuest";
+import Download from "@/components/Download";
+import Contact from "@/components/Contact";
+import Footer from "@/components/Footer";
 
 export default function Home() {
   useEffect(() => {
     // Handle hash scrolling when navigating from other pages
-    const hash = window.location.hash
+    const hash = window.location.hash;
     if (hash) {
       setTimeout(() => {
-        const element = document.querySelector(hash)
+        const element = document.querySelector(hash);
         if (element) {
-          const offset = 80 // navbar height
-          const elementPosition = element.getBoundingClientRect().top
-          const offsetPosition = elementPosition + window.pageYOffset - offset
+          const offset = 80; // navbar height
+          const elementPosition = element.getBoundingClientRect().top;
+          const offsetPosition = elementPosition + window.pageYOffset - offset;
 
           window.scrollTo({
             top: offsetPosition,
-            behavior: 'smooth'
-          })
+            behavior: "smooth",
+          });
         }
-      }, 100) // Small delay to ensure page is fully loaded
+      }, 100); // Small delay to ensure page is fully loaded
     }
-  }, [])
+  }, []);
 
   return (
     <>
@@ -42,5 +42,5 @@ export default function Home() {
         <Footer />
       </main>
     </>
-  )
+  );
 }
