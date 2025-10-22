@@ -25,6 +25,7 @@ Het complete blog systeem is geïnstalleerd en geconfigureerd:
 De development server draait al op: **http://localhost:3008/blog**
 
 Open je browser en ga naar:
+
 - `http://localhost:3008/blog` - Blog overzicht
 - `http://localhost:3008/blog/welcome-to-zenith-blog` - Voorbeeld post
 - `http://localhost:3008/blog/skillquest-week-1-initial-setup` - Voorbeeld post met code
@@ -38,6 +39,7 @@ In een project (bijv. SkillQuest):
 ```
 
 Claude zal dan:
+
 1. Git history analyseren
 2. Blog post genereren
 3. Preview tonen
@@ -83,6 +85,7 @@ Zenith-Reborn-Website/
 ### Voor andere projecten (SkillQuest, ZenFocus, etc.):
 
 1. **Kopieer slash command:**
+
 ```bash
 # In je andere project (bijv. SkillQuest)
 mkdir -p .claude/commands
@@ -90,6 +93,7 @@ cp ../Zenith-Reborn-Website/.claude/commands/write-blog-post.md .claude/commands
 ```
 
 2. **Gebruik het:**
+
 ```
 /write-blog-post
 ```
@@ -99,6 +103,7 @@ cp ../Zenith-Reborn-Website/.claude/commands/write-blog-post.md .claude/commands
 ### Optie 1: Automatisch (aanbevolen)
 
 In een project directory:
+
 ```
 /write-blog-post
 ```
@@ -132,6 +137,7 @@ De blog gebruikt automatisch kleuren per project:
 - **Zenith Reborn**: Amber/Goud
 
 Voeg nieuwe projecten toe in:
+
 - [components/blog/BlogCard.tsx](components/blog/BlogCard.tsx)
 - [app/blog/[slug]/page.tsx](app/blog/[slug]/page.tsx)
 
@@ -140,6 +146,7 @@ Voeg nieuwe projecten toe in:
 ### MCP Server werkt niet
 
 1. Check of Python dependencies zijn geïnstalleerd:
+
 ```bash
 cd mcp-servers/zenith-blog
 pip install -r requirements.txt

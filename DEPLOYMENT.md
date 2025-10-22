@@ -3,6 +3,7 @@
 ## 🚀 Deploy to Vercel
 
 ### Prerequisites
+
 - GitHub account
 - Vercel account (free tier works)
 - Domain registered at your provider
@@ -62,6 +63,7 @@ git push -u origin main
    Go to your domain registrar's DNS settings and add these records:
 
    **For apex domain (zenithreborn.com):**
+
    ```
    Type: A
    Name: @
@@ -70,6 +72,7 @@ git push -u origin main
    ```
 
    **For www subdomain:**
+
    ```
    Type: CNAME
    Name: www
@@ -88,16 +91,19 @@ git push -u origin main
 For the contact form to work, you'll need to integrate an email service:
 
 **Option 1: Email API Services**
+
 - [SendGrid](https://sendgrid.com) (12,000 free emails/month)
 - [Resend](https://resend.com) (3,000 free emails/month)
 - [Mailgun](https://mailgun.com) (5,000 free emails/month)
 
 **Option 2: Form Submission Services**
+
 - [Formspree](https://formspree.io)
 - [Netlify Forms](https://netlify.com/products/forms)
 - [Web3Forms](https://web3forms.com)
 
 **Implementation:**
+
 1. Sign up for your chosen service
 2. Get your API key
 3. Add to Vercel environment variables:
@@ -110,12 +116,14 @@ For the contact form to work, you'll need to integrate an email service:
 For the download section waitlist to work:
 
 **Option 1: Mailchimp**
+
 1. Create a Mailchimp account
 2. Create an audience for "SkillQuest Waitlist"
 3. Get your API key and audience ID
 4. Add to Vercel environment variables
 
 **Option 2: ConvertKit**
+
 1. Create a ConvertKit account
 2. Create a form for waitlist
 3. Get your API key and form ID
@@ -123,6 +131,7 @@ For the download section waitlist to work:
 
 **Option 3: Simple Email Collection**
 Use a service like Airtable or Google Sheets to collect emails:
+
 1. Create an Airtable base or Google Sheet
 2. Use their API to submit form data
 3. Much simpler for MVP
@@ -130,6 +139,7 @@ Use a service like Airtable or Google Sheets to collect emails:
 ## 🔄 Continuous Deployment
 
 Once connected to GitHub, every push to the `main` branch will automatically:
+
 1. Trigger a new build on Vercel
 2. Run tests (if configured)
 3. Deploy to production
@@ -151,18 +161,21 @@ git push origin main
 ## 📊 Analytics (Optional)
 
 ### Vercel Analytics
+
 1. Go to your project on Vercel
 2. Click "Analytics" tab
 3. Enable analytics (free for hobby tier)
 4. Add to `app/layout.tsx`:
+
    ```tsx
-   import { Analytics } from '@vercel/analytics/react';
+   import { Analytics } from "@vercel/analytics/react";
 
    // Add inside <body> tag
-   <Analytics />
+   <Analytics />;
    ```
 
 ### Google Analytics
+
 1. Create Google Analytics account
 2. Get your tracking ID
 3. Add to environment variables
@@ -172,7 +185,9 @@ git push origin main
 ## 🎨 Customization Tips
 
 ### Update Brand Colors
+
 Edit `tailwind.config.ts` to adjust colors:
+
 ```typescript
 colors: {
   primary: {
@@ -183,26 +198,31 @@ colors: {
 ```
 
 ### Add Real Phoenix Logo
+
 1. Replace emoji in `components/Hero.tsx`
 2. Add SVG or PNG to `/public` folder
 3. Use `<Image>` component from Next.js
 
 ### Email Integration
+
 Update `components/Contact.tsx` and `components/Download.tsx` with your email service API
 
 ## 🐛 Troubleshooting
 
 ### Build Fails on Vercel
+
 - Check build logs in Vercel dashboard
 - Ensure all dependencies are in `package.json`
 - Verify TypeScript errors locally: `npm run build`
 
 ### Domain Not Working
+
 - Wait 24-48 hours for DNS propagation
 - Use [DNS Checker](https://dnschecker.org) to verify
 - Ensure correct DNS records
 
 ### Styles Not Loading
+
 - Clear browser cache
 - Check Tailwind config
 - Verify `globals.css` import

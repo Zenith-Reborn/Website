@@ -15,6 +15,7 @@ Dit blog systeem bestaat uit drie componenten:
 ### 1. Website Setup (Already Done)
 
 De website is al geconfigureerd met:
+
 - MDX support voor blog posts
 - Blog overzichtspagina op `/blog`
 - Individuele post pagina's op `/blog/[slug]`
@@ -57,6 +58,7 @@ Voeg toe aan `C:\Users\Hans\AppData\Roaming\Claude\claude_desktop_config.json`:
 Om `/write-blog-post` te gebruiken in andere projecten (zoals SkillQuest):
 
 1. Kopieer `.claude/commands/write-blog-post.md` naar het andere project:
+
 ```bash
 # In SkillQuest project
 mkdir -p .claude/commands
@@ -113,7 +115,7 @@ Meer content...
 
 \`\`\`kotlin
 fun example() {
-    println("Hello World")
+println("Hello World")
 }
 \`\`\`
 ```
@@ -126,14 +128,14 @@ fun example() {
 
 ```yaml
 ---
-title: string           # "SkillQuest Week 42 - Feature X"
-date: string            # "2025-10-20" (YYYY-MM-DD)
-project: string         # "SkillQuest" | "ZenFocus" | "Zenith Reborn"
-tags: array             # ["feature", "bugfix", "performance"]
-summary: string         # Korte samenvatting (voor overzichtspagina)
-author: string          # "Hans" (optioneel)
-coverImage: string      # "/blog/images/post.png" (optioneel)
-published: boolean      # true/false
+title: string # "SkillQuest Week 42 - Feature X"
+date: string # "2025-10-20" (YYYY-MM-DD)
+project: string # "SkillQuest" | "ZenFocus" | "Zenith Reborn"
+tags: array # ["feature", "bugfix", "performance"]
+summary: string # Korte samenvatting (voor overzichtspagina)
+author: string # "Hans" (optioneel)
+coverImage: string # "/blog/images/post.png" (optioneel)
+published: boolean # true/false
 ---
 ```
 
@@ -167,7 +169,7 @@ Wat staat er op de planning?
 ---
 
 **Auteur Naam**
-*Rol*
+_Rol_
 ```
 
 ## Markdown Features
@@ -176,8 +178,8 @@ Wat staat er op de planning?
 
 \`\`\`kotlin
 data class User(
-    val name: String,
-    val age: Int
+val name: String,
+val age: Int
 )
 \`\`\`
 
@@ -188,11 +190,13 @@ Gebruik `backticks` voor inline code.
 ### Lijsten
 
 **Unordered:**
+
 - Item 1
 - Item 2
   - Subitem
 
 **Ordered:**
+
 1. Eerste
 2. Tweede
 3. Derde
@@ -214,7 +218,7 @@ Gebruik `backticks` voor inline code.
 ### Tabellen
 
 | Header 1 | Header 2 |
-|----------|----------|
+| -------- | -------- |
 | Cell 1   | Cell 2   |
 
 ## Project-Specifieke Kleuren
@@ -275,11 +279,13 @@ Vercel detecteert automatisch de push en deployed de website.
 ### MCP Server werkt niet
 
 1. Check of Python correct is geïnstalleerd:
+
 ```bash
 python --version
 ```
 
 2. Check of dependencies zijn geïnstalleerd:
+
 ```bash
 pip list | grep mcp
 ```
@@ -320,6 +326,7 @@ Voor vragen of problemen:
 ## Voorbeelden
 
 Zie de voorbeeld posts in `content/posts/`:
+
 - `welcome-to-zenith-blog.mdx` - Intro post
 - `skillquest-week-1-initial-setup.mdx` - Feature post met code
 

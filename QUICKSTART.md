@@ -3,6 +3,7 @@
 ## 🎯 You're Ready to Launch!
 
 Your premium landing page is complete with:
+
 - ✅ Phoenix-themed hero section with gold/orange gradients
 - ✅ About section with mission, vision & values
 - ✅ SkillQuest app showcase with 6 key features
@@ -21,6 +22,7 @@ npm install
 ```
 
 **Note:** If npm install takes too long, try:
+
 ```bash
 npm install --force
 ```
@@ -90,7 +92,9 @@ Neutrals:
 ## ✏️ Quick Customizations
 
 ### Replace Fire Emoji with Phoenix Logo
+
 In `components/Hero.tsx`, line ~17:
+
 ```tsx
 // Replace
 <div className="text-8xl phoenix-glow">🔥</div>
@@ -100,16 +104,20 @@ In `components/Hero.tsx`, line ~17:
 ```
 
 ### Change Tagline
+
 In `components/Hero.tsx`, line ~35:
+
 ```tsx
 Master Your Skills, One Session at a Time
 ```
 
 ### Add Real App Screenshot
+
 In `components/SkillQuest.tsx`, line ~71-79:
 Replace the placeholder phone mockup with your actual app screenshot.
 
 ### Update Social Links
+
 In `components/Footer.tsx` and `components/Contact.tsx`:
 Replace `href="#"` with your actual social media URLs.
 
@@ -118,10 +126,12 @@ Replace `href="#"` with your actual social media URLs.
 For contact form and waitlist to work, choose one:
 
 **Easiest:** [Web3Forms](https://web3forms.com) - No backend needed
+
 1. Get API key from web3forms.com
 2. Add to form action in `components/Contact.tsx`
 
 **Best for Marketing:** [ConvertKit](https://convertkit.com) or [Mailchimp](https://mailchimp.com)
+
 1. Create account + get API key
 2. Set up API route in Next.js
 3. Update form handlers
@@ -144,6 +154,7 @@ After deploying to Vercel:
 ## 🐛 Troubleshooting
 
 ### Dependencies won't install?
+
 ```bash
 npm install --force
 # or
@@ -151,6 +162,7 @@ npm cache clean --force && npm install
 ```
 
 ### Dev server won't start?
+
 ```bash
 rm -rf .next node_modules
 npm install
@@ -158,10 +170,12 @@ npm run dev
 ```
 
 ### Styles not showing?
+
 - Hard refresh browser: `Ctrl+Shift+R` (Win) or `Cmd+Shift+R` (Mac)
 - Check browser console for errors
 
 ### Build errors?
+
 ```bash
 npm run build
 # Fix any TypeScript/React errors shown

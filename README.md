@@ -11,6 +11,7 @@ Zenith Reborn is a comprehensive platform featuring both a marketing website and
 **Phoenix Theme:** Rising from ashes to excellence
 
 **Colors:**
+
 - Primary: Gold (#FFD700), Orange (#FF6B35), Amber (#FFBF00)
 - Secondary: Deep Red (#8B0000), Burgundy (#800020)
 - Neutrals: Dark BG (#0F0F0F), Light Text (#F5F5F5)
@@ -195,6 +196,7 @@ For more details, see [BLOG_SETUP.md](BLOG_SETUP.md) and [BLOG_WORKFLOW.md](BLOG
 ## 🐛 Troubleshooting
 
 ### Development server won't start
+
 ```bash
 # Clear cache and reinstall
 rm -rf node_modules .next
@@ -203,6 +205,7 @@ npm run dev
 ```
 
 ### Styles not loading
+
 ```bash
 # Rebuild Tailwind
 npm run dev
@@ -210,6 +213,7 @@ npm run dev
 ```
 
 ### Build errors
+
 ```bash
 # Check TypeScript errors
 npm run build

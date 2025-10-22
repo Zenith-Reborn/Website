@@ -36,6 +36,7 @@ npm run lint
 **File-based MDX system** - Blog posts are MDX files in `content/posts/` instead of a CMS/database. This enables version control and simplicity.
 
 **Data Flow:**
+
 1. MDX files stored in `content/posts/` with YAML frontmatter
 2. [lib/blog.ts](lib/blog.ts) provides utilities to read and parse posts
 3. Uses `gray-matter` to extract frontmatter metadata
@@ -43,6 +44,7 @@ npm run lint
 5. Posts pre-rendered at build time via `generateStaticParams()`
 
 **Blog Post Frontmatter Fields:**
+
 - `title`: Post title
 - `date`: ISO date string (YYYY-MM-DD) - used for sorting (newest first)
 - `project`: "SkillQuest" | "ZenFocus" | "Zenith Reborn" - determines badge color
@@ -60,6 +62,7 @@ MDX configuration appears in TWO places with identical plugin setup:
 2. **[app/blog/[slug]/page.tsx](app/blog/[slug]/page.tsx)** - Inline options for `next-mdx-remote`
 
 **Plugins (applied in order):**
+
 - `remark-gfm` - GitHub Flavored Markdown (tables, task lists, strikethrough)
 - `rehype-highlight` - Syntax highlighting for code blocks (using highlight.js)
 - `rehype-slug` - Auto-generate IDs for all headings
@@ -72,6 +75,7 @@ MDX configuration appears in TWO places with identical plugin setup:
 The homepage uses hash anchors for smooth scrolling to sections (#about, #skillquest, etc.).
 
 **Smart Navigation Logic in Navbar:**
+
 - On homepage: smooth scroll to section
 - From other pages: navigate to homepage first, then scroll
 - Custom scroll offset to account for fixed navbar height
@@ -79,6 +83,7 @@ The homepage uses hash anchors for smooth scrolling to sections (#about, #skillq
 ### Phoenix Theme Styling
 
 **Tailwind CSS 4** with custom brand colors defined in [tailwind.config.ts](tailwind.config.ts):
+
 - **Primary**: Gold (#FFD700), Orange (#FF6B35), Amber (#FFBF00)
 - **Secondary**: Deep Red (#8B0000), Burgundy (#800020)
 - **Neutral**: Dark BG (#0F0F0F), Light Text (#F5F5F5)
@@ -91,6 +96,7 @@ The phoenix theme represents transformation and growth - a core part of the bran
 The blog supports color-coded project badges. Each project (SkillQuest, ZenFocus, Zenith Reborn) has unique colors defined in [app/blog/[slug]/page.tsx:13-32](app/blog/[slug]/page.tsx#L13-L32).
 
 **When adding a new project:**
+
 1. Add `project: "ProjectName"` to MDX frontmatter
 2. Optionally add custom colors to the `projectColors` object for themed badges
 
@@ -99,6 +105,7 @@ The blog supports color-coded project badges. Each project (SkillQuest, ZenFocus
 The blog includes an automatic RSS 2.0 feed at `/blog/rss.xml`:
 
 **Implementation:**
+
 - [app/blog/rss.xml/route.ts](app/blog/rss.xml/route.ts) - Route handler that generates RSS XML
 - [app/layout.tsx:58-65](app/layout.tsx#L58-L65) - Auto-discovery link in HTML head
 - Uses `getAllPosts()` from [lib/blog.ts](lib/blog.ts) to fetch all published posts
@@ -131,6 +138,7 @@ The blog includes an automatic RSS 2.0 feed at `/blog/rss.xml`:
 When generating blog posts (via `/write-blog-post` or manually):
 
 **Content Accuracy:**
+
 - ✅ ONLY write about features/changes that were actually implemented
 - ✅ Base content on actual git commits and code changes
 - ❌ NEVER add "What's Next?" or future roadmap sections without explicit user request
@@ -138,12 +146,14 @@ When generating blog posts (via `/write-blog-post` or manually):
 - ❌ NEVER add speculative content to make posts "more complete"
 
 **Review Process:**
+
 - ✅ ALWAYS show full blog post to user before saving
 - ✅ WAIT for explicit approval before saving to `content/posts/`
 - ✅ If user requests changes, update and show again
 - ❌ NEVER auto-save blog posts without confirmation
 
 **Tone & Style:**
+
 - Write in English
 - Professional yet accessible tone
 - Focus on "why" alongside "what"
@@ -165,4 +175,3 @@ When generating blog posts (via `/write-blog-post` or manually):
 - Path aliases: `@/*` maps to project root
 - Blog post types defined in [lib/blog.ts:7-30](lib/blog.ts#L7-L30)
 - Full type coverage for components and utilities
-

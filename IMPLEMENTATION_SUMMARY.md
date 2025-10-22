@@ -9,6 +9,7 @@ Een compleet blog systeem voor de Zenith Reborn website met automatische blog po
 ### 1. Website Blog (Next.js + MDX)
 
 **Nieuwe bestanden:**
+
 - `app/blog/page.tsx` - Blog overzichtspagina met filtering en zoeken
 - `app/blog/[slug]/page.tsx` - Individuele blog post pagina
 - `app/api/blog/route.ts` - API endpoint voor blog data
@@ -19,12 +20,14 @@ Een compleet blog systeem voor de Zenith Reborn website met automatische blog po
 - `content/posts/` - Directory voor MDX blog posts
 
 **Gewijzigde bestanden:**
+
 - `next.config.ts` - MDX configuratie toegevoegd
 - `package.json` - MDX dependencies toegevoegd
 - `components/Navbar.tsx` - Blog link toegevoegd
 - `mdx-components.tsx` - MDX components configuratie
 
 **Features:**
+
 - ✅ MDX support met syntax highlighting
 - ✅ Blog overzicht met cards
 - ✅ Filter op project (SkillQuest, ZenFocus, etc.)
@@ -38,17 +41,20 @@ Een compleet blog systeem voor de Zenith Reborn website met automatische blog po
 ### 2. MCP Blog Server (Python)
 
 **Bestanden:**
+
 - `mcp-servers/zenith-blog/server.py` - MCP server implementatie
 - `mcp-servers/zenith-blog/requirements.txt` - Python dependencies
 - `mcp-servers/zenith-blog/README.md` - Server documentatie
 
 **MCP Tools:**
+
 1. `analyze_project_changes` - Analyseert git commits en wijzigingen
 2. `generate_blog_post` - Genereert MDX blog post met frontmatter
 3. `save_blog_post` - Slaat blog post op in content directory
 4. `list_blog_posts` - Lijst alle bestaande posts
 
 **Features:**
+
 - ✅ Git history analyse (commits, diffs, changed files)
 - ✅ Automatische slug generatie
 - ✅ MDX frontmatter generatie
@@ -56,15 +62,18 @@ Een compleet blog systeem voor de Zenith Reborn website met automatische blog po
 - ✅ Error handling
 
 **Configuratie:**
+
 - Toegevoegd aan `claude_desktop_config.json`
 - Environment variabele voor website path
 
 ### 3. Slash Command
 
 **Bestand:**
+
 - `.claude/commands/write-blog-post.md` - Command template
 
 **Workflow:**
+
 1. Detecteert project naam en pad
 2. Analyseert git history (laatste 7 dagen)
 3. Identificeert features, bug fixes, etc.
@@ -73,6 +82,7 @@ Een compleet blog systeem voor de Zenith Reborn website met automatische blog po
 6. Slaat op na bevestiging
 
 **Features:**
+
 - ✅ Automatische project detectie
 - ✅ Slimme commit analyse
 - ✅ Tag generatie
@@ -82,6 +92,7 @@ Een compleet blog systeem voor de Zenith Reborn website met automatische blog po
 ### 4. Documentatie
 
 **Bestanden:**
+
 - `BLOG_WORKFLOW.md` - Complete workflow guide
 - `BLOG_SETUP.md` - Snelle setup instructies
 - `IMPLEMENTATION_SUMMARY.md` - Deze samenvatting
@@ -89,18 +100,21 @@ Een compleet blog systeem voor de Zenith Reborn website met automatische blog po
 ### 5. Voorbeeld Content
 
 **Blog posts:**
+
 - `content/posts/welcome-to-zenith-blog.mdx` - Intro post
 - `content/posts/skillquest-week-1-initial-setup.mdx` - Feature post met code
 
 ## 🛠️ Technische Stack
 
 ### Frontend
+
 - **Next.js 15.5.6** - React framework
 - **MDX** - Markdown met React componenten
 - **Tailwind CSS** - Styling
 - **TypeScript** - Type safety
 
 ### Backend
+
 - **Python 3.13** - MCP server
 - **MCP SDK** - Claude MCP framework
 - **GitPython** - Git repository analyse
@@ -108,6 +122,7 @@ Een compleet blog systeem voor de Zenith Reborn website met automatische blog po
 ### Dependencies Geïnstalleerd
 
 **NPM:**
+
 ```json
 {
   "@mdx-js/loader": "^3.1.1",
@@ -123,6 +138,7 @@ Een compleet blog systeem voor de Zenith Reborn website met automatische blog po
 ```
 
 **Python:**
+
 ```
 mcp>=1.0.0
 anthropic>=0.40.0
@@ -133,14 +149,14 @@ gitpython>=3.1.0
 
 ```yaml
 ---
-title: string           # "SkillQuest Week 42 - Feature X"
-date: string            # "2025-10-20" (YYYY-MM-DD)
-project: string         # "SkillQuest" | "ZenFocus" | "Zenith Reborn"
-tags: array             # ["feature", "bugfix", "performance"]
-summary: string         # Korte samenvatting
-author: string          # "Hans" (optioneel)
-coverImage: string      # "/blog/images/post.png" (optioneel)
-published: boolean      # true/false
+title: string # "SkillQuest Week 42 - Feature X"
+date: string # "2025-10-20" (YYYY-MM-DD)
+project: string # "SkillQuest" | "ZenFocus" | "Zenith Reborn"
+tags: array # ["feature", "bugfix", "performance"]
+summary: string # Korte samenvatting
+author: string # "Hans" (optioneel)
+coverImage: string # "/blog/images/post.png" (optioneel)
+published: boolean # true/false
 ---
 ```
 
@@ -168,12 +184,14 @@ published: boolean      # true/false
 ## 🚀 Deployment
 
 ### Lokaal
+
 ```bash
 npm run dev
 # Bezoek: http://localhost:3008/blog
 ```
 
 ### Production (Vercel)
+
 ```bash
 git add .
 git commit -m "Add blog system"
@@ -184,11 +202,13 @@ git push origin main
 ## 📝 Gebruik in Andere Projecten
 
 1. Kopieer slash command:
+
 ```bash
 cp .claude/commands/write-blog-post.md [ander-project]/.claude/commands/
 ```
 
 2. Gebruik:
+
 ```
 /write-blog-post
 ```
