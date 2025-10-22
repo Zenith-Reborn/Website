@@ -119,3 +119,48 @@ export function getAllTags(): string[] {
   const tags = new Set(allPosts.flatMap(post => post.tags))
   return Array.from(tags).sort()
 }
+
+export function getRelatedPosts(currentSlug: string, limit: number = 4): BlogPostMetadata[] {
+  const allPosts = getAllPosts()
+  const currentPost = allPosts.find(post => post.slug === currentSlug)
+
+  if (!currentPost) {
+    return []
+  }
+
+  // Exclude current post from candidates
+  const candidates = allPosts.filter(post => post.slug !== currentSlug)
+
+  // Score posts based on shared tags
+  const scoredPosts = candidates.map(post => {
+    let score = 0
+
+    // Count shared tags (higher priority)
+    const sharedTags = post.tags.filter(tag =>
+      currentPost.tags.some(currentTag => currentTag.toLowerCase() === tag.toLowerCase())
+    )
+    score += sharedTags.length * 10
+
+    // Same project (lower priority)
+    if (post.project.toLowerCase() === currentPost.project.toLowerCase()) {
+      score += 5
+    }
+
+    return { post, score }
+  })
+
+  // Sort by score (descending), then by date (newest first)
+  const sortedPosts = scoredPosts
+    .sort((a, b) => {
+      if (b.score !== a.score) {
+        return b.score - a.score
+      }
+      // If scores are equal, sort by date
+      return a.post.date < b.post.date ? 1 : -1
+    })
+    .filter(item => item.score > 0) // Only include posts with some relevance
+    .slice(0, limit)
+    .map(item => item.post)
+
+  return sortedPosts
+}

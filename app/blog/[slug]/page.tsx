@@ -1,8 +1,9 @@
 import { notFound } from 'next/navigation'
 import Link from 'next/link'
 import Navbar from '@/components/Navbar'
-import { getPostBySlug, getAllPosts } from '@/lib/blog'
+import { getPostBySlug, getAllPosts, getRelatedPosts } from '@/lib/blog'
 import { MDXComponents } from '@/components/blog/MDXComponents'
+import RelatedPosts from '@/components/blog/RelatedPosts'
 import { MDXRemote } from 'next-mdx-remote/rsc'
 import rehypeHighlight from 'rehype-highlight'
 import rehypeSlug from 'rehype-slug'
@@ -68,6 +69,8 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
   if (!post || !post.published) {
     notFound()
   }
+
+  const relatedPosts = getRelatedPosts(slug, 4)
 
   const colors = projectColors[post.project] || {
     bg: 'bg-neutral-darkBg/50',
@@ -162,6 +165,9 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
               </p>
             </div>
           )}
+
+          {/* Related Posts */}
+          <RelatedPosts posts={relatedPosts} />
 
           {/* Navigation */}
           <div className="mt-12 flex flex-col sm:flex-row gap-4 justify-between">
