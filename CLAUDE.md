@@ -51,7 +51,10 @@ npm run lint
 - `tags`: Array of tags for filtering
 - `summary`: Brief description shown on cards
 - `author`: Optional author name
-- `coverImage`: Optional image URL
+- `coverImage`: **Recommended** - Image URL for OpenGraph/Twitter cards (1200x630px ideal)
+  - Use Unsplash URLs with `?w=1200&h=630&fit=crop&q=80` for optimization
+  - Falls back to phoenix logo if omitted
+  - Critical for social media sharing appearance
 - `published`: Boolean - unpublished posts are filtered out
 
 ### MDX Processing Pipeline
@@ -126,12 +129,22 @@ The blog includes an automatic RSS 2.0 feed at `/blog/rss.xml`:
    tags: ["tag1", "tag2"]
    summary: "Brief description"
    author: "Your Name"
+   coverImage: "https://images.unsplash.com/photo-xxxxx?w=1200&h=630&fit=crop&q=80"
    published: true
    ---
    ```
 3. Write MDX content (supports full React components)
 4. Posts are automatically included in the blog listing AND RSS feed
 5. Unpublished posts (`published: false`) are filtered out
+
+**Finding Cover Images:**
+
+- **Unsplash** (recommended): https://unsplash.com - Free, high-quality images
+  - Search for relevant topics (coding, productivity, etc.)
+  - Use URL format: `https://images.unsplash.com/photo-{id}?w=1200&h=630&fit=crop&q=80`
+  - Optimal dimensions: 1200x630px (OpenGraph standard)
+- **Alternative sources**: Pexels, Pixabay (also free with commercial use)
+- **Custom images**: Create branded OG images with Canva or Figma
 
 ### Blog Content Guidelines (CRITICAL)
 
@@ -179,6 +192,72 @@ The website includes Vercel Analytics and Speed Insights for tracking and monito
 - Visible in Vercel dashboard after deployment
 
 **Implementation:** Both components are added to [app/layout.tsx:69-70](app/layout.tsx#L69-L70) inside the `<body>` tag for global tracking across all pages.
+
+## SEO Optimization
+
+The website is fully optimized for search engines with comprehensive metadata and structured data.
+
+### Metadata Implementation
+
+**Global Metadata** ([app/layout.tsx](app/layout.tsx)):
+- Title template for consistent branding: `%s | Zenith Reborn`
+- Enhanced descriptions with extended keywords
+- Robots meta tags with Google Bot configuration
+- Open Graph images (1200x1200px)
+- Twitter Card metadata with creator handle
+- RSS feed alternate link
+- Canonical URLs
+
+**Blog Post Metadata** ([app/blog/[slug]/page.tsx](app/blog/[slug]/page.tsx)):
+- Dynamic Open Graph images from `coverImage` frontmatter
+- Twitter Card with `summary_large_image` format
+- Author metadata
+- Publication dates in ISO format
+- Tags as keywords for search relevance
+- Article-specific Open Graph properties
+
+**Blog Listing Metadata** ([app/blog/layout.tsx](app/blog/layout.tsx)):
+- Dedicated metadata for blog index page
+- Open Graph and Twitter Card configuration
+
+### Structured Data (JSON-LD)
+
+**Schema Types Implemented** ([lib/structuredData.ts](lib/structuredData.ts)):
+
+1. **WebSite Schema** (Homepage):
+   - SearchAction for site search
+   - Organization publisher information
+
+2. **BlogPosting Schema** (Individual posts):
+   - Article metadata (headline, description, image)
+   - Author and publisher information
+   - Publication and modification dates
+   - Keywords from tags
+
+3. **Blog Schema** (Blog listing):
+   - Blog information and publisher
+
+### Sitemap & Robots
+
+**Dynamic Sitemap** ([app/sitemap.ts](app/sitemap.ts)):
+- Homepage: priority 1.0, weekly updates
+- Blog listing: priority 0.8, daily updates
+- Blog posts: priority 0.7, monthly updates
+- Uses post dates for `lastModified`
+- Auto-generated at build time
+
+**Robots.txt** ([app/robots.ts](app/robots.ts)):
+- Allows all crawlers
+- Disallows `/api/` and `/private/`
+- References sitemap location
+
+### Testing SEO
+
+After deployment, test with:
+- **OpenGraph Preview**: https://www.opengraph.xyz/
+- **Twitter Card Validator**: https://cards-dev.twitter.com/validator
+- **Google Rich Results Test**: https://search.google.com/test/rich-results
+- **Lighthouse SEO Audit**: Chrome DevTools > Lighthouse tab
 
 ## Key Architectural Decisions
 

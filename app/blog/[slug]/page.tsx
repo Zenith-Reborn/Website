@@ -1,10 +1,12 @@
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import Image from "next/image";
+import type { Metadata } from "next";
 import Navbar from "@/components/Navbar";
 import { getPostBySlug, getAllPosts, getRelatedPosts } from "@/lib/blog";
 import { MDXComponents } from "@/components/blog/MDXComponents";
 import RelatedPosts from "@/components/blog/RelatedPosts";
+import { generateBlogPostingSchema } from "@/lib/structuredData";
 import { MDXRemote } from "next-mdx-remote/rsc";
 import rehypeHighlight from "rehype-highlight";
 import rehypeSlug from "rehype-slug";
@@ -43,7 +45,11 @@ export async function generateStaticParams() {
   }));
 }
 
-export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }) {
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ slug: string }>;
+}): Promise<Metadata> {
   const { slug } = await params;
   const post = await getPostBySlug(slug);
 
@@ -53,15 +59,54 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
     };
   }
 
+  const url = `https://zenithreborn.com/blog/${slug}`;
+  const ogImage = post.coverImage || "https://zenithreborn.com/phoenix-logo-transparent.png";
+
   return {
     title: `${post.title} | Zenith Blog`,
     description: post.summary,
+    keywords: post.tags.join(", "),
+    authors: post.author ? [{ name: post.author }] : [{ name: "Zenith Reborn" }],
+    robots: {
+      index: true,
+      follow: true,
+      googleBot: {
+        index: true,
+        follow: true,
+        "max-video-preview": -1,
+        "max-image-preview": "large",
+        "max-snippet": -1,
+      },
+    },
+    alternates: {
+      canonical: url,
+    },
     openGraph: {
       title: post.title,
       description: post.summary,
+      url: url,
+      siteName: "Zenith Reborn",
+      locale: "en_US",
       type: "article",
-      publishedTime: post.date,
+      publishedTime: new Date(post.date).toISOString(),
+      modifiedTime: new Date(post.date).toISOString(),
+      authors: post.author ? [post.author] : ["Zenith Reborn"],
       tags: post.tags,
+      images: [
+        {
+          url: ogImage,
+          width: 1200,
+          height: 630,
+          alt: post.title,
+        },
+      ],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: post.title,
+      description: post.summary,
+      images: [ogImage],
+      creator: "@zenithreborn",
     },
   };
 }
@@ -89,8 +134,18 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
     day: "numeric",
   });
 
+  // Generate JSON-LD structured data
+  const url = `https://zenithreborn.com/blog/${slug}`;
+  const jsonLd = generateBlogPostingSchema(post, url);
+
   return (
     <div className="bg-neutral-darkBg min-h-screen">
+      {/* JSON-LD Structured Data */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
+
       <Navbar />
 
       {/* Header */}

@@ -8,6 +8,7 @@ import SkillQuest from "@/components/SkillQuest";
 import Download from "@/components/Download";
 import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
+import { generateWebSiteSchema } from "@/lib/structuredData";
 
 export default function Home() {
   useEffect(() => {
@@ -30,8 +31,16 @@ export default function Home() {
     }
   }, []);
 
+  const jsonLd = generateWebSiteSchema();
+
   return (
     <>
+      {/* JSON-LD Structured Data */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
+
       <Navbar />
       <main className="min-h-screen">
         <Hero />
