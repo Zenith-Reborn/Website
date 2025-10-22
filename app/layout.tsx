@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 import { Playfair_Display, Lora } from "next/font/google";
+import { Analytics } from "@vercel/analytics/react";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 import "./globals.css";
 
 const playfair = Playfair_Display({
@@ -62,7 +64,11 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           href="/blog/rss.xml"
         />
       </head>
-      <body className={`${lora.variable} ${playfair.variable} font-serif`}>{children}</body>
+      <body className={`${lora.variable} ${playfair.variable} font-serif`}>
+        {children}
+        <Analytics />
+        <SpeedInsights />
+      </body>
     </html>
   );
 }

@@ -160,6 +160,26 @@ When generating blog posts (via `/write-blog-post` or manually):
 - Include concrete examples and code snippets
 - Use clear structure with headings and lists
 
+## Analytics & Performance Monitoring
+
+The website includes Vercel Analytics and Speed Insights for tracking and monitoring:
+
+**Vercel Analytics** (`@vercel/analytics`):
+
+- Automatic page view tracking
+- Privacy-friendly (no cookies, GDPR compliant)
+- Real-time visitor data in Vercel dashboard
+- Zero configuration required
+
+**Vercel Speed Insights** (`@vercel/speed-insights`):
+
+- Real User Monitoring (RUM) for Core Web Vitals
+- Tracks: LCP, FID, CLS, TTFB, FCP, INP
+- Performance scores from actual user sessions
+- Visible in Vercel dashboard after deployment
+
+**Implementation:** Both components are added to [app/layout.tsx:69-70](app/layout.tsx#L69-L70) inside the `<body>` tag for global tracking across all pages.
+
 ## Key Architectural Decisions
 
 1. **File-based blog** - MDX files in `content/posts/` instead of CMS/database for version control and simplicity
@@ -168,6 +188,7 @@ When generating blog posts (via `/write-blog-post` or manually):
 4. **Hash navigation** - Custom scroll logic for smooth UX when navigating to homepage sections
 5. **Phoenix theme as identity** - Brand colors and gradients central to the design system
 6. **Project-based theming** - Different badge colors per project for visual organization
+7. **Vercel Analytics & Speed Insights** - Integrated monitoring for page views and Core Web Vitals
 
 ## TypeScript & Type Safety
 
