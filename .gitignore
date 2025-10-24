@@ -55,3 +55,7 @@ nul
 
 # MCP Configuration (contains sensitive tokens)
 .mcp.json
+
+# Logs (Playwright MCP and other automated testing logs)
+logs/
+*.log
