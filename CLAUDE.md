@@ -6,6 +6,20 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 Zenith Reborn is a Next.js 15 marketing website with an integrated MDX-powered blog system. The site features a phoenix-themed design representing transformation and growth, showcasing the SkillQuest app platform.
 
+## Available Global Commands
+
+The following global commands are available from `~/.claude/commands/`:
+
+- **`/blog-post`** - Generate blog posts from any project
+  - Works from: SkillQuest, ZenFocus, Zenith Reborn, or any project
+  - Analyzes git history and creates MDX blog posts
+  - Includes security scanning, git safety checks, and auto cover images
+  - Hybrid approach: tries MCP tools first, falls back to direct git commands
+  - Dual storage: saves locally in source project + Zenith website
+  - **This is the PREFERRED method for all blog post generation**
+
+**IMPORTANT:** Always check for global commands before creating project-specific alternatives. Global commands are more comprehensive and maintained centrally.
+
 ## Development Commands
 
 ```bash
