@@ -1,0 +1,141 @@
+---
+title: "Fixing SkillQuest Version Management - From Hardcoded to Automated"
+date: "2025-10-24"
+project: "SkillQuest"
+tags: ["bugfix", "devops", "ui"]
+summary: "Automated version management with semantic versioning and build date tracking - no more manual version updates required."
+author: "Hans"
+published: true
+---
+
+## The Problem
+
+While debugging a missing timer session, we discovered a bigger issue: the app always showed "Version 1.0.0 (1)" in the About screen, regardless of what was specified in `pubspec.yaml`. Even after running `flutter clean` and full rebuilds, the old version persisted.
+
+After investigation, we found that the Android build file (`build.gradle.kts`) contained **hardcoded version values** that blocked Flutter's automatic version injection:
+
+```kotlin
+// ❌ PROBLEM: Hardcoded versions
+versionCode = 1
+versionName = "1.0.0"
+```
+
+This meant that any version update in `pubspec.yaml` was completely ignored by the Android build system.
+
+## The Solution
+
+### 1. Semantic Versioning Implementation
+
+We updated the app version to use proper semantic versioning for the development phase:
+
+```yaml
+# pubspec.yaml
+version: 0.9.0-beta.1+20251024
+```
+
+This follows the SemVer format:
+- `0.9.0` - Pre-release version (not yet 1.0.0 production)
+- `beta.1` - Beta release identifier
+- `20251024` - Build number in YYYYMMDD format (October 24, 2025)
+
+### 2. Automatic Version Injection
+
+The Android build file was modified to automatically read Flutter's version:
+
+```kotlin
+// ✅ SOLUTION: Automatic version injection
+defaultConfig {
+    applicationId = "com.skillquest.app"
+    versionCode = flutter.versionCode      // Reads "20251024"
+    versionName = flutter.versionName      // Reads "0.9.0-beta.1"
+    // ...
+}
+```
+
+Now the Android manifest automatically syncs with `pubspec.yaml` on every build.
+
+### 3. Enhanced About Screen
+
+The "About SkillQuest" screen was enhanced with detailed version information:
+
+**New features:**
+- **Version number** - Displays semantic versioning (0.9.0-beta.1)
+- **Build number** - YYYYMMDD format for release tracking
+- **Build date** - Automatically parsed from build number with locale-aware formatting
+
+**Code example:**
+
+```dart
+String _formatBuildDate(String buildNumber) {
+  if (buildNumber.length == 8) {
+    try {
+      final year = buildNumber.substring(0, 4);
+      final month = buildNumber.substring(4, 6);
+      final day = buildNumber.substring(6, 8);
+      final date = DateTime(
+        int.parse(year),
+        int.parse(month),
+        int.parse(day)
+      );
+      return DateFormat.yMMMd().format(date); // "Oct 24, 2025"
+    } catch (e) {
+      return buildNumber;
+    }
+  }
+  return buildNumber;
+}
+```
+
+### 4. Complete Dutch Localization
+
+The About screen was still entirely in English. We added 15+ new translations for Dutch users:
+
+```json
+{
+  "about_title": "Over SkillQuest",
+  "about_version_label": "Versie",
+  "about_build_label": "Build",
+  "about_build_date_label": "Gebouwd op",
+  "about_description_title": "Wat is SkillQuest?",
+  "about_features_title": "Belangrijkste Functies",
+  "about_credits_title": "Credits",
+  // ... 8+ more strings
+}
+```
+
+## Results
+
+After these changes:
+
+✅ **Automatic sync** - Version in `pubspec.yaml` is immediately visible in the app
+✅ **Semantic versioning** - Clear distinction between pre-release (0.x) and production (1.x)
+✅ **Build tracking** - YYYYMMDD format makes release history transparent
+✅ **Localized UI** - Fully localized About screen for Dutch users
+✅ **Future-proof** - No manual updates needed in build files
+
+## Technical Details
+
+**Changed files:**
+- `android/app/build.gradle.kts` - Flutter version injection (2 lines)
+- `lib/features/profile/view/about_screen.dart` - Build date parsing (+104 lines)
+- `lib/l10n/app_nl.arb` - Dutch translations (+60 lines)
+- `lib/l10n/app_en.arb` - English labels (+12 lines)
+- `pubspec.yaml` - SemVer update (1 line)
+- Generated localization files - Auto-generated
+
+**Total:** 8 files, +219 insertions, -21 deletions
+
+## Why This Matters
+
+For an app in **active development** like SkillQuest, proper version management is essential:
+
+1. **Debugging** - Users can report exactly which version they're using
+2. **Bug tracking** - Know which fixes are in which version
+3. **Rollout management** - Staged releases with version verification
+4. **Professional appearance** - Clear version communication to users
+
+With this system in place, we can confidently guide SkillQuest towards the 1.0.0 production release! 🚀
+
+---
+
+**Stats:** Commit `6864249` - October 24, 2025
