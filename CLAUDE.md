@@ -25,6 +25,59 @@ npm run lint
 npm run analyze
 ```
 
+### Development Server Management (CRITICAL)
+
+**IMPORTANT:** When testing changes, always ensure only ONE development server is running at a time.
+
+**Why this matters:**
+- Multiple servers on different ports (3000, 3001, 3002) cause confusion
+- Old servers with errors can mask whether fixes are working
+- Port conflicts lead to unpredictable behavior
+- Makes proper testing impossible
+
+**Best Practices:**
+
+1. **Before starting a new server:**
+   ```bash
+   # Kill ALL existing background shells first
+   # Use KillShell tool for each running bash process
+
+   # Find processes on ports
+   netstat -ano | findstr :3000
+   netstat -ano | findstr :3001
+   netstat -ano | findstr :3002
+
+   # Kill each process by PID
+   taskkill //PID <PID> //F
+   ```
+
+2. **Starting a clean server:**
+   ```bash
+   # Optional: Clean build cache if MDX errors occur
+   rm -rf .next
+
+   # Start single server in background
+   npm run dev
+   ```
+
+3. **After making changes:**
+   - Kill the old server FIRST
+   - Clean .next folder if needed (especially for MDX changes)
+   - Start ONE new server
+   - Test on http://localhost:3000
+
+**Common Issues:**
+
+- **"Jest worker" errors with MDX:** Clean .next folder and restart
+- **Port already in use:** Kill old process before starting new one
+- **Changes not appearing:** Old server still running on different port
+
+**Server Management Checklist:**
+- ✅ Kill all old servers before starting new one
+- ✅ Verify only one Node process is running
+- ✅ Test on the correct port (default: 3000)
+- ✅ Clean .next if experiencing MDX parsing issues
+
 ### Bundle Size Analysis
 
 **Tool:** `@next/bundle-analyzer` v16.0.0
@@ -126,6 +179,38 @@ MDX configuration appears in TWO places with identical plugin setup:
 - `rehype-autolink-headings` - Wrap headings in anchor links for sharing
 
 **Custom MDX Components:** [components/blog/MDXComponents.tsx](components/blog/MDXComponents.tsx) provides styled mappings for all MDX elements (headings, paragraphs, code, etc.) with phoenix-themed colors.
+
+### MDX Troubleshooting
+
+**"Jest worker" errors** when compiling blog posts are typically NOT caused by content issues. Testing revealed that the following are all safe to use:
+
+✅ **Safe to use:**
+- Emoji's in headers (`## 🚀 Features`)
+- Multiple inline code blocks (`code` and `more` code)
+- Any comment syntax in code blocks (MDX doesn't validate code block content)
+- Backticks in tables (`` | `code` | `value` | ``)
+
+**Actual causes of "Jest worker" errors:**
+
+1. **Stale build cache** - The `.next` folder can contain corrupted compilation artifacts
+   - **Fix:** Delete `.next` folder and rebuild
+
+2. **Multiple concurrent builds** - Editing a file while Next.js is compiling can cause worker crashes
+   - **Fix:** Wait for compilation to complete before saving again
+
+3. **File system issues** - Corrupted or locked files
+   - **Fix:** Restart dev server, check file permissions
+
+4. **Memory issues** - Large files or many simultaneous compilations
+   - **Fix:** Increase Node memory limit or reduce concurrent operations
+
+**Recommended fix workflow:**
+1. Stop the dev server
+2. Clean build cache: `rm -rf .next`
+3. Restart dev server: `npm run dev`
+4. If error persists, check for file system locks or memory issues
+
+**Note:** If you encounter a "Jest worker" error, it's almost always a build system issue, not a content issue. The MDX parser is very permissive and accepts a wide variety of markdown syntax.
 
 ### Hash Navigation System
 

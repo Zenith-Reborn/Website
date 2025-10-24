@@ -1,0 +1,330 @@
+---
+title: "SkillQuest Production Readiness - Enterprise Error Monitoring & Critical Fixes"
+date: "2025-10-22"
+project: "SkillQuest"
+tags: ["feature", "bugfix", "performance", "devops"]
+summary: "Implemented Sentry error monitoring, resolved database synchronization issues, and completed critical production fixes across 19 commits."
+author: "Hans"
+coverImage: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=1200&h=630&fit=crop&q=80"
+published: true
+---
+
+## Overview
+
+This week focused on **production readiness** for SkillQuest. We implemented enterprise-grade error monitoring, resolved critical database synchronization issues, and deployed multiple production-ready fixes.
+
+**Period:** October 15-22, 2025
+**Commits:** 19
+**Status:** Production Ready 🚀
+
+---
+
+## 🐛 Sentry Error Monitoring Integration
+
+### Enterprise-Grade Crash Reporting
+
+We integrated Sentry for real-time error tracking and crash reporting in production.
+
+**Key Features:**
+- **Automatic Crash Capture:** All Flutter errors and native crashes are automatically reported
+- **Breadcrumbs:** Timeline of user actions before crashes for debugging context
+- **Frame Tracking:** Performance monitoring for UI frames (60 FPS target)
+- **Environment Detection:** Automatic detection of development vs production environments
+- **Debug/Release Filtering:** Sentry only active in release builds to avoid development noise
+
+**Implementation:**
+
+```dart
+await SentryFlutter.init(
+  (options) {
+    options.dsn = sentryDsn;
+    options.environment = environment;
+    options.tracesSampleRate = 0.1; // 10% performance profiling
+    options.beforeSend = (event, hint) {
+      // Filter debug builds
+      if (kDebugMode) return null;
+      return event;
+    };
+  },
+  appRunner: () async {
+    await _runApp();
+  },
+);
+```
+
+**Binding Fix:**
+Fixed "FramesTrackingIntegration disabled" warning through correct initialization order:
+- Sentry init BEFORE WidgetsFlutterBinding
+- Automatic `SentryWidgetsFlutterBinding.ensureInitialized()` call
+
+**Impact:**
+- ✅ Real-time crash reports in production
+- ✅ Performance metrics for UI responsiveness
+- ✅ User context for debugging (device, OS, app version)
+
+---
+
+## 🔐 Supabase API Key Migration
+
+### Breaking Change: Publishable Keys Required
+
+Supabase disabled legacy JWT API keys. We migrated to the new publishable key format.
+
+**Problem:**
+```
+PostgrestException: Legacy API keys are disabled, code: 401
+```
+
+**Solution:**
+- **Old format:** JWT-based API keys (deprecated)
+- **New format:** Publishable anon keys with `sb_publishable_` prefix
+
+**Files Modified:**
+1. `.env` - Development credentials
+2. `.vscode/launch.json` - All 6 debug configurations
+3. `.vscode/launch.json.example` - Template with documentation
+4. `scripts/run_dev.bat` - Environment variable parsing for Windows
+
+**Windows Batch Script Fix:**
+```batch
+REM Old code broke on special characters in SENTRY_DSN
+for /f "usebackq tokens=1,2 delims==" %%a in (".env") do (
+    set "%%a=%%b"
+)
+
+REM New code preserves everything after first =
+for /f "usebackq tokens=1* delims==" %%a in (".env") do (
+    if not "%%a"=="" (
+        set "%%a=%%b"
+    )
+)
+```
+
+**Why this matters:**
+- ❌ Old approach: Breaks on special characters (/, @, .)
+- ✅ New approach: Handles complex values correctly
+
+**Impact:**
+- ✅ App fully operational with new API key format
+- ✅ Development workflow (F5 debugging) works correctly
+- ✅ Batch script more robust for complex environment variables
+
+---
+
+## 📊 Active Days System Migration
+
+### From Streaks to Active Days
+
+Transition from the old streak system to a new **Active Days** system with better user retention.
+
+**Database Migration:**
+- New `user_active_days` table with daily tracking
+- 4 level-based milestones: 3, 7, 14, 30 days
+- Automatic backfill of existing users
+- Total: 3 active users migrated
+
+**Schema:**
+```sql
+CREATE TABLE user_active_days (
+  user_id UUID PRIMARY KEY,
+  current_active_days INTEGER DEFAULT 0,
+  best_active_days INTEGER DEFAULT 0,
+  last_active_date DATE,
+  active_days_milestones INTEGER[] DEFAULT '{}'::INTEGER[]
+);
+```
+
+**Milestone Logic:**
+- **Level 1:** 3 days active
+- **Level 2:** 7 days active
+- **Level 3:** 14 days active
+- **Level 4:** 30 days active
+
+**Impact:**
+- ✅ Better retention tracking
+- ✅ Progressive milestone system
+- ✅ Backward compatible with existing data
+
+---
+
+## ⏱️ Timer System Fixes
+
+### Race Condition & XP Level Sync
+
+Multiple critical fixes for timer completion and XP synchronization.
+
+**Fix 1: Timer Completion Race Condition**
+
+**Problem:**
+UI tried to display XP before database update was complete, resulting in outdated XP values.
+
+**Solution:**
+```dart
+// BEFORE: Parallel database updates + UI update
+Future.wait([
+  _updateUserXp(),
+  _updateSkillXp(),
+  _recordSession(),
+]);
+ref.invalidate(providers); // ❌ Too early!
+
+// AFTER: Sequential database updates → UI update
+await _updateUserXp();
+await _updateSkillXp();
+await _recordSession();
+ref.invalidate(providers); // ✅ After all DB updates
+```
+
+**Impact:**
+- ✅ Correct XP display after timer completion
+- ✅ No race conditions between DB and UI
+
+**Fix 2: XP Level Calculation Consistency**
+
+**Problem:**
+Database trigger used wrong formula (`FLOOR(SQRT(xp / 100.0))`), Flutter used exponential progression.
+
+**Result:** "Level correction" debug messages on every app load.
+
+**Database Formula Fix:**
+```sql
+CREATE OR REPLACE FUNCTION calculate_level_from_xp(xp_amount INTEGER)
+RETURNS INTEGER AS $$
+DECLARE
+  current_level INTEGER := 1;
+  accumulated_xp INTEGER := 0;
+  xp_for_next INTEGER;
+BEGIN
+  -- Exponential progression matching Flutter
+  -- XP needed: 150 * pow(1.0565, level - 1)
+  WHILE current_level < 100 LOOP
+    xp_for_next := ROUND(150.0 * POWER(1.0565, current_level - 1));
+
+    IF accumulated_xp + xp_for_next <= xp_amount THEN
+      accumulated_xp := accumulated_xp + xp_for_next;
+      current_level := current_level + 1;
+    ELSE
+      EXIT;
+    END IF;
+  END LOOP;
+
+  RETURN current_level;
+END;
+$$ LANGUAGE plpgsql IMMUTABLE;
+```
+
+**Test Coverage:**
+- 9 Flutter tests covering critical XP thresholds
+- Database assertions verifying formula correctness
+- Boundary tests for exact level-up points
+
+**Impact:**
+- ✅ Perfect sync between PostgreSQL and Flutter
+- ✅ No more level corrections
+- ✅ Performance boost from IMMUTABLE function
+
+---
+
+## 🌍 Internationalization (i18n) Enhancements
+
+### Stats Display with Full Localization
+
+Complete i18n support for statistics charts with timezone-aware data.
+
+**Period Format Localization:**
+
+| Period Type | SQL Output | Flutter Transform | NL Display | EN Display |
+|-------------|------------|-------------------|------------|------------|
+| `hour` | `"00"`-`"23"` | None | `"00"`-`"23"` | `"00"`-`"23"` |
+| `day` | `"01"`-`"31"` | None | `"01"`-`"31"` | `"01"`-`"31"` |
+| `week` | `"2025-10-13"` | Parse → weekday | `"Ma"` | `"Mon"` |
+| `month` | `"01"`-`"12"` | Parse → month name | `"Mrt"` | `"Mar"` |
+| `year` | `"2025"` | None | `"2025"` | `"2025"` |
+
+**Timezone Support:**
+```dart
+String _getUserTimezone() {
+  final location = tz.local;  // Device timezone
+  return location.name;        // IANA identifier
+}
+
+// Pass to SQL function
+'p_timezone': userTimezone,  // e.g., 'Europe/Amsterdam'
+```
+
+**Impact:**
+- ✅ Month names and weekdays follow app language (NL/EN)
+- ✅ Language switch works without app restart
+- ✅ Timezone-aware statistics worldwide
+- ✅ Hot reload support for i18n changes
+
+---
+
+## 🔒 Database Security Hardening
+
+### PostgreSQL Function Security
+
+Added `search_path` hardening for all database functions to protect against SQL injection.
+
+**Before:**
+```sql
+CREATE FUNCTION calculate_level_from_xp(xp_amount INTEGER)
+RETURNS INTEGER
+LANGUAGE plpgsql
+IMMUTABLE
+AS $function$
+-- Vulnerable to search_path manipulation
+```
+
+**After:**
+```sql
+CREATE FUNCTION calculate_level_from_xp(xp_amount INTEGER)
+RETURNS INTEGER
+LANGUAGE plpgsql
+IMMUTABLE
+SET search_path TO 'public', 'pg_temp'  -- ✅ Hardened
+AS $function$
+```
+
+**Security Benefits:**
+- ✅ Prevents malicious schema hijacking
+- ✅ Enterprise-grade function isolation
+- ✅ Complies with PostgreSQL security best practices
+
+---
+
+## 📈 Production Metrics
+
+### Current Status
+
+**Code Quality:**
+- ✅ Flutter analyze: 0 errors
+- ✅ All tests passing
+- ✅ Clean git history with atomic commits
+
+**Database:**
+- ✅ Zero security issues (Supabase Security Advisor)
+- ✅ 100% RLS coverage
+- ✅ Performance optimized with proper indexing
+
+**Monitoring:**
+- ✅ Sentry error tracking enabled
+- ✅ Frame tracking for performance monitoring
+- ✅ Breadcrumbs for debugging context
+
+**Deployment:**
+- ✅ Environment variables fully configured
+- ✅ API keys migrated to publishable format
+- ✅ Development workflow (F5 debugging) functional
+
+---
+
+## 🎯 Key Takeaways
+
+1. **Enterprise Monitoring:** Sentry integration provides real-time crash reports and performance metrics in production
+2. **API Migration:** Proactive migration to Supabase publishable keys prevents breaking changes
+3. **Database Consistency:** XP level formula sync between PostgreSQL and Flutter eliminates data discrepancies
+4. **International Ready:** Full i18n support with timezone-aware statistics for worldwide users
+5. **Security First:** PostgreSQL function hardening meets enterprise security standards
+
+**Status:** SkillQuest is production-ready with robust error monitoring, consistent data synchronization, and enterprise-grade security 🚀
