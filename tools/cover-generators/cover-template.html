@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Blog Cover Image Generator</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+            background: #1a1a1a;
+            padding: 20px;
+        }
+
+        .controls {
+            max-width: 1200px;
+            margin: 0 auto 20px;
+            padding: 20px;
+            background: #2a2a2a;
+            border-radius: 8px;
+        }
+
+        .controls h1 {
+            color: #FFD700;
+            margin-bottom: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        label {
+            display: block;
+            color: #F5F5F5;
+            margin-bottom: 5px;
+            font-weight: 500;
+        }
+
+        input, select {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #444;
+            background: #1a1a1a;
+            color: #F5F5F5;
+            border-radius: 4px;
+            font-size: 16px;
+        }
+
+        .button-group {
+            display: flex;
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+        button {
+            flex: 1;
+            padding: 12px 24px;
+            background: linear-gradient(135deg, #FFD700 0%, #FF6B35 100%);
+            color: #0F0F0F;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        button:hover {
+            opacity: 0.9;
+        }
+
+        .preview-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            border: 2px solid #FFD700;
+            border-radius: 4px;
+            overflow: hidden;
+        }
+
+        .cover {
+            width: 1200px;
+            height: 630px;
+            background: linear-gradient(135deg, #0a0a0a 0%, #1a1210 50%, #0a0a0a 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Theme variations */
+        .cover.theme-feature {
+            background: linear-gradient(135deg, #0a0a0a 0%, #1a1210 50%, #0a0a0a 100%);
+        }
+
+        .cover.theme-bugfix {
+            background: linear-gradient(135deg, #0a0a0a 0%, #1a0a14 50%, #0a0a0a 100%);
+        }
+
+        .cover.theme-performance {
+            background: linear-gradient(135deg, #0a0a0a 0%, #0a1a14 50%, #0a0a0a 100%);
+        }
+
+        .cover.theme-devops {
+            background: linear-gradient(135deg, #0a0a0a 0%, #0a141a 50%, #0a0a0a 100%);
+        }
+
+        /* Glow effect */
+        .glow {
+            position: absolute;
+            width: 600px;
+            height: 600px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(255, 215, 0, 0.08) 0%, transparent 70%);
+            left: 0;
+            top: 15px;
+        }
+
+        /* Logo section */
+        .logo-section {
+            position: absolute;
+            left: 100px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 300px;
+            height: 300px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .logo-section img {
+            width: 280px;
+            height: 280px;
+            object-fit: contain;
+        }
+
+        /* Project badge */
+        .project-badge {
+            position: absolute;
+            left: 100px;
+            top: 50px;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 16px;
+            font-weight: 600;
+            color: #fff;
+        }
+
+        .project-badge.skillquest {
+            background: rgba(59, 130, 246, 0.8);
+        }
+
+        .project-badge.zenith {
+            background: rgba(255, 215, 0, 0.8);
+            color: #0F0F0F;
+        }
+
+        /* Divider */
+        .divider {
+            position: absolute;
+            left: 500px;
+            top: 150px;
+            bottom: 150px;
+            width: 2px;
+            background: rgba(255, 215, 0, 0.3);
+        }
+
+        /* Text section */
+        .text-section {
+            position: absolute;
+            right: 100px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 550px;
+            text-align: center;
+        }
+
+        .main-text {
+            font-size: 72px;
+            font-weight: bold;
+            color: #FFD700;
+            letter-spacing: 2px;
+            margin-bottom: 20px;
+            line-height: 1.1;
+        }
+
+        .subtitle-text {
+            font-size: 32px;
+            font-weight: 500;
+            color: #F5F5F5;
+            margin-bottom: 20px;
+        }
+
+        .title-divider {
+            width: 300px;
+            height: 3px;
+            background: #FFD700;
+            margin: 0 auto 20px;
+        }
+
+        .project-name {
+            font-size: 28px;
+            color: rgba(255, 215, 0, 0.8);
+            font-weight: 400;
+        }
+    </style>
+</head>
+<body>
+    <div class="controls">
+        <h1>Blog Cover Image Generator</h1>
+
+        <div class="form-group">
+            <label>Project</label>
+            <select id="project">
+                <option value="zenith">Zenith Reborn</option>
+                <option value="skillquest">SkillQuest</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label>Theme/Category</label>
+            <select id="theme">
+                <option value="feature">Feature (Gold)</option>
+                <option value="bugfix">Bug Fix (Purple tint)</option>
+                <option value="performance">Performance (Green tint)</option>
+                <option value="devops">DevOps (Blue tint)</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label>Main Text (Line 1)</label>
+            <input type="text" id="mainText" value="MVP" placeholder="e.g., MVP, NEW FEATURE, BUG FIX">
+        </div>
+
+        <div class="form-group">
+            <label>Main Text (Line 2)</label>
+            <input type="text" id="mainText2" value="COMPLETE" placeholder="e.g., COMPLETE, RELEASED, FIXED">
+        </div>
+
+        <div class="form-group">
+            <label>Subtitle</label>
+            <input type="text" id="subtitle" value="Production Ready" placeholder="e.g., Production Ready, New Update">
+        </div>
+
+        <div class="button-group">
+            <button onclick="updatePreview()">Update Preview</button>
+            <button onclick="copyInstructions()">Copy Playwright Screenshot Command</button>
+        </div>
+    </div>
+
+    <div class="preview-container">
+        <div class="cover theme-feature" id="cover">
+            <div class="glow"></div>
+
+            <div class="project-badge zenith" id="projectBadge">
+                Zenith Reborn
+            </div>
+
+            <div class="logo-section">
+                <img src="../public/phoenix-logo-transparent.png" alt="Logo" id="logo">
+            </div>
+
+            <div class="divider"></div>
+
+            <div class="text-section">
+                <div class="main-text" id="displayMainText">MVP</div>
+                <div class="main-text" id="displayMainText2">COMPLETE</div>
+                <div class="title-divider"></div>
+                <div class="subtitle-text" id="displaySubtitle">Production Ready</div>
+                <div class="project-name" id="displayProject">Zenith Reborn</div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const logos = {
+            zenith: '../public/phoenix-logo-transparent.png',
+            skillquest: '../public/skillquest-logo.png'
+        };
+
+        function updatePreview() {
+            const project = document.getElementById('project').value;
+            const theme = document.getElementById('theme').value;
+            const mainText = document.getElementById('mainText').value;
+            const mainText2 = document.getElementById('mainText2').value;
+            const subtitle = document.getElementById('subtitle').value;
+
+            const cover = document.getElementById('cover');
+            const logo = document.getElementById('logo');
+            const badge = document.getElementById('projectBadge');
+
+            // Update theme
+            cover.className = `cover theme-${theme}`;
+
+            // Update logo
+            logo.src = logos[project];
+
+            // Update badge
+            badge.className = `project-badge ${project}`;
+            badge.textContent = project === 'zenith' ? 'Zenith Reborn' : 'SkillQuest';
+
+            // Update text
+            document.getElementById('displayMainText').textContent = mainText;
+            document.getElementById('displayMainText2').textContent = mainText2;
+            document.getElementById('displaySubtitle').textContent = subtitle;
+            document.getElementById('displayProject').textContent = badge.textContent;
+
+            console.log('Preview updated!');
+        }
+
+        function copyInstructions() {
+            const project = document.getElementById('project').value;
+            const theme = document.getElementById('theme').value;
+            const filename = `${project}-${theme}-cover.png`;
+
+            const instructions = `
+# Instructions for generating this cover image:
+
+1. Open this HTML file in a browser
+2. Adjust the settings above as needed
+3. Use Playwright MCP to take a screenshot:
+
+   File: tools/cover-generators/cover-template.html
+   Element: .cover (ref from snapshot)
+   Output: public/blog/${filename}
+
+4. Or use browser screenshot tools to save as PNG
+
+Filename suggestion: ${filename}
+Size: 1200x630px (will be automatic from .cover div)
+`;
+
+            navigator.clipboard.writeText(instructions).then(() => {
+                alert('Instructions copied to clipboard!\n\nFilename: ' + filename);
+            }).catch(() => {
+                alert('Could not copy to clipboard. Filename suggestion: ' + filename);
+            });
+        }
+
+        // Initialize on load
+        window.onload = () => {
+            updatePreview();
+        };
+    </script>
+</body>
+</html>

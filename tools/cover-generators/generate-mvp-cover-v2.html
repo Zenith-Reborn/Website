@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Zenith Reborn MVP Cover - Clean Design</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 20px;
+            background: #1a1a1a;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+        }
+
+        #canvas {
+            border: 2px solid #FFD700;
+            display: block;
+            margin: 20px auto;
+        }
+
+        .controls {
+            text-align: center;
+            margin: 20px auto;
+            max-width: 600px;
+        }
+
+        button {
+            margin: 10px;
+            padding: 12px 24px;
+            background: linear-gradient(135deg, #FFD700 0%, #FF6B35 100%);
+            color: #0F0F0F;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        button:hover {
+            opacity: 0.9;
+        }
+
+        h1 {
+            color: #FFD700;
+            text-align: center;
+        }
+
+        p {
+            color: #F5F5F5;
+            text-align: center;
+            line-height: 1.6;
+        }
+    </style>
+</head>
+<body>
+    <h1>Zenith Reborn MVP Cover - Clean & Minimal</h1>
+    <p>Simple, professional design with phoenix logo</p>
+
+    <canvas id="canvas" width="1200" height="630"></canvas>
+
+    <div class="controls">
+        <button onclick="generateCover()">Generate Cover Image</button>
+        <button onclick="downloadImage()">Download Image</button>
+    </div>
+
+    <script>
+        const canvas = document.getElementById('canvas');
+        const ctx = canvas.getContext('2d');
+        let logoImage = new Image();
+
+        // Load phoenix logo
+        logoImage.src = 'phoenix-logo-transparent.png';
+
+        logoImage.onload = () => {
+            console.log('Logo loaded successfully!');
+            generateCover();
+        };
+
+        logoImage.onerror = () => {
+            console.error('Failed to load logo. Generating without logo...');
+            generateCover();
+        };
+
+        function generateCover() {
+            // Clean gradient background (dark with subtle phoenix colors)
+            const bgGradient = ctx.createLinearGradient(0, 0, 1200, 630);
+            bgGradient.addColorStop(0, '#0a0a0a');
+            bgGradient.addColorStop(0.5, '#1a1210');
+            bgGradient.addColorStop(1, '#0a0a0a');
+            ctx.fillStyle = bgGradient;
+            ctx.fillRect(0, 0, 1200, 630);
+
+            // Subtle radial glow behind logo area
+            const glowGradient = ctx.createRadialGradient(300, 315, 50, 300, 315, 300);
+            glowGradient.addColorStop(0, 'rgba(255, 215, 0, 0.08)');
+            glowGradient.addColorStop(1, 'rgba(0, 0, 0, 0)');
+            ctx.fillStyle = glowGradient;
+            ctx.fillRect(0, 0, 1200, 630);
+
+            // Draw phoenix logo (left side, centered vertically)
+            if (logoImage.complete && logoImage.naturalWidth > 0) {
+                const logoSize = 280;
+                const logoX = 150;
+                const logoY = (630 - logoSize) / 2;
+                ctx.drawImage(logoImage, logoX, logoY, logoSize, logoSize);
+                console.log('Logo drawn on canvas');
+            } else {
+                console.warn('Logo not loaded yet');
+            }
+
+            // Vertical divider line
+            ctx.strokeStyle = 'rgba(255, 215, 0, 0.3)';
+            ctx.lineWidth = 2;
+            ctx.beginPath();
+            ctx.moveTo(500, 150);
+            ctx.lineTo(500, 480);
+            ctx.stroke();
+
+            // Main title (right side)
+            const textX = 850;
+
+            // "MVP" text
+            ctx.fillStyle = '#FFD700';
+            ctx.font = 'bold 90px -apple-system, BlinkMacSystemFont, sans-serif';
+            ctx.textAlign = 'center';
+            ctx.fillText('MVP', textX, 240);
+
+            // "COMPLETE" text
+            const completeGradient = ctx.createLinearGradient(textX - 200, 0, textX + 200, 0);
+            completeGradient.addColorStop(0, '#FFD700');
+            completeGradient.addColorStop(1, '#FF6B35');
+            ctx.fillStyle = completeGradient;
+            ctx.font = 'bold 90px -apple-system, BlinkMacSystemFont, sans-serif';
+            ctx.fillText('COMPLETE', textX, 330);
+
+            // Divider line under title
+            ctx.strokeStyle = '#FFD700';
+            ctx.lineWidth = 3;
+            ctx.beginPath();
+            ctx.moveTo(textX - 150, 360);
+            ctx.lineTo(textX + 150, 360);
+            ctx.stroke();
+
+            // "Zenith Reborn" subtitle
+            ctx.fillStyle = '#F5F5F5';
+            ctx.font = '32px -apple-system, BlinkMacSystemFont, sans-serif';
+            ctx.fillText('Zenith Reborn', textX, 420);
+
+            // Achievement stats (small text)
+            ctx.fillStyle = 'rgba(255, 215, 0, 0.8)';
+            ctx.font = '20px -apple-system, BlinkMacSystemFont, sans-serif';
+            ctx.fillText('✓ 25 Tests Passed  ✓ 0 Vulnerabilities', textX, 470);
+
+            console.log('Cover image generated!');
+        }
+
+        function downloadImage() {
+            try {
+                const dataURL = canvas.toDataURL('image/png');
+                console.log('Canvas data URL length:', dataURL.length);
+
+                const link = document.createElement('a');
+                link.download = 'zenith-mvp-cover.png';
+                link.href = dataURL;
+                document.body.appendChild(link);
+                link.click();
+                document.body.removeChild(link);
+
+                console.log('Image download triggered!');
+                alert('Image downloaded as zenith-mvp-cover.png');
+            } catch (error) {
+                console.error('Download failed:', error);
+                alert('Download failed: ' + error.message);
+            }
+        }
+    </script>
+</body>
+</html>

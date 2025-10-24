@@ -59,3 +59,6 @@ nul
 # Logs (Playwright MCP and other automated testing logs)
 logs/
 *.log
+
+# Playwright MCP output directory
+.playwright-mcp/
