@@ -127,28 +127,36 @@ export default function Footer() {
             {/* Social links */}
             <div className="flex gap-4">
               <a
-                href="#"
+                href="https://x.com/Zenith_Reborn"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="bg-neutral-darkBg border-primary-gold/30 hover:border-primary-gold flex h-10 w-10 items-center justify-center rounded-full border transition-all hover:scale-110"
                 aria-label="Twitter"
               >
                 <span className="text-lg">𝕏</span>
               </a>
               <a
-                href="#"
+                href="https://www.facebook.com/profile.php?id=61582656066564"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="bg-neutral-darkBg border-primary-gold/30 hover:border-primary-gold flex h-10 w-10 items-center justify-center rounded-full border transition-all hover:scale-110"
-                aria-label="LinkedIn"
+                aria-label="Facebook"
               >
-                <span className="text-lg">in</span>
+                <span className="text-lg">f</span>
               </a>
               <a
-                href="#"
+                href="https://www.instagram.com/zenithrebornhq/"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="bg-neutral-darkBg border-primary-gold/30 hover:border-primary-gold flex h-10 w-10 items-center justify-center rounded-full border transition-all hover:scale-110"
                 aria-label="Instagram"
               >
                 <span className="text-lg">IG</span>
               </a>
               <a
-                href="#"
+                href="https://github.com/Zenith-Reborn"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="bg-neutral-darkBg border-primary-gold/30 hover:border-primary-gold flex h-10 w-10 items-center justify-center rounded-full border transition-all hover:scale-110"
                 aria-label="GitHub"
               >

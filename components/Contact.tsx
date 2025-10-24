@@ -9,7 +9,9 @@ export default function Contact() {
     subject: "",
     message: "",
   });
+  const [loading, setLoading] = useState(false);
   const [submitted, setSubmitted] = useState(false);
+  const [error, setError] = useState("");
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setFormData({
@@ -18,15 +20,39 @@ export default function Contact() {
     });
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // This would connect to your email service or API
-    // TODO: Implement actual email service integration
-    setSubmitted(true);
-    setTimeout(() => {
-      setSubmitted(false);
-      setFormData({ name: "", email: "", subject: "", message: "" });
-    }, 3000);
+    setLoading(true);
+    setError("");
+
+    try {
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      });
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        setError(data.error || "Failed to send message. Please try again.");
+        return;
+      }
+
+      // Success
+      setSubmitted(true);
+      setTimeout(() => {
+        setSubmitted(false);
+        setFormData({ name: "", email: "", subject: "", message: "" });
+      }, 5000);
+    } catch (err) {
+      console.error("Contact form submission error:", err);
+      setError("Network error. Please check your connection and try again.");
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -84,27 +110,45 @@ export default function Contact() {
               </div>
             </div>
 
-            {/* Social links placeholder */}
+            {/* Social links */}
             <div className="border-primary-gold/20 border-t pt-8">
               <h4 className="text-neutral-lightText mb-4 font-semibold">Follow Us</h4>
               <div className="flex gap-4">
                 <a
-                  href="#"
+                  href="https://x.com/Zenith_Reborn"
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="bg-neutral-darkBg border-primary-gold/30 hover:border-primary-gold flex h-12 w-12 items-center justify-center rounded-full border transition-all hover:scale-110"
+                  aria-label="Twitter"
                 >
                   <span className="text-xl">𝕏</span>
                 </a>
                 <a
-                  href="#"
+                  href="https://www.facebook.com/profile.php?id=61582656066564"
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="bg-neutral-darkBg border-primary-gold/30 hover:border-primary-gold flex h-12 w-12 items-center justify-center rounded-full border transition-all hover:scale-110"
+                  aria-label="Facebook"
                 >
-                  <span className="text-xl">in</span>
+                  <span className="text-xl">f</span>
                 </a>
                 <a
-                  href="#"
+                  href="https://www.instagram.com/zenithrebornhq/"
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="bg-neutral-darkBg border-primary-gold/30 hover:border-primary-gold flex h-12 w-12 items-center justify-center rounded-full border transition-all hover:scale-110"
+                  aria-label="Instagram"
                 >
                   <span className="text-xl">IG</span>
+                </a>
+                <a
+                  href="https://github.com/Zenith-Reborn"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="bg-neutral-darkBg border-primary-gold/30 hover:border-primary-gold flex h-12 w-12 items-center justify-center rounded-full border transition-all hover:scale-110"
+                  aria-label="GitHub"
+                >
+                  <span className="text-xl">GH</span>
                 </a>
               </div>
             </div>
@@ -191,14 +235,28 @@ export default function Contact() {
 
               <button
                 type="submit"
-                className="bg-phoenix-gradient hover:shadow-primary-orange/50 w-full rounded-lg px-8 py-4 font-semibold text-white transition-all duration-300 hover:scale-105 hover:shadow-lg"
+                disabled={loading || submitted}
+                className={`
+                  w-full rounded-lg px-8 py-4 font-semibold text-white transition-all duration-300
+                  ${
+                    loading || submitted
+                      ? "bg-neutral-gray/50 cursor-not-allowed"
+                      : "bg-phoenix-gradient hover:shadow-primary-orange/50 hover:scale-105 hover:shadow-lg"
+                  }
+                `}
               >
-                Send Message
+                {loading ? "Sending..." : submitted ? "✅ Sent!" : "Send Message"}
               </button>
 
               {submitted && (
                 <p className="text-primary-gold animate-pulse text-center font-semibold">
-                  ✅ Message sent! We&apos;ll get back to you soon.
+                  ✅ Message sent! Check your email for confirmation. We&apos;ll get back to you soon.
+                </p>
+              )}
+
+              {error && (
+                <p className="text-secondary-deepRed text-center text-sm font-semibold">
+                  ⚠️ {error}
                 </p>
               )}
             </form>

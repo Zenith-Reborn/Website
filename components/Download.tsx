@@ -3,19 +3,62 @@
 import { useState } from "react";
 import Image from "next/image";
 
-export default function Download() {
-  const [email, setEmail] = useState("");
-  const [submitted, setSubmitted] = useState(false);
+type Platform = "ios" | "android" | "both";
 
-  const handleSubmit = (e: React.FormEvent) => {
+export default function Download() {
+  const [formData, setFormData] = useState({
+    email: "",
+    name: "",
+    platform: "both" as Platform,
+  });
+  const [loading, setLoading] = useState(false);
+  const [submitted, setSubmitted] = useState(false);
+  const [error, setError] = useState("");
+
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // This would connect to your email service (Mailchimp, SendGrid, etc.)
-    // TODO: Implement actual email service integration
-    setSubmitted(true);
-    setTimeout(() => {
-      setSubmitted(false);
-      setEmail("");
-    }, 3000);
+    setLoading(true);
+    setError("");
+
+    try {
+      const response = await fetch("/api/waitlist", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          email: formData.email,
+          name: formData.name || undefined,
+          platform: formData.platform,
+          source: "website",
+        }),
+      });
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        // Handle specific error cases
+        if (response.status === 409) {
+          // Duplicate email - show friendly message
+          setError(data.message || "This email is already on the waitlist");
+        } else {
+          setError(data.error || "Something went wrong. Please try again.");
+        }
+        return;
+      }
+
+      // Success
+      setSubmitted(true);
+      setTimeout(() => {
+        setSubmitted(false);
+        setFormData({ email: "", name: "", platform: "both" });
+      }, 5000);
+    } catch (err) {
+      console.error("Waitlist submission error:", err);
+      setError("Network error. Please check your connection and try again.");
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -73,28 +116,82 @@ export default function Download() {
           </div>
 
           <form onSubmit={handleSubmit} className="mx-auto max-w-md">
-            <div className="flex flex-col gap-4 sm:flex-row">
+            <div className="flex flex-col gap-4">
+              {/* Name (optional) */}
+              <input
+                type="text"
+                value={formData.name}
+                onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                placeholder="Your name (optional)"
+                className="border-primary-gold/30 text-neutral-lightText placeholder-neutral-gray focus:border-primary-gold w-full rounded-full border bg-black px-6 py-4 transition-colors focus:outline-none"
+              />
+
+              {/* Email (required) */}
               <input
                 type="email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                placeholder="Enter your email"
+                value={formData.email}
+                onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                placeholder="Your email *"
                 required
-                className="border-primary-gold/30 text-neutral-lightText placeholder-neutral-gray focus:border-primary-gold flex-1 rounded-full border bg-black px-6 py-4 transition-colors focus:outline-none"
+                className="border-primary-gold/30 text-neutral-lightText placeholder-neutral-gray focus:border-primary-gold w-full rounded-full border bg-black px-6 py-4 transition-colors focus:outline-none"
               />
+
+              {/* Platform Preference */}
+              <div className="flex flex-col gap-2">
+                <label className="text-neutral-gray text-center text-sm">
+                  Preferred Platform
+                </label>
+                <div className="grid grid-cols-3 gap-3">
+                  {(["ios", "android", "both"] as const).map((platform) => (
+                    <button
+                      key={platform}
+                      type="button"
+                      onClick={() => setFormData({ ...formData, platform })}
+                      className={`
+                        rounded-full border py-3 text-sm font-semibold transition-all
+                        ${
+                          formData.platform === platform
+                            ? "border-primary-gold bg-primary-gold/10 text-primary-gold scale-105"
+                            : "border-primary-gold/30 text-neutral-gray hover:border-primary-gold/50"
+                        }
+                      `}
+                    >
+                      {platform === "ios" ? "🍎 iOS" : platform === "android" ? "🤖 Android" : "✨ Both"}
+                    </button>
+                  ))}
+                </div>
+              </div>
+
+              {/* Submit Button */}
               <button
                 type="submit"
-                className="bg-phoenix-gradient hover:shadow-primary-orange/50 rounded-full px-8 py-4 font-semibold text-white transition-all duration-300 hover:scale-105 hover:shadow-lg"
+                disabled={loading || submitted}
+                className={`
+                  rounded-full px-8 py-4 font-semibold text-white transition-all duration-300
+                  ${
+                    loading || submitted
+                      ? "bg-neutral-gray/50 cursor-not-allowed"
+                      : "bg-phoenix-gradient hover:shadow-primary-orange/50 hover:scale-105 hover:shadow-lg"
+                  }
+                `}
               >
-                Notify Me
+                {loading ? "Joining..." : submitted ? "✅ Joined!" : "Join Waitlist"}
               </button>
-            </div>
 
-            {submitted && (
-              <p className="text-primary-gold mt-4 animate-pulse text-center font-semibold">
-                ✅ Thanks! We&apos;ll notify you when SkillQuest launches
-              </p>
-            )}
+              {/* Success Message */}
+              {submitted && (
+                <p className="text-primary-gold animate-pulse text-center font-semibold">
+                  ✅ You&apos;re on the list! Check your email for confirmation.
+                </p>
+              )}
+
+              {/* Error Message */}
+              {error && (
+                <p className="text-secondary-deepRed text-center text-sm font-semibold">
+                  ⚠️ {error}
+                </p>
+              )}
+            </div>
           </form>
 
           {/* Features list */}
