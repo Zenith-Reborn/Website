@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Zenith Reborn Cover Images</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+        }
+
+        .cover {
+            width: 1200px;
+            height: 630px;
+            position: relative;
+            overflow: hidden;
+            margin-bottom: 20px;
+        }
+
+        /* Theme backgrounds */
+        .theme-feature {
+            background: linear-gradient(135deg, #0a0a0a 0%, #1a1210 50%, #0a0a0a 100%);
+        }
+
+        .theme-blog {
+            background: linear-gradient(135deg, #0a0a0a 0%, #1a1210 50%, #0a0a0a 100%);
+        }
+
+        .theme-announcement {
+            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a10 50%, #0a0a0a 100%);
+        }
+
+        /* Glow effect */
+        .glow {
+            position: absolute;
+            width: 600px;
+            height: 600px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(255, 215, 0, 0.08) 0%, transparent 70%);
+            left: 0;
+            top: 15px;
+        }
+
+        /* Logo section */
+        .logo-section {
+            position: absolute;
+            left: 100px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 300px;
+            height: 300px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .logo-section img {
+            width: 280px;
+            height: 280px;
+            object-fit: contain;
+        }
+
+        /* Project badge */
+        .project-badge {
+            position: absolute;
+            left: 100px;
+            top: 50px;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 16px;
+            font-weight: 600;
+            background: rgba(255, 215, 0, 0.8);
+            color: #0F0F0F;
+        }
+
+        /* Divider */
+        .divider {
+            position: absolute;
+            left: 500px;
+            top: 150px;
+            bottom: 150px;
+            width: 2px;
+            background: rgba(255, 215, 0, 0.3);
+        }
+
+        /* Text section */
+        .text-section {
+            position: absolute;
+            right: 100px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 550px;
+            text-align: center;
+        }
+
+        .main-text {
+            font-size: 72px;
+            font-weight: bold;
+            color: #FFD700;
+            letter-spacing: 2px;
+            margin-bottom: 20px;
+            line-height: 1.1;
+        }
+
+        .subtitle-text {
+            font-size: 32px;
+            font-weight: 500;
+            color: #F5F5F5;
+            margin-bottom: 20px;
+        }
+
+        .title-divider {
+            width: 300px;
+            height: 3px;
+            background: #FFD700;
+            margin: 0 auto 20px;
+        }
+
+        .project-name {
+            font-size: 28px;
+            color: rgba(255, 215, 0, 0.8);
+            font-weight: 400;
+        }
+
+        /* Cover labels (for reference) */
+        .label {
+            position: absolute;
+            bottom: 10px;
+            left: 10px;
+            background: rgba(0, 0, 0, 0.7);
+            color: #fff;
+            padding: 5px 10px;
+            font-size: 14px;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body>
+    <!-- 1. Giscus Comments (Feature) -->
+    <div class="cover theme-feature" id="cover-comments">
+        <div class="glow"></div>
+        <div class="project-badge">Zenith Reborn</div>
+        <div class="logo-section">
+            <img src="../../public/phoenix-logo-transparent.png" alt="Phoenix Logo">
+        </div>
+        <div class="divider"></div>
+        <div class="text-section">
+            <div class="main-text">COMMENTS</div>
+            <div class="main-text">ADDED</div>
+            <div class="title-divider"></div>
+            <div class="subtitle-text">GitHub Discussions</div>
+            <div class="project-name">Zenith Reborn</div>
+        </div>
+        <div class="label">zenith-feature-comments.png</div>
+    </div>
+
+    <!-- 2. Welcome Post (Announcement) -->
+    <div class="cover theme-announcement" id="cover-welcome">
+        <div class="glow"></div>
+        <div class="project-badge">Zenith Reborn</div>
+        <div class="logo-section">
+            <img src="../../public/phoenix-logo-transparent.png" alt="Phoenix Logo">
+        </div>
+        <div class="divider"></div>
+        <div class="text-section">
+            <div class="main-text">WELCOME</div>
+            <div class="main-text">ABOARD</div>
+            <div class="title-divider"></div>
+            <div class="subtitle-text">The Phoenix Rises</div>
+            <div class="project-name">Zenith Reborn</div>
+        </div>
+        <div class="label">zenith-announcement-welcome.png</div>
+    </div>
+
+    <!-- 3. Blog System Launch (Feature) -->
+    <div class="cover theme-blog" id="cover-blog">
+        <div class="glow"></div>
+        <div class="project-badge">Zenith Reborn</div>
+        <div class="logo-section">
+            <img src="../../public/phoenix-logo-transparent.png" alt="Phoenix Logo">
+        </div>
+        <div class="divider"></div>
+        <div class="text-section">
+            <div class="main-text">BLOG</div>
+            <div class="main-text">LAUNCHED</div>
+            <div class="title-divider"></div>
+            <div class="subtitle-text">MDX Powered</div>
+            <div class="project-name">Zenith Reborn</div>
+        </div>
+        <div class="label">zenith-feature-blog.png</div>
+    </div>
+</body>
+</html>
