@@ -1,0 +1,207 @@
+---
+title: "SkillQuest Theme System: From Crash to Consistent"
+date: "2025-10-24"
+project: "SkillQuest"
+tags: ["bugfix", "database", "refactoring"]
+summary: "How database denormalization bit us - and how we fixed theme unlocks and selection crashes with PostgreSQL triggers."
+author: "Hans"
+published: true
+coverImage: "https://images.unsplash.com/photo-1542831371-29b0f74f9713?w=1200&h=630&fit=crop&q=80"
+---
+
+## Introduction
+
+After our recent Active Days migration, we discovered two critical bugs in SkillQuest's theme system. This is the story of how database denormalization can bite you - and how we solved it with an elegant trigger-based solution.
+
+## The Problem: Two Worlds, No Synchronization
+
+Imagine this: you click "Unlock" on the Zen Focus theme. The database write succeeds. The logs say "Theme unlocked for user". You restart the app. And yet... the theme still shows as "locked" in the UI.
+
+This wasn't just a cache issue. This was a fundamental architecture problem.
+
+### Root Cause Analysis
+
+Our database had two data sources for the same information:
+
+```
+WRITE PATH: unlock_theme() → INSERT INTO user_theme_unlocks table ✅
+READ PATH:  getUnlockedThemes() → SELECT FROM user_theme_preferences.unlocked_themes array ❌
+```
+
+**The problem?** No synchronization between them. The `user_theme_unlocks` table was the source of truth, but the Flutter app read from a denormalized array that *never got updated*.
+
+## Issue #1: Theme Selection Crashes
+
+While investigating the unlock problem, we discovered a second, even more severe issue:
+
+```
+PostgrestException: column "theme_id" of relation "user_theme_preferences" does not exist
+```
+
+The app crashed on **every** theme selection. Root cause: the `set_user_theme()` database function tried to use a column that didn't exist. The actual schema had `selected_light_theme_id` and `selected_dark_theme_id` for dual light/dark theme support, but the function didn't know this.
+
+## The Solution: Database Triggers FTW
+
+We had two options:
+
+**Option A - Database Trigger (Chosen):**
+- ✅ Backwards compatible with existing Flutter code
+- ✅ Automatic for all unlock paths
+- ✅ Zero downtime deployment
+- ✅ Maintains fast array lookup performance
+
+**Option B - Service Refactor:**
+- ❌ Breaking changes in Flutter code
+- ❌ Multiple call sites to update
+- ❌ Risk of missed edge cases
+
+We chose the trigger solution.
+
+### Implementation: sync_unlocked_themes_trigger.sql
+
+```sql
+CREATE OR REPLACE FUNCTION sync_unlocked_themes_array()
+RETURNS TRIGGER AS $$
+DECLARE
+  target_user_id UUID;
+BEGIN
+  target_user_id := COALESCE(NEW.user_id, OLD.user_id);
+
+  UPDATE user_theme_preferences
+  SET
+    unlocked_themes = COALESCE(
+      ARRAY(
+        SELECT theme_id::uuid
+        FROM user_theme_unlocks
+        WHERE user_id = target_user_id
+        ORDER BY unlocked_at ASC
+      ),
+      ARRAY[]::uuid[]
+    )::uuid[],
+    total_themes_unlocked = (
+      SELECT COUNT(*)
+      FROM user_theme_unlocks
+      WHERE user_id = target_user_id
+    )
+  WHERE user_id = target_user_id;
+
+  RETURN NEW;
+END;
+$$ LANGUAGE plpgsql SECURITY DEFINER;
+```
+
+The trigger fires **automatically** after every INSERT or DELETE in `user_theme_unlocks`, and rebuilds the array from the table. The array is now always an exact copy of the table contents.
+
+### Fix #2: set_user_theme Schema Correction
+
+For the selection crash, we recreated the `set_user_theme()` function with correct columns:
+
+```sql
+CREATE OR REPLACE FUNCTION set_user_theme(
+  user_uuid UUID,
+  theme_uuid TEXT,
+  is_dark_mode BOOLEAN
+) RETURNS BOOLEAN
+AS $$
+BEGIN
+  INSERT INTO user_theme_preferences (...)
+  VALUES (
+    user_uuid,
+    CASE WHEN is_dark_mode = false THEN theme_uuid ELSE NULL END,
+    CASE WHEN is_dark_mode = true THEN theme_uuid ELSE NULL END,
+    ...
+  )
+  ON CONFLICT (user_id)
+  DO UPDATE SET
+    selected_light_theme_id = CASE WHEN is_dark_mode = false THEN theme_uuid
+                                   ELSE user_theme_preferences.selected_light_theme_id END,
+    selected_dark_theme_id = CASE WHEN is_dark_mode = true THEN theme_uuid
+                                  ELSE user_theme_preferences.selected_dark_theme_id END;
+
+  RETURN true;
+END;
+$$;
+```
+
+CASE statements choose the right column based on dark mode, with an UPSERT pattern for atomicity.
+
+## Testing & Verification
+
+After deployment:
+
+✅ **Zen Focus unlock** → Immediately visible in UI
+✅ **Inferno Master unlock** → 10→11 themes, instant update
+✅ **Theme selection** → Works without crashes
+✅ **Dark mode switching** → Correct theme per mode
+✅ **App restart** → State remains consistent
+
+Database verification showed perfect synchronization:
+
+```sql
+SELECT
+  selected_light_theme_id,    -- Zen Focus ✅
+  selected_dark_theme_id,      -- Inferno Master ✅
+  total_themes_unlocked,       -- 11 ✅
+  array_length(unlocked_themes, 1)  -- 11 ✅
+FROM user_theme_preferences;
+```
+
+## Type Safety Lessons Learned
+
+An interesting detail: we hit 3 type mismatch errors during development:
+
+```
+ERROR: column "unlocked_themes" is of type uuid[] but expression is of type text[]
+```
+
+The solution: **explicit type casting** at 4 critical locations:
+
+```sql
+SELECT theme_id::uuid          -- Not ::text
+ARRAY[]::uuid[]                -- Not ARRAY[]::text[]
+COALESCE(...)::uuid[]          -- Explicit cast on COALESCE
+```
+
+PostgreSQL's type checker leaves no room for ambiguity in array operations.
+
+## Architecture Decision: Why Triggers?
+
+Why did we choose triggers instead of service refactoring?
+
+**Backwards Compatibility**: No Flutter changes needed. The existing `unlock_theme()` RPC call just works - the database synchronizes automatically.
+
+**Automatic Coverage**: Even if we add new unlock paths in the future (admin panel, promotional unlocks, etc.), synchronization happens automatically.
+
+**Performance**: Array lookups remain fast. We don't sacrifice query performance for data consistency.
+
+**Zero Downtime**: Database migration applied, existing data synchronized via one-time script, done. No app downtime needed.
+
+## Impact
+
+**For users:**
+- ✅ Theme unlocks work instantly
+- ✅ Theme selection doesn't crash anymore
+- ✅ No confusion about locked/unlocked status
+- ✅ Dark mode themes work correctly
+
+**For developers:**
+- ✅ Cleaner architecture with single source of truth
+- ✅ No manual sync logic needed in services
+- ✅ Type-safe database operations
+- ✅ Comprehensive documentation for future changes
+
+## Stats
+
+- **3 database migrations** applied
+- **591 lines** added/changed
+- **2 critical bugs** fixed
+- **Zero downtime** deployment
+- **100% backwards compatible**
+
+## Closing Thoughts
+
+Database denormalization (arrays alongside tables) can offer performance benefits, but introduces synchronization complexity. Triggers are an elegant solution for automatic sync, but require careful type safety.
+
+The lesson? **Test your read and write paths**. If you duplicate data (denormalize), ensure automatic synchronization. And if you write PostgreSQL triggers: cast your types explicitly.
+
+Theme switching in SkillQuest is now rock-solid. Time for the next feature! 🚀
