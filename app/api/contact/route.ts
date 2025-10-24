@@ -1,8 +1,13 @@
 import { NextRequest, NextResponse } from "next/server";
 import { Resend } from "resend";
 
-// Initialize Resend client
-const resend = new Resend(process.env.RESEND_API_KEY);
+// Lazy initialize Resend client (only when needed, not at build time)
+const getResendClient = () => {
+  if (!process.env.RESEND_API_KEY) {
+    throw new Error("RESEND_API_KEY is not configured");
+  }
+  return new Resend(process.env.RESEND_API_KEY);
+};
 
 // Type definitions
 interface ContactRequest {
@@ -48,6 +53,7 @@ export async function POST(request: NextRequest) {
 
     // Send email to hello@zenithreborn.com
     try {
+      const resend = getResendClient();
       await resend.emails.send({
         from: "Zenith Reborn Website <hello@zenithreborn.com>",
         to: "hello@zenithreborn.com",
@@ -162,6 +168,7 @@ ${body.message}
 
     // Optional: Send auto-reply to sender
     try {
+      const resend = getResendClient();
       await resend.emails.send({
         from: "Zenith Reborn <hello@zenithreborn.com>",
         to: body.email,

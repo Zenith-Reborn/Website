@@ -2,14 +2,23 @@ import { NextRequest, NextResponse } from "next/server";
 import { createClient } from "@supabase/supabase-js";
 import { Resend } from "resend";
 
-// Initialize Supabase client with service role key for server-side operations
-const supabase = createClient(
-  process.env.NEXT_PUBLIC_SUPABASE_URL!,
-  process.env.SUPABASE_SERVICE_ROLE_KEY!
-);
+// Lazy initialize clients (only when needed, not at build time)
+const getSupabaseClient = () => {
+  if (!process.env.NEXT_PUBLIC_SUPABASE_URL || !process.env.SUPABASE_SERVICE_ROLE_KEY) {
+    throw new Error("Supabase environment variables are not configured");
+  }
+  return createClient(
+    process.env.NEXT_PUBLIC_SUPABASE_URL,
+    process.env.SUPABASE_SERVICE_ROLE_KEY
+  );
+};
 
-// Initialize Resend client
-const resend = new Resend(process.env.RESEND_API_KEY);
+const getResendClient = () => {
+  if (!process.env.RESEND_API_KEY) {
+    throw new Error("RESEND_API_KEY is not configured");
+  }
+  return new Resend(process.env.RESEND_API_KEY);
+};
 
 // Type definitions
 interface WaitlistRequest {
@@ -24,6 +33,8 @@ interface WaitlistRequest {
 
 export async function POST(request: NextRequest) {
   try {
+    const supabase = getSupabaseClient();
+
     // Parse request body
     const body: WaitlistRequest = await request.json();
 
@@ -93,6 +104,7 @@ export async function POST(request: NextRequest) {
 
     // Send confirmation email via Resend
     try {
+      const resend = getResendClient();
       await resend.emails.send({
         from: "Zenith Reborn <hello@zenithreborn.com>",
         to: body.email,
