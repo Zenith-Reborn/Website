@@ -62,3 +62,9 @@ logs/
 
 # Playwright MCP output directory
 .playwright-mcp/
+
+# Git change tracking files
+.changes
+
+# Local settings
+settings.local.json
