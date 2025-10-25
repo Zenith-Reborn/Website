@@ -2,6 +2,7 @@
 
 import { useEffect } from "react";
 import Link from "next/link";
+import * as Sentry from "@sentry/nextjs";
 
 interface ErrorProps {
   error: Error & { digest?: string };
@@ -13,8 +14,8 @@ export default function Error({ error, reset }: ErrorProps) {
     // Log error to console for debugging
     console.error("Application error:", error);
 
-    // TODO: Send error to error monitoring service (e.g., Sentry)
-    // Example: Sentry.captureException(error);
+    // Capture error in Sentry for production monitoring
+    Sentry.captureException(error);
   }, [error]);
 
   return (
