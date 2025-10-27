@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Cover System Blog Post Cover</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+            background: #1a1a1a;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .cover {
+            width: 1200px;
+            height: 630px;
+            background: linear-gradient(135deg, #0a0a0a 0%, #1a1210 50%, #0a0a0a 100%);
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 60px;
+        }
+
+        /* Phoenix logo */
+        .logo {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 280px;
+            opacity: 0.15;
+            filter: drop-shadow(0 0 40px rgba(255, 215, 0, 0.3));
+        }
+
+        /* Main text container */
+        .text-container {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+        }
+
+        .main-text {
+            font-size: 90px;
+            font-weight: 900;
+            line-height: 1.1;
+            margin-bottom: 20px;
+            background: linear-gradient(135deg, #FFD700 0%, #FF6B35 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-transform: uppercase;
+            letter-spacing: -2px;
+            filter: drop-shadow(0 4px 20px rgba(255, 215, 0, 0.3));
+        }
+
+        .subtitle {
+            font-size: 36px;
+            font-weight: 600;
+            color: #F5F5F5;
+            opacity: 0.9;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        /* Project badge */
+        .badge {
+            position: absolute;
+            top: 40px;
+            left: 40px;
+            background: linear-gradient(135deg, #FFD700 0%, #FF6B35 100%);
+            color: #0F0F0F;
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-weight: 700;
+            font-size: 18px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            box-shadow: 0 4px 20px rgba(255, 215, 0, 0.4);
+        }
+
+        /* Decorative elements */
+        .corner-accent {
+            position: absolute;
+            width: 120px;
+            height: 120px;
+            border: 3px solid rgba(255, 215, 0, 0.3);
+        }
+
+        .corner-accent.top-left {
+            top: 0;
+            left: 0;
+            border-right: none;
+            border-bottom: none;
+        }
+
+        .corner-accent.bottom-right {
+            bottom: 0;
+            right: 0;
+            border-left: none;
+            border-top: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="cover">
+        <!-- Phoenix logo (background) -->
+        <img src="../public/phoenix-logo-transparent.png" class="logo" alt="Phoenix">
+
+        <!-- Project badge -->
+        <div class="badge">Zenith Reborn</div>
+
+        <!-- Corner accents -->
+        <div class="corner-accent top-left"></div>
+        <div class="corner-accent bottom-right"></div>
+
+        <!-- Main content -->
+        <div class="text-container">
+            <div class="main-text">CUSTOM COVER<br>SYSTEM</div>
+            <div class="subtitle">Branded Automation</div>
+        </div>
+    </div>
+</body>
+</html>
