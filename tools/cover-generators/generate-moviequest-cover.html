@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>MovieQuest Blog Cover - Advanced Features</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+            background: #1a1a1a;
+            padding: 20px;
+        }
+
+        .preview-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            border: 2px solid #FFD700;
+            border-radius: 4px;
+            overflow: hidden;
+        }
+
+        .cover {
+            width: 1200px;
+            height: 630px;
+            background: linear-gradient(135deg, #0a0a0a 0%, #1a1210 50%, #0a0a0a 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Glow effect */
+        .glow {
+            position: absolute;
+            width: 600px;
+            height: 600px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(255, 215, 0, 0.08) 0%, transparent 70%);
+            left: 0;
+            top: 15px;
+        }
+
+        /* Logo section */
+        .logo-section {
+            position: absolute;
+            left: 100px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 300px;
+            height: 300px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .logo-section img {
+            width: 320px;
+            height: 320px;
+            object-fit: contain;
+        }
+
+        /* Project badge */
+        .project-badge {
+            position: absolute;
+            left: 100px;
+            top: 50px;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 16px;
+            font-weight: 600;
+            color: #fff;
+            background: rgba(220, 38, 38, 0.8);
+        }
+
+        /* Divider */
+        .divider {
+            position: absolute;
+            left: 500px;
+            top: 150px;
+            bottom: 150px;
+            width: 2px;
+            background: rgba(255, 215, 0, 0.3);
+        }
+
+        /* Text section */
+        .text-section {
+            position: absolute;
+            right: 100px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 550px;
+            text-align: center;
+        }
+
+        .main-text {
+            font-size: 68px;
+            font-weight: bold;
+            color: #FFD700;
+            letter-spacing: 2px;
+            margin-bottom: 20px;
+            line-height: 1.1;
+        }
+
+        .subtitle-text {
+            font-size: 32px;
+            font-weight: 500;
+            color: #F5F5F5;
+            margin-bottom: 20px;
+        }
+
+        .title-divider {
+            width: 300px;
+            height: 3px;
+            background: #FFD700;
+            margin: 0 auto 20px;
+        }
+
+        .project-name {
+            font-size: 28px;
+            color: rgba(255, 215, 0, 0.8);
+            font-weight: 400;
+        }
+    </style>
+</head>
+<body>
+    <div class="preview-container">
+        <div class="cover theme-feature">
+            <div class="glow"></div>
+
+            <div class="project-badge">
+                MovieQuest
+            </div>
+
+            <div class="logo-section">
+                <img src="moviequest-logo.png" alt="MovieQuest Logo">
+            </div>
+
+            <div class="divider"></div>
+
+            <div class="text-section">
+                <div class="main-text">POWER</div>
+                <div class="main-text">MODE</div>
+                <div class="title-divider"></div>
+                <div class="subtitle-text">Filtering & Sorting Mastery</div>
+                <div class="project-name">MovieQuest</div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

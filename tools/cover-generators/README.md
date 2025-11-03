@@ -17,6 +17,8 @@ A custom cover image system that creates **1200x630px** OpenGraph-compliant imag
 - **`generate-mvp-cover-final.html`** - Example: MVP completion cover (Zenith)
 - **`generate-mvp-cover-v2.html`** - Alternative version with canvas
 - **`generate-mvp-cover.html`** - Original experimental version
+- **`generate-moviequest-cover.html`** - MovieQuest blog cover generator (simplified single-file version)
+- **`moviequest-logo.png`** - Phoenix filmreel logo for MovieQuest covers (512x512)
 
 ## 🚀 Quick Start
 
@@ -221,6 +223,27 @@ Ideas for improving this system:
 - Text: "DATABASE" / "FIXED"
 - Subtitle: "Critical Patch"
 - File: `skillquest-bugfix-database.png`
+
+### MovieQuest Blog Series
+Generated using `generate-moviequest-cover.html` (simplified version):
+- **Day One Wins**: "DAY ONE" / "WINS" - Three Game-Changers
+- **Phoenix Rising**: "PHOENIX" / "RISING" - Branding & Exclusions
+- **The Polish**: "THE" / "POLISH" - Details That Matter
+- **Power Mode**: "POWER" / "MODE" - Filtering & Sorting Mastery
+
+**How to use MovieQuest generator:**
+1. Open `generate-moviequest-cover.html` in browser
+2. Edit the text in the HTML directly:
+   ```html
+   <div class="main-text">FIRST LINE</div>
+   <div class="main-text">SECOND LINE</div>
+   <div class="subtitle-text">Your Subtitle</div>
+   ```
+3. Refresh page to see changes
+4. Take screenshot using Playwright MCP or browser DevTools
+5. Save to `public/blog/moviequest-{description}.png`
+
+All MovieQuest covers use the phoenix filmreel logo and gold theme for consistency.
 
 ---
 
