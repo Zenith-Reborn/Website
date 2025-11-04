@@ -136,8 +136,8 @@ export default function BlogPage() {
               {filteredPosts.length} {filteredPosts.length === 1 ? "post" : "posts"} found
             </div>
             <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
-              {filteredPosts.map((post) => (
-                <BlogCard key={post.slug} post={post} />
+              {filteredPosts.map((post, index) => (
+                <BlogCard key={post.slug} post={post} priority={index === 0} />
               ))}
             </div>
           </>

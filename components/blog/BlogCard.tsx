@@ -4,6 +4,7 @@ import { BlogPostMetadata } from "@/lib/blog";
 
 interface BlogCardProps {
   post: BlogPostMetadata;
+  priority?: boolean;
 }
 
 const projectColors: Record<
@@ -33,7 +34,7 @@ const projectColors: Record<
   },
 };
 
-export default function BlogCard({ post }: BlogCardProps) {
+export default function BlogCard({ post, priority = false }: BlogCardProps) {
   const colors = projectColors[post.project] || {
     bg: "bg-neutral-darkBg/50",
     border: "border-neutral-gray/30",
@@ -61,6 +62,7 @@ export default function BlogCard({ post }: BlogCardProps) {
               fill
               className="object-cover transition-transform duration-300 group-hover:scale-105"
               sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+              priority={priority}
             />
           </div>
         )}
