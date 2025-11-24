@@ -20,7 +20,7 @@ export default function SkillQuestPrivacyPage() {
             Privacy Policy for SkillQuest
           </h1>
           <p className="text-neutral-lightText/70 text-lg">
-            Last updated: October 25, 2024
+            Last updated: November 24, 2025
           </p>
         </div>
 
@@ -37,9 +37,11 @@ export default function SkillQuestPrivacyPage() {
             <li><a href="#children" className="text-primary-gold hover:text-primary-amber transition-colors">7. Children&apos;s Privacy</a></li>
             <li><a href="#family-sharing" className="text-primary-gold hover:text-primary-amber transition-colors">8. Family Sharing</a></li>
             <li><a href="#international" className="text-primary-gold hover:text-primary-amber transition-colors">9. International Data Transfers</a></li>
-            <li><a href="#changes" className="text-primary-gold hover:text-primary-amber transition-colors">10. Changes to This Privacy Policy</a></li>
-            <li><a href="#contact" className="text-primary-gold hover:text-primary-amber transition-colors">11. Contact Us</a></li>
-            <li><a href="#legal-compliance" className="text-primary-gold hover:text-primary-amber transition-colors">12. Legal Compliance</a></li>
+            <li><a href="#push-notifications" className="text-primary-gold hover:text-primary-amber transition-colors">10. Push Notifications</a></li>
+            <li><a href="#changes" className="text-primary-gold hover:text-primary-amber transition-colors">11. Changes to This Privacy Policy</a></li>
+            <li><a href="#contact" className="text-primary-gold hover:text-primary-amber transition-colors">12. Contact Us</a></li>
+            <li><a href="#data-breach" className="text-primary-gold hover:text-primary-amber transition-colors">13. Data Breach Notification</a></li>
+            <li><a href="#legal-compliance" className="text-primary-gold hover:text-primary-amber transition-colors">14. Legal Compliance</a></li>
           </ol>
         </nav>
 
@@ -234,8 +236,45 @@ export default function SkillQuestPrivacyPage() {
             </p>
           </section>
 
+          <section id="push-notifications" className="mb-12">
+            <h2 className="text-3xl font-bold text-primary-gold mb-4">10. Push Notifications</h2>
+            <p className="text-neutral-lightText mb-4 font-['Lora']">
+              We may send you push notifications about:
+            </p>
+            <ul className="list-disc list-inside text-neutral-lightText mb-6 space-y-2 font-['Lora']">
+              <li><strong>Timer reminders</strong> when you&apos;ve set a reminder for a skill session</li>
+              <li><strong>Streak freeze warnings</strong> when your daily streak is about to expire</li>
+              <li><strong>Social activities</strong> including friend requests, challenge invitations, and social post interactions</li>
+            </ul>
+
+            <h3 className="text-2xl font-bold text-primary-amber mb-3">Your Control</h3>
+            <p className="text-neutral-lightText mb-4 font-['Lora']">
+              You can disable notifications at any time through:
+            </p>
+            <ul className="list-disc list-inside text-neutral-lightText mb-6 space-y-2 font-['Lora']">
+              <li><strong>iOS Settings:</strong> Settings → SkillQuest → Notifications</li>
+              <li><strong>In-App Settings:</strong> Profile → Settings → Notifications</li>
+            </ul>
+            <p className="text-neutral-lightText mb-6 font-['Lora']">
+              We do not collect or store push notification tokens after you disable notifications. When you re-enable notifications, a new token is generated.
+            </p>
+
+            <h3 className="text-2xl font-bold text-primary-amber mb-3">Data Collection</h3>
+            <p className="text-neutral-lightText mb-4 font-['Lora']">
+              Push notifications may include:
+            </p>
+            <ul className="list-disc list-inside text-neutral-lightText mb-6 space-y-2 font-['Lora']">
+              <li>Notification delivery tokens (to send notifications to your device)</li>
+              <li>Delivery status (to track notification success rates)</li>
+              <li>Interaction data (whether you opened or dismissed notifications)</li>
+            </ul>
+            <p className="text-neutral-lightText mb-4 font-['Lora']">
+              This data is stored securely and is not shared with third parties except as required to deliver the notifications (via Apple Push Notification Service).
+            </p>
+          </section>
+
           <section id="changes" className="mb-12">
-            <h2 className="text-3xl font-bold text-primary-gold mb-4">10. Changes to This Privacy Policy</h2>
+            <h2 className="text-3xl font-bold text-primary-gold mb-4">11. Changes to This Privacy Policy</h2>
             <p className="text-neutral-lightText mb-4 font-['Lora']">
               We may update this Privacy Policy from time to time. We will notify you of any changes by:
             </p>
@@ -250,7 +289,7 @@ export default function SkillQuestPrivacyPage() {
           </section>
 
           <section id="contact" className="mb-12">
-            <h2 className="text-3xl font-bold text-primary-gold mb-4">11. Contact Us</h2>
+            <h2 className="text-3xl font-bold text-primary-gold mb-4">12. Contact Us</h2>
             <p className="text-neutral-lightText mb-4 font-['Lora']">
               If you have questions or concerns about this Privacy Policy or our data practices, please contact us:
             </p>
@@ -263,10 +302,49 @@ export default function SkillQuestPrivacyPage() {
             </div>
           </section>
 
-          <section id="legal-compliance" className="mb-12">
-            <h2 className="text-3xl font-bold text-primary-gold mb-4">12. Legal Compliance</h2>
+          <section id="data-breach" className="mb-12">
+            <h2 className="text-3xl font-bold text-primary-gold mb-4">13. Data Breach Notification</h2>
+            <p className="text-neutral-lightText mb-4 font-['Lora']">
+              We take the security of your personal data seriously and have implemented appropriate technical and organizational measures to protect it.
+            </p>
 
-            <h3 className="text-2xl font-bold text-primary-amber mb-3">12.1 GDPR Compliance (EU Users)</h3>
+            <h3 className="text-2xl font-bold text-primary-amber mb-3">In Case of a Breach</h3>
+            <p className="text-neutral-lightText mb-4 font-['Lora']">
+              In the unlikely event of a security breach that affects your personal data, we will:
+            </p>
+            <ol className="list-decimal list-inside text-neutral-lightText mb-6 space-y-2 font-['Lora']">
+              <li><strong>Notify you via email</strong> at the email address associated with your account within <strong>72 hours</strong> of becoming aware of the breach</li>
+              <li><strong>Inform relevant authorities</strong> in accordance with GDPR Article 33 requirements</li>
+              <li><strong>Provide details</strong> about:
+                <ul className="list-disc list-inside ml-6 mt-2 space-y-1">
+                  <li>The nature of the breach</li>
+                  <li>The types of data affected</li>
+                  <li>The likely consequences</li>
+                  <li>Measures we have taken or will take to address the breach</li>
+                  <li>Recommendations for steps you can take to protect yourself</li>
+                </ul>
+              </li>
+            </ol>
+
+            <h3 className="text-2xl font-bold text-primary-amber mb-3">Our Response</h3>
+            <p className="text-neutral-lightText mb-4 font-['Lora']">
+              We maintain an incident response plan that includes:
+            </p>
+            <ul className="list-disc list-inside text-neutral-lightText mb-6 space-y-2 font-['Lora']">
+              <li>Immediate containment of the breach</li>
+              <li>Investigation to determine the scope and impact</li>
+              <li>Remediation to prevent future occurrences</li>
+              <li>Transparent communication with affected users</li>
+            </ul>
+            <p className="text-neutral-lightText mb-4 font-['Lora']">
+              If you have any concerns about the security of your data, please contact us immediately at <a href="mailto:support@zenithreborn.com" className="text-primary-gold hover:text-primary-amber transition-colors"><strong>support@zenithreborn.com</strong></a>.
+            </p>
+          </section>
+
+          <section id="legal-compliance" className="mb-12">
+            <h2 className="text-3xl font-bold text-primary-gold mb-4">14. Legal Compliance</h2>
+
+            <h3 className="text-2xl font-bold text-primary-amber mb-3">14.1 GDPR Compliance (EU Users)</h3>
             <p className="text-neutral-lightText mb-4 font-['Lora']">
               If you are located in the European Economic Area (EEA), you have additional rights under the
               General Data Protection Regulation (GDPR):
@@ -327,7 +405,7 @@ export default function SkillQuestPrivacyPage() {
               To exercise these rights, contact us at support@zenithreborn.com.
             </p>
 
-            <h3 className="text-2xl font-bold text-primary-amber mb-3">12.2 California Privacy Rights (CCPA)</h3>
+            <h3 className="text-2xl font-bold text-primary-amber mb-3">14.2 California Privacy Rights (CCPA)</h3>
             <p className="text-neutral-lightText mb-4 font-['Lora']">
               If you are a California resident, you have rights under the California Consumer Privacy Act (CCPA):
             </p>
@@ -341,7 +419,7 @@ export default function SkillQuestPrivacyPage() {
               To exercise these rights, contact us at support@zenithreborn.com.
             </p>
 
-            <h3 className="text-2xl font-bold text-primary-amber mb-3">12.3 Data Processing Legal Basis</h3>
+            <h3 className="text-2xl font-bold text-primary-amber mb-3">14.3 Data Processing Legal Basis</h3>
             <p className="text-neutral-lightText mb-4 font-['Lora']">
               We process your personal data based on:
             </p>
