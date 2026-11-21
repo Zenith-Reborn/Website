@@ -58,7 +58,6 @@ zenith-reborn-website/
 │   └── Footer.tsx          # Footer with links
 ├── public/
 │   └── robots.txt          # SEO configuration
-├── tailwind.config.ts      # Tailwind with brand colors
 ├── tsconfig.json           # TypeScript configuration
 ├── next.config.ts          # Next.js configuration
 └── package.json            # Dependencies
@@ -71,7 +70,7 @@ zenith-reborn-website/
 - **MDX-Powered Blog** - Rich blog posts with code syntax highlighting and GitHub Flavored Markdown
 - **RSS Feed** - Automatic RSS 2.0 feed with auto-discovery for blog subscribers
 - **SkillQuest Showcase** - Interactive feature presentation with app screenshots
-- **Contact & Waitlist** - User engagement through contact forms and early access signup
+- **Contact & Downloads** - Contact form and links to SkillQuest on the App Store and Google Play
 - **SEO Optimized** - Meta tags, semantic HTML, and performance optimization
 - **TypeScript** - Full type safety throughout the codebase
 - **Responsive Design** - Mobile-first approach with Tailwind CSS
@@ -80,16 +79,14 @@ zenith-reborn-website/
 
 ### Update Brand Colors
 
-Edit `tailwind.config.ts`:
+Edit the `@theme` block in `app/globals.css` (Tailwind 4 reads its theme from CSS, not from a `tailwind.config.ts`):
 
-```typescript
-colors: {
-  primary: {
-    gold: '#FFD700',
-    orange: '#FF6B35',
-    amber: '#FFBF00',
-  },
-  // ... customize as needed
+```css
+@theme {
+  --color-primary-gold: #ffd700;
+  --color-primary-orange: #ff6b35;
+  --color-primary-amber: #ffbf00;
+  /* ... customize as needed */
 }
 ```
 

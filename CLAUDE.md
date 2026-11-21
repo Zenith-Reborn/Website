@@ -238,7 +238,7 @@ The homepage uses hash anchors for smooth scrolling to sections (#about, #skillq
 
 ### Phoenix Theme Styling
 
-**Tailwind CSS 4** with custom brand colors defined in [tailwind.config.ts](tailwind.config.ts):
+**Tailwind CSS 4** with custom brand colors in the `@theme` block of [app/globals.css](app/globals.css). Tailwind 4 does not read a `tailwind.config.ts`, so there is none. The colour variables keep the camelCase names the components use (`neutral-darkBg`, `neutral-lightText`, `secondary-deepRed`), and the gradients are `@utility` rules in the same file:
 
 - **Primary**: Gold (#FFD700), Orange (#FF6B35), Amber (#FFBF00)
 - **Secondary**: Deep Red (#8B0000), Burgundy (#800020)
