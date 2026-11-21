@@ -35,7 +35,9 @@ export default function Download() {
             rel="noopener noreferrer"
             className="bg-neutral-darkBg border-primary-gold/30 hover:border-primary-gold block rounded-2xl border p-8 text-center transition-all duration-300 hover:scale-105"
           >
-            <div className="mb-4 text-6xl">🍎</div>
+            <div className="mb-4 text-6xl" aria-hidden="true">
+              🍎
+            </div>
             <h3 className="text-primary-gold mb-3 text-2xl font-bold">iOS</h3>
             <p className="text-neutral-gray mb-6">For iPhone and iPad</p>
             <span className="bg-phoenix-gradient inline-block rounded-full px-6 py-3 font-semibold text-white">
@@ -50,7 +52,9 @@ export default function Download() {
             rel="noopener noreferrer"
             className="bg-neutral-darkBg border-primary-orange/30 hover:border-primary-orange block rounded-2xl border p-8 text-center transition-all duration-300 hover:scale-105"
           >
-            <div className="mb-4 text-6xl">🤖</div>
+            <div className="mb-4 text-6xl" aria-hidden="true">
+              🤖
+            </div>
             <h3 className="text-primary-orange mb-3 text-2xl font-bold">Android</h3>
             <p className="text-neutral-gray mb-6">For Android phones and tablets</p>
             <span className="bg-phoenix-gradient inline-block rounded-full px-6 py-3 font-semibold text-white">
