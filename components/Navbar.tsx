@@ -115,7 +115,7 @@ export default function Navbar() {
                 onClick={(e) => scrollToSection(e, "/#download")}
                 className="bg-phoenix-gradient hover:shadow-primary-orange/50 inline-block rounded-full px-6 py-3 font-semibold text-white transition-all duration-300 hover:scale-105 hover:shadow-lg"
               >
-                Join Waitlist
+                Get SkillQuest
               </Link>
             </div>
 
@@ -181,7 +181,7 @@ export default function Navbar() {
             onClick={(e) => scrollToSection(e, "/#download")}
             className="bg-phoenix-gradient hover:shadow-primary-orange/50 mt-8 rounded-full px-8 py-4 text-xl font-semibold text-white transition-all duration-300 hover:scale-105 hover:shadow-2xl"
           >
-            Join Waitlist
+            Get SkillQuest
           </Link>
         </div>
       </div>

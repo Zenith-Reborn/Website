@@ -52,7 +52,7 @@ export default function SkillQuest() {
         {/* Section header */}
         <div className="mb-16 text-center">
           <div className="bg-phoenix-gradient mb-4 inline-block rounded-full px-6 py-2">
-            <span className="font-semibold text-white">Coming Soon</span>
+            <span className="font-semibold text-white">Out Now</span>
           </div>
           <h2 className="text-gradient mb-6 text-4xl font-bold md:text-6xl">
             Introducing SkillQuest
@@ -86,7 +86,7 @@ export default function SkillQuest() {
                     SkillQuest
                   </h3>
                   <p className="text-neutral-gray mb-1 text-lg">Master Your Skills</p>
-                  <p className="text-neutral-gray text-sm">Coming Soon to iOS & Android</p>
+                  <p className="text-neutral-gray text-sm">Now on iOS & Android</p>
                 </div>
               </div>
             </div>
@@ -118,13 +118,13 @@ export default function SkillQuest() {
         {/* Call to action */}
         <div className="mt-16 text-center">
           <p className="text-neutral-gray mb-6 text-lg">
-            Be the first to know when SkillQuest launches
+            SkillQuest is out now on iPhone, iPad and Android
           </p>
           <a
             href="#download"
             className="bg-phoenix-gradient hover:shadow-primary-orange/50 inline-block rounded-full px-8 py-4 text-lg font-semibold text-white transition-all duration-300 hover:scale-105 hover:shadow-2xl"
           >
-            Get Notified
+            Get SkillQuest
           </a>
         </div>
       </div>
