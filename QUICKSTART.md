@@ -58,14 +58,13 @@ git push -u origin main
 ```
 ✅ app/layout.tsx         - Root layout + SEO
 ✅ app/page.tsx           - Home page
-✅ app/globals.css        - Global styles + brand colors
+✅ app/globals.css        - Global styles + brand colors (@theme)
 ✅ components/Hero.tsx    - Phoenix hero section
 ✅ components/About.tsx   - Mission & vision
 ✅ components/SkillQuest.tsx - App features
 ✅ components/Download.tsx   - App download + waitlist
 ✅ components/Contact.tsx    - Contact form
 ✅ components/Footer.tsx     - Footer with links
-✅ tailwind.config.ts        - Brand colors configured
 ✅ next.config.ts            - Next.js config
 ✅ tsconfig.json             - TypeScript config
 ✅ package.json              - Dependencies

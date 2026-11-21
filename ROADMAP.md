@@ -266,7 +266,7 @@ Theme switching between dark and light mode.
 - Add `next-themes` package
 - Create theme provider in `app/layout.tsx`
 - Add toggle button to navbar
-- Define light theme colors in `tailwind.config.ts`
+- Define light theme colors in the `@theme` block of `app/globals.css`
 - Update all components with theme-aware colors
 - Store preference in localStorage
 
