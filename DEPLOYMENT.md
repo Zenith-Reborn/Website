@@ -10,7 +10,6 @@ Before deployment, ensure you have:
 - [x] Production build successful (`npm run build`)
 - [x] Environment variables ready
 - [x] Resend domain verified
-- [x] Supabase database configured
 - [x] GitHub repository up to date
 
 ---
@@ -24,25 +23,16 @@ You'll need these environment variables in Vercel:
 ```bash
 # Resend (Email Service)
 RESEND_API_KEY=re_your_actual_key_here
-
-# Supabase (Database)
-NEXT_PUBLIC_SUPABASE_URL=https://jspyxafnnfnjkruirjon.supabase.co
-NEXT_PUBLIC_SUPABASE_ANON_KEY=your_publishable_key_here
-SUPABASE_SERVICE_ROLE_KEY=your_secret_key_here
 ```
+
+The site no longer uses Supabase: the waitlist was removed in November 2026.
 
 ### Where to Find These Values
 
 **Resend API Key:**
 1. Go to https://resend.com/api-keys
-2. Copy your API key (starts with `re_`)
-
-**Supabase Keys:**
-1. Go to https://supabase.com/dashboard/project/jspyxafnnfnjkruirjon/settings/api
-2. Copy:
-   - Project URL → `NEXT_PUBLIC_SUPABASE_URL`
-   - `anon` `public` → `NEXT_PUBLIC_SUPABASE_ANON_KEY`
-   - `service_role` `secret` → `SUPABASE_SERVICE_ROLE_KEY`
+2. Create a key with **Sending access** for the domain `zenithreborn.com` (not Full access)
+3. Save it in Vercel as a **Secret** (sensitive) variable, so it cannot be read back
 
 ---
 
@@ -92,9 +82,6 @@ vercel --prod
 
 # Add environment variables via CLI
 vercel env add RESEND_API_KEY production
-vercel env add NEXT_PUBLIC_SUPABASE_URL production
-vercel env add NEXT_PUBLIC_SUPABASE_ANON_KEY production
-vercel env add SUPABASE_SERVICE_ROLE_KEY production
 
 # Redeploy with new env vars
 vercel --prod
@@ -165,9 +152,7 @@ After deployment, test the following:
 - [ ] 404 page works (/nonexistent-page)
 
 **Forms:**
-- [ ] Waitlist signup works (/#download)
-  - [ ] Confirmation email received
-  - [ ] Data in Supabase
+- [ ] Store links in /#download open the App Store and Google Play
 - [ ] Contact form works (/#contact)
   - [ ] Email to hello@zenithreborn.com
   - [ ] Auto-reply received
@@ -224,19 +209,6 @@ Verify domain is active:
 2. Check `zenithreborn.com` shows "Verified" ✅
 3. If not, check DNS records in OVH
 
-### 5.4 Supabase RLS Policies
-
-Verify Row Level Security is enabled:
-```sql
--- In Supabase SQL Editor
-SELECT tablename, rowsecurity
-FROM pg_tables
-WHERE schemaname = 'public'
-  AND tablename = 'waitlist';
-```
-
-Expected: `rowsecurity = true`
-
 ---
 
 ## Step 6: Monitor Production
@@ -245,7 +217,6 @@ Expected: `rowsecurity = true`
 
 **Check every 4-6 hours:**
 - [ ] Error logs in Vercel dashboard
-- [ ] Waitlist signups in Supabase
 - [ ] Contact form emails arriving
 - [ ] Vercel Analytics data appearing
 - [ ] Page load times acceptable
@@ -256,10 +227,6 @@ Expected: `rowsecurity = true`
 - Deployments: https://vercel.com/your-team/zenith-reborn-website
 - Analytics: https://vercel.com/your-team/zenith-reborn-website/analytics
 - Logs: https://vercel.com/your-team/zenith-reborn-website/logs
-
-**Supabase Dashboard:**
-- Database: https://supabase.com/dashboard/project/jspyxafnnfnjkruirjon/editor
-- API Logs: https://supabase.com/dashboard/project/jspyxafnnfnjkruirjon/logs/explorer
 
 **Resend Dashboard:**
 - Emails: https://resend.com/emails
@@ -335,16 +302,14 @@ npm run build
 ### Forms Not Working
 
 **Check:**
-1. Environment variables in Vercel dashboard
-2. Supabase API keys valid (not legacy keys)
-3. Resend API key valid
-4. RLS policies enabled in Supabase
+1. `RESEND_API_KEY` in the Vercel dashboard
+2. Resend API key valid
 
-**Test API routes:**
+**Test the contact route without sending mail** (an empty body must give HTTP 400):
 ```bash
-curl -X POST https://zenithreborn.com/api/waitlist \
+curl -i -X POST https://zenithreborn.com/api/contact \
   -H "Content-Type: application/json" \
-  -d '{"email":"test@example.com","platform":"ios"}'
+  -d '{}'
 ```
 
 ### Emails Not Sending
@@ -377,7 +342,6 @@ Post-deployment security verification:
 
 - [ ] All API keys stored in Vercel environment variables (not in code)
 - [ ] `.env.local` not committed to git
-- [ ] Supabase RLS policies enabled
 - [ ] HTTPS/SSL working correctly
 - [ ] CORS configured properly (Next.js handles this)
 - [ ] Rate limiting considered (future improvement)
@@ -392,11 +356,6 @@ Post-deployment security verification:
 - Hobby Plan: $0/month ✅
 - Pro Plan: $20/month (if needed later)
 
-**Supabase:**
-- Free tier: $0/month ✅
-- Includes: 500 MB database, 1 GB file storage, 2 GB bandwidth
-- Upgrade when: >50k users on waitlist
-
 **Resend:**
 - Free tier: 100 emails/day, 3,000 emails/month ✅
 - Upgrade when: >100 signups/day
@@ -405,7 +364,6 @@ Post-deployment security verification:
 
 **Monitor:**
 - Vercel dashboard for build minutes
-- Supabase dashboard for database size
 - Resend dashboard for email quota
 
 ---
@@ -416,12 +374,10 @@ For deployment issues:
 
 1. **Check logs:**
    - Vercel: Project → Logs
-   - Supabase: Project → Logs Explorer
    - Resend: Emails → View Details
 
 2. **Documentation:**
    - Vercel: https://vercel.com/docs
-   - Supabase: https://supabase.com/docs
    - Resend: https://resend.com/docs
 
 3. **Contact:**
@@ -436,7 +392,6 @@ After 1 week in production, verify:
 
 - [ ] Uptime: 99.9%+ (Vercel status)
 - [ ] Page load time: <2 seconds average
-- [ ] Waitlist signups: >0 (database not empty)
 - [ ] Contact form submissions: >0
 - [ ] Zero security incidents
 - [ ] Zero data loss

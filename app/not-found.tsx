@@ -90,7 +90,7 @@ export default function NotFound() {
                   href="/#download"
                   className="hover:text-primary-gold transition-colors duration-200 underline decoration-primary-gold/30 underline-offset-4 hover:decoration-primary-gold"
                 >
-                  Join the SkillQuest waitlist
+                  Download SkillQuest
                 </Link>
               </li>
               <li>
