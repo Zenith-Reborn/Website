@@ -22,8 +22,7 @@ export default function Footer() {
               <h3 className="text-gradient text-2xl font-bold">Zenith Reborn</h3>
             </div>
             <p className="text-neutral-gray mb-4 max-w-md">
-              Empowering individuals to rise to their potential through innovative skill mastery
-              tools.
+              Building simple tools that make practice and progress visible.
             </p>
             <p className="text-neutral-gray text-sm">
               Transform your practice. Master your skills. Rise to excellence.
@@ -107,10 +106,22 @@ export default function Footer() {
               </li>
               <li>
                 <a
-                  href="/eula"
+                  href="https://skill-quest.app/terms"
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="text-neutral-gray hover:text-primary-gold transition-colors"
                 >
-                  EULA
+                  SkillQuest Terms
+                </a>
+              </li>
+              <li>
+                <a
+                  href="https://skill-quest.app/privacy"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-neutral-gray hover:text-primary-gold transition-colors"
+                >
+                  SkillQuest Privacy
                 </a>
               </li>
             </ul>
@@ -177,6 +188,11 @@ export default function Footer() {
               <span className="text-primary-gold">🔥</span>
             </p>
           </div>
+
+          {/* Company details */}
+          <p className="text-neutral-gray mt-6 text-center text-xs">
+            Zenith Reborn, KvK 42188670, VAT NL004310890B26
+          </p>
         </div>
       </div>
     </footer>

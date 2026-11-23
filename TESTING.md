@@ -1,5 +1,9 @@
 # Testing Documentation
 
+> **Historical (October 2025).** This describes the site at launch. Since November 2026 there is no
+> waitlist and no Supabase, the contact form sends no automatic reply, and Sentry reports errors only
+> (no session replay). See `README.md` for the current setup.
+
 This document contains all testing procedures and results for the Zenith Reborn website.
 
 ## Test Date: October 24, 2025
@@ -284,7 +288,7 @@ Ignored files:
 - ✅ Message length validation (10-5000 chars)
 - ✅ Success message displays
 - ✅ Email sent to hello@zenithreborn.com
-- ✅ Auto-reply received by sender
+- ✅ No automatic reply to the sender (removed in November 2026)
 
 ---
 

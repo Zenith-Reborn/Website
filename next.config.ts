@@ -29,6 +29,32 @@ const nextConfig: NextConfig = {
       },
     ],
   },
+  // SkillQuest's legal pages live on its own website (skill-quest.app).
+  // The old copies on this site are gone; old links redirect permanently.
+  async redirects() {
+    return [
+      {
+        source: "/skillquest/privacy",
+        destination: "https://skill-quest.app/privacy",
+        permanent: true,
+      },
+      {
+        source: "/skillquest/terms",
+        destination: "https://skill-quest.app/terms",
+        permanent: true,
+      },
+      {
+        source: "/skillquest",
+        destination: "https://skill-quest.app",
+        permanent: true,
+      },
+      {
+        source: "/eula",
+        destination: "https://skill-quest.app/terms",
+        permanent: true,
+      },
+    ];
+  },
 };
 
 const withMDX = createMDX({

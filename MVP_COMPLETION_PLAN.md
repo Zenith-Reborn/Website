@@ -1,5 +1,9 @@
 # MVP Completion Plan - Zenith Reborn Website
 
+> **Historical (October 2025).** This describes the site at launch. Since November 2026 there is no
+> waitlist and no Supabase, the contact form sends no automatic reply, and Sentry reports errors only
+> (no session replay). See `README.md` for the current setup.
+
 **Datum:** 2025-10-24
 **Status:** Ready for Implementation
 **Geschatte tijd:** 4-5 uur

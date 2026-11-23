@@ -7,7 +7,7 @@ Your premium landing page is complete with:
 - ✅ Phoenix-themed hero section with gold/orange gradients
 - ✅ About section with mission, vision & values
 - ✅ SkillQuest app showcase with 6 key features
-- ✅ Download section with iOS/Android + waitlist signup
+- ✅ Download section with App Store and Google Play links
 - ✅ Contact form
 - ✅ Professional footer with links
 - ✅ Mobile-responsive design
@@ -62,7 +62,7 @@ git push -u origin main
 ✅ components/Hero.tsx    - Phoenix hero section
 ✅ components/About.tsx   - Mission & vision
 ✅ components/SkillQuest.tsx - App features
-✅ components/Download.tsx   - App download + waitlist
+✅ components/Download.tsx   - App Store and Google Play links
 ✅ components/Contact.tsx    - Contact form
 ✅ components/Footer.tsx     - Footer with links
 ✅ next.config.ts            - Next.js config
@@ -122,7 +122,7 @@ Replace `href="#"` with your actual social media URLs.
 
 ## 📧 Connect Email Service
 
-For contact form and waitlist to work, choose one:
+For the contact form to work, choose one:
 
 **Easiest:** [Web3Forms](https://web3forms.com) - No backend needed
 

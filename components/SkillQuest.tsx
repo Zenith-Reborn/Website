@@ -4,44 +4,42 @@ export default function SkillQuest() {
   const features = [
     {
       icon: "📊",
-      title: "Skill Mastery Tracking",
+      title: "Skill Tracking",
       description:
-        "Track multiple skills simultaneously with our XP-based progression system and visual skill trees.",
+        "Choose a skill, start a timer and see your XP, level and progress grow. Use it for study, training, reading, coding, music practice or any other skill.",
       gradient: "from-primary-gold to-primary-amber",
     },
     {
       icon: "⏱️",
-      title: "Deep Focus Timer",
+      title: "Focus Timers",
       description:
-        "Pomodoro-style focus sessions with background tracking and 40Hz gamma binaural beats for peak concentration.",
+        "Pomodoro, Deep Work, Flowtime and other timer modes. Every session counts toward the skill you are working on.",
       gradient: "from-primary-orange to-secondary-deepRed",
     },
     {
-      icon: "🎮",
-      title: "Gamification",
-      description:
-        "Level up your skills, unlock achievements, and maintain daily streaks with our innovative freeze system.",
+      icon: "📈",
+      title: "Statistics by Skill",
+      description: "Review your time, sessions and XP per skill by day, week, month and year.",
       gradient: "from-primary-amber to-primary-orange",
     },
     {
       icon: "👥",
-      title: "Social & Family",
-      description:
-        "Challenge friends, manage family plans with parental controls, and compete on leaderboards.",
+      title: "Friends & Challenges",
+      description: "Add friends and set challenges together when a bit of shared motivation helps.",
       gradient: "from-secondary-deepRed to-secondary-burgundy",
     },
     {
-      icon: "🎨",
-      title: "Beautiful Design",
+      icon: "👨‍👩‍👧",
+      title: "Family Plan",
       description:
-        "19 unlockable themes with dark mode optimization and stunning Material 3 design language.",
+        "With the Family subscription, parents can start timers for their children, see when practice sessions start, view their statistics and set goals.",
       gradient: "from-primary-gold to-primary-orange",
     },
     {
-      icon: "📱",
-      title: "Cross-Platform",
+      icon: "✨",
+      title: "Free to Start",
       description:
-        "Seamless experience across all your devices with cloud sync and offline support.",
+        "Try SkillQuest in Guest Mode before you create an account. No ads. Premium and Family are optional subscriptions.",
       gradient: "from-primary-orange to-primary-gold",
     },
   ];
@@ -58,7 +56,8 @@ export default function SkillQuest() {
             Introducing SkillQuest
           </h2>
           <p className="text-neutral-gray mx-auto max-w-3xl text-xl leading-relaxed md:text-2xl">
-            Transform Practice into Progress. Your Journey to Skill Mastery Starts Here.
+            A skill tracker with built-in focus timers. Every focused minute counts toward a skill
+            you choose.
           </p>
         </div>
 
@@ -118,14 +117,25 @@ export default function SkillQuest() {
         {/* Call to action */}
         <div className="mt-16 text-center">
           <p className="text-neutral-gray mb-6 text-lg">
-            SkillQuest is out now on iPhone, iPad and Android
+            SkillQuest is out now on iPhone, iPad and Android. Plans, guides and support are on its
+            own website.
           </p>
-          <a
-            href="#download"
-            className="bg-phoenix-gradient hover:shadow-primary-orange/50 inline-block rounded-full px-8 py-4 text-lg font-semibold text-white transition-all duration-300 hover:scale-105 hover:shadow-2xl"
-          >
-            Get SkillQuest
-          </a>
+          <div className="flex flex-col items-center justify-center gap-4 sm:flex-row">
+            <a
+              href="#download"
+              className="bg-phoenix-gradient hover:shadow-primary-orange/50 inline-block rounded-full px-8 py-4 text-lg font-semibold text-white transition-all duration-300 hover:scale-105 hover:shadow-2xl"
+            >
+              Get SkillQuest
+            </a>
+            <a
+              href="https://skill-quest.app"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="border-primary-gold text-primary-gold hover:bg-primary-gold hover:text-neutral-darkBg inline-block rounded-full border-2 px-8 py-4 text-lg font-semibold transition-all duration-300 hover:scale-105"
+            >
+              Visit skill-quest.app
+            </a>
+          </div>
         </div>
       </div>
     </section>

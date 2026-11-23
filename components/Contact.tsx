@@ -1,14 +1,18 @@
 "use client";
 
+import Link from "next/link";
 import { useState } from "react";
 
+const EMPTY_FORM = {
+  name: "",
+  email: "",
+  subject: "",
+  message: "",
+  zr_extra: "", // honeypot, stays empty for people
+};
+
 export default function Contact() {
-  const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    subject: "",
-    message: "",
-  });
+  const [formData, setFormData] = useState(EMPTY_FORM);
   const [loading, setLoading] = useState(false);
   const [submitted, setSubmitted] = useState(false);
   const [error, setError] = useState("");
@@ -45,7 +49,7 @@ export default function Contact() {
       setSubmitted(true);
       setTimeout(() => {
         setSubmitted(false);
-        setFormData({ name: "", email: "", subject: "", message: "" });
+        setFormData(EMPTY_FORM);
       }, 5000);
     } catch (err) {
       console.error("Contact form submission error:", err);
@@ -179,6 +183,7 @@ export default function Contact() {
                   value={formData.name}
                   onChange={handleChange}
                   required
+                  maxLength={100}
                   className="bg-neutral-darkBg border-primary-gold/30 text-neutral-lightText placeholder-neutral-gray focus:border-primary-gold w-full rounded-lg border px-4 py-3 transition-colors focus:outline-none"
                   placeholder="Your name"
                 />
@@ -198,6 +203,7 @@ export default function Contact() {
                   value={formData.email}
                   onChange={handleChange}
                   required
+                  maxLength={254}
                   className="bg-neutral-darkBg border-primary-gold/30 text-neutral-lightText placeholder-neutral-gray focus:border-primary-gold w-full rounded-lg border px-4 py-3 transition-colors focus:outline-none"
                   placeholder="your.email@example.com"
                 />
@@ -217,6 +223,7 @@ export default function Contact() {
                   value={formData.subject}
                   onChange={handleChange}
                   required
+                  maxLength={200}
                   className="bg-neutral-darkBg border-primary-gold/30 text-neutral-lightText placeholder-neutral-gray focus:border-primary-gold w-full rounded-lg border px-4 py-3 transition-colors focus:outline-none"
                   placeholder="What's this about?"
                 />
@@ -235,30 +242,57 @@ export default function Contact() {
                   value={formData.message}
                   onChange={handleChange}
                   required
+                  maxLength={5000}
                   rows={5}
                   className="bg-neutral-darkBg border-primary-gold/30 text-neutral-lightText placeholder-neutral-gray focus:border-primary-gold w-full resize-none rounded-lg border px-4 py-3 transition-colors focus:outline-none"
                   placeholder="Your message..."
                 />
               </div>
 
-              <button
-                type="submit"
-                disabled={loading || submitted}
-                className={`
-                  w-full rounded-lg px-8 py-4 font-semibold text-white transition-all duration-300
-                  ${
-                    loading || submitted
-                      ? "bg-neutral-gray/50 cursor-not-allowed"
-                      : "bg-phoenix-gradient hover:shadow-primary-orange/50 hover:scale-105 hover:shadow-lg"
-                  }
-                `}
-              >
-                {loading ? "Sending..." : submitted ? "✅ Sent!" : "Send Message"}
-              </button>
+              {/* Honeypot: hidden from people and screen readers; the server ignores
+                  any submission where it is filled in */}
+              <input
+                type="text"
+                name="zr_extra"
+                value={formData.zr_extra}
+                onChange={handleChange}
+                tabIndex={-1}
+                autoComplete="off"
+                aria-hidden="true"
+                className="sr-only"
+              />
+
+              <div className="space-y-3">
+                <button
+                  type="submit"
+                  disabled={loading || submitted}
+                  className={`
+                    w-full rounded-lg px-8 py-4 font-semibold text-white transition-all duration-300
+                    ${
+                      loading || submitted
+                        ? "bg-neutral-gray/50 cursor-not-allowed"
+                        : "bg-phoenix-gradient hover:shadow-primary-orange/50 hover:scale-105 hover:shadow-lg"
+                    }
+                  `}
+                >
+                  {loading ? "Sending..." : submitted ? "✅ Sent!" : "Send Message"}
+                </button>
+
+                <p className="text-neutral-gray text-center text-sm">
+                  Your details are used only to answer your message. See our{" "}
+                  <Link
+                    href="/privacy"
+                    className="text-primary-gold hover:text-primary-amber underline transition-colors"
+                  >
+                    privacy policy
+                  </Link>
+                  .
+                </p>
+              </div>
 
               {submitted && (
                 <p className="text-primary-gold animate-pulse text-center font-semibold">
-                  ✅ Message sent! Check your email for confirmation. We&apos;ll get back to you soon.
+                  ✅ Message sent. We&apos;ll get back to you soon.
                 </p>
               )}
 

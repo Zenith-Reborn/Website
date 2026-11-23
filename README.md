@@ -53,7 +53,7 @@ zenith-reborn-website/
 │   ├── Hero.tsx            # Hero section with Phoenix theme
 │   ├── About.tsx           # Mission & vision
 │   ├── SkillQuest.tsx      # App features showcase
-│   ├── Download.tsx        # App download & waitlist
+│   ├── Download.tsx        # App Store and Google Play links
 │   ├── Contact.tsx         # Contact form
 │   └── Footer.tsx          # Footer with links
 ├── public/
@@ -111,7 +111,7 @@ Replace emoji in `components/Hero.tsx`:
 
 ## 📧 Email Integration
 
-The contact form and waitlist need an email service to function. Options:
+The contact form sends its messages with Resend (`RESEND_API_KEY`) to hello@zenithreborn.com. It sends no automatic reply to the visitor. Other options:
 
 1. **SendGrid** - 12,000 free emails/month
 2. **Resend** - 3,000 free emails/month

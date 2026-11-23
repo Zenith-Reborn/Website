@@ -108,7 +108,7 @@ The Sentry integration will automatically capture:
 - ✅ **API route errors** - Errors in API endpoints
 - ✅ **Edge runtime errors** - Errors in edge functions
 - ✅ **Global errors** - Critical errors in the root layout
-- ✅ **Session replays** - Video-like replay of user sessions when errors occur (10% sampling)
+- ❌ **No session replay and no performance tracing** - turned off on 23 November 2026; the privacy and cookie policy say so. Do not turn them back on without updating both pages.
 
 ## Sentry Dashboard Features
 
@@ -118,13 +118,11 @@ In your Sentry dashboard, you can:
 - See user context (browser, OS, page URL)
 - Set up email/Slack notifications for new errors
 - Create custom alerts based on error frequency
-- View performance metrics and slow transactions
-- Watch session replays to see what users did before an error
 
 ## Important Notes
 
-- **Free Tier Limits**: 5,000 errors and 50 replays per month (more than enough for most sites)
-- **Privacy**: Session replays mask all text and media by default
+- **Free Tier Limits**: 5,000 errors per month (more than enough for most sites)
+- **Privacy**: `sendDefaultPii` is false, so events carry no IP address or cookies
 - **Performance**: Sentry adds ~110KB to your bundle (included in the 213KB shared chunk)
 - **Source Maps**: Only uploaded in production builds, not development
 
