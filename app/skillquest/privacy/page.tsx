@@ -20,7 +20,7 @@ export default function SkillQuestPrivacyPage() {
             Privacy Policy for SkillQuest
           </h1>
           <p className="text-neutral-lightText/70 text-lg">
-            Last updated: November 24, 2025
+            Last updated: November 23, 2026
           </p>
         </div>
 
@@ -108,7 +108,7 @@ export default function SkillQuestPrivacyPage() {
               Your data is stored securely using Supabase, a cloud database provider:
             </p>
             <ul className="list-disc list-inside text-neutral-lightText mb-6 space-y-2 font-['Lora']">
-              <li><strong>Location:</strong> Data is stored in secure servers located in the United States (US-East-2 region)</li>
+              <li><strong>Location:</strong> Data is stored in secure servers located in Frankfurt, Germany (EU, eu-central-1 region)</li>
               <li><strong>Encryption:</strong> All data is encrypted in transit using HTTPS/TLS and at rest using AES-256 encryption</li>
               <li><strong>Access Control:</strong> Your data is protected by industry-standard security measures and access controls</li>
             </ul>
@@ -231,8 +231,10 @@ export default function SkillQuestPrivacyPage() {
               using SkillQuest, you consent to such transfers.
             </p>
             <p className="text-neutral-lightText mb-4 font-['Lora']">
-              Our servers are located in the United States. If you are accessing the App from outside the United
-              States, your information will be transferred to, stored, and processed in the United States.
+              Our servers are located in Frankfurt, Germany (EU). Supabase staff in other countries can access
+              data when that is needed for support or security; that access is covered by the Standard Contractual
+              Clauses approved by the European Commission. Until November 20, 2026 the servers were in the United
+              States; that copy was deleted on November 23, 2026.
             </p>
           </section>
 
