@@ -155,7 +155,7 @@ After deployment, test the following:
 - [ ] Store links in /#download open the App Store and Google Play
 - [ ] Contact form works (/#contact)
   - [ ] Email to hello@zenithreborn.com
-  - [ ] Auto-reply received
+  - [ ] No automatic reply goes to the visitor
 
 **Navigation:**
 - [ ] Hash navigation works (/#about, /#contact, etc.)

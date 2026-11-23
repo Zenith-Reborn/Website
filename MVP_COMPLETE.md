@@ -1,5 +1,9 @@
 # 🎉 MVP COMPLETION CERTIFICATE
 
+> **Historical (October 2025).** This describes the site at launch. Since November 2026 there is no
+> waitlist and no Supabase, the contact form sends no automatic reply, and Sentry reports errors only
+> (no session replay). See `README.md` for the current setup.
+
 **Project:** Zenith Reborn Website
 **Completion Date:** October 24, 2025
 **Status:** ✅ PRODUCTION READY
