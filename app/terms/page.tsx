@@ -24,15 +24,6 @@ export default function TermsPage() {
           </p>
         </div>
 
-        {/* Disclaimer */}
-        <div className="bg-secondary-deepRed/10 border border-secondary-deepRed/30 rounded-lg p-6 mb-12">
-          <p className="text-neutral-lightText/90 text-sm">
-            <strong className="text-primary-gold">Legal Disclaimer:</strong> This is a template Terms of Service.
-            While we aim for legal accuracy, you should consult with qualified legal counsel to ensure
-            these terms meet your specific needs and comply with all applicable laws.
-          </p>
-        </div>
-
         {/* Table of Contents */}
         <nav className="bg-black/30 rounded-lg p-6 mb-12">
           <h2 className="text-xl font-bold text-primary-gold mb-4">Table of Contents</h2>
@@ -65,6 +56,11 @@ export default function TermsPage() {
             </p>
             <p className="text-neutral-lightText mb-4 font-['Lora']">
               These Terms constitute a legally binding agreement between you and Zenith Reborn (&quot;we,&quot; &quot;us,&quot; or &quot;our&quot;).
+            </p>
+            <p className="text-neutral-lightText mb-4 font-['Lora']">
+              The provider of this Website is Johannes Willem Vlasblom, sole proprietorship (eenmanszaak),
+              trading as SkillQuest and Zenith Reborn. Address: Catharina Hoeve 13, 2804 HE Gouda, the Netherlands.
+              Dutch Chamber of Commerce (KvK) number 42188670, VAT number NL004310890B26.
             </p>
           </section>
 
@@ -106,7 +102,6 @@ export default function TermsPage() {
                 <li>Provide accurate, current, and complete information when submitting forms</li>
                 <li>Respect the intellectual property rights of Zenith Reborn and others</li>
                 <li>Use the Website in compliance with all applicable laws and regulations</li>
-                <li>Maintain the confidentiality of any account credentials</li>
               </ul>
             </div>
 
@@ -185,7 +180,7 @@ export default function TermsPage() {
             </p>
             <ul className="list-disc list-inside text-neutral-lightText mb-6 space-y-2 font-['Lora']">
               <li>GitHub (for comment authentication)</li>
-              <li>Unsplash (for blog images)</li>
+              <li>The App Store and Google Play (for downloading SkillQuest)</li>
               <li>External resources and references</li>
             </ul>
             <p className="text-neutral-lightText mb-6 font-['Lora']">
@@ -315,7 +310,10 @@ export default function TermsPage() {
             <div className="bg-black/30 rounded-lg p-6">
               <p className="text-neutral-lightText font-['Lora']">
                 <strong className="text-primary-gold">Zenith Reborn</strong><br />
-                Nederland<br />
+                Johannes Willem Vlasblom, sole proprietorship (eenmanszaak), trading as SkillQuest and Zenith Reborn<br />
+                Catharina Hoeve 13, 2804 HE Gouda, the Netherlands<br />
+                Dutch Chamber of Commerce (KvK) number: 42188670<br />
+                VAT number: NL004310890B26<br />
                 <strong className="text-primary-gold">Email:</strong> <a href="mailto:hello@zenithreborn.com" className="text-primary-gold hover:text-primary-amber transition-colors">hello@zenithreborn.com</a><br />
                 <strong className="text-primary-gold">Website:</strong> <a href="https://zenithreborn.com" className="text-primary-gold hover:text-primary-amber transition-colors">zenithreborn.com</a>
               </p>
@@ -325,11 +323,14 @@ export default function TermsPage() {
           {/* Additional Notice */}
           <section className="mb-12">
             <div className="bg-black/30 rounded-lg p-6">
-              <h3 className="text-2xl font-bold text-primary-amber mb-3">Future App Terms</h3>
+              <h3 className="text-2xl font-bold text-primary-amber mb-3">SkillQuest</h3>
               <p className="text-neutral-lightText font-['Lora']">
-                When our <strong>SkillQuest</strong> application launches, it will have separate Terms of Service
-                and Privacy Policy specific to the app&apos;s functionality and features. Those terms will be presented
-                to you when you download or register for SkillQuest.
+                <strong>SkillQuest</strong> is available in the App Store and on Google Play. It has its own Terms of
+                Service and Privacy Policy at{' '}
+                <a href="https://skill-quest.app/terms" target="_blank" rel="noopener noreferrer" className="text-primary-gold hover:text-primary-amber transition-colors">skill-quest.app/terms</a>{' '}
+                and{' '}
+                <a href="https://skill-quest.app/privacy" target="_blank" rel="noopener noreferrer" className="text-primary-gold hover:text-primary-amber transition-colors">skill-quest.app/privacy</a>.
+                These Terms cover this website only.
               </p>
             </div>
           </section>

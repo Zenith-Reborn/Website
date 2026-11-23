@@ -24,15 +24,6 @@ export default function PrivacyPage() {
           </p>
         </div>
 
-        {/* Disclaimer */}
-        <div className="bg-secondary-deepRed/10 border border-secondary-deepRed/30 rounded-lg p-6 mb-12">
-          <p className="text-neutral-lightText/90 text-sm">
-            <strong className="text-primary-gold">Legal Disclaimer:</strong> This is a template privacy policy.
-            While we strive for accuracy and GDPR compliance, you should consult with legal counsel to ensure
-            it meets your specific needs and jurisdictional requirements.
-          </p>
-        </div>
-
         {/* Table of Contents */}
         <nav className="bg-black/30 rounded-lg p-6 mb-12">
           <h2 className="text-xl font-bold text-primary-gold mb-4">Table of Contents</h2>
@@ -66,6 +57,10 @@ export default function PrivacyPage() {
               This policy complies with the General Data Protection Regulation (GDPR) and other applicable
               data protection laws in the European Union and the Netherlands.
             </p>
+            <p className="text-neutral-lightText mb-4 font-['Lora']">
+              This policy covers this website only. The SkillQuest app has its own privacy policy at{' '}
+              <a href="https://skill-quest.app/privacy" target="_blank" rel="noopener noreferrer" className="text-primary-gold hover:text-primary-amber transition-colors">skill-quest.app/privacy</a>.
+            </p>
           </section>
 
           <section id="data-controller" className="mb-12">
@@ -76,10 +71,17 @@ export default function PrivacyPage() {
             <div className="bg-black/30 rounded-lg p-6">
               <p className="text-neutral-lightText font-['Lora']">
                 <strong className="text-primary-gold">Zenith Reborn</strong><br />
-                Nederland<br />
-                Email: <a href="mailto:hello@zenithreborn.com" className="text-primary-gold hover:text-primary-amber transition-colors">hello@zenithreborn.com</a>
+                Johannes Willem Vlasblom, sole proprietorship (eenmanszaak), trading as SkillQuest and Zenith Reborn<br />
+                Catharina Hoeve 13, 2804 HE Gouda, the Netherlands<br />
+                Dutch Chamber of Commerce (KvK) number: 42188670<br />
+                VAT number: NL004310890B26<br />
+                Email: <a href="mailto:hello@skill-quest.app" className="text-primary-gold hover:text-primary-amber transition-colors">hello@skill-quest.app</a>
               </p>
             </div>
+            <p className="text-neutral-lightText mt-4 font-['Lora']">
+              For questions about this website you can also email{' '}
+              <a href="mailto:hello@zenithreborn.com" className="text-primary-gold hover:text-primary-amber transition-colors">hello@zenithreborn.com</a>.
+            </p>
           </section>
 
           <section id="data-collection" className="mb-12">
@@ -88,23 +90,46 @@ export default function PrivacyPage() {
               We collect and process the following types of personal data:
             </p>
 
-            <h3 className="text-2xl font-bold text-primary-amber mb-3">3.1 Website Analytics</h3>
+            <h3 className="text-2xl font-bold text-primary-amber mb-3">3.1 Website Analytics and Performance</h3>
             <p className="text-neutral-lightText mb-4 font-['Lora']">
-              We use <strong>Vercel Analytics</strong> to collect anonymous usage data, including:
+              We use <strong>Vercel Web Analytics</strong> to count visits, including:
             </p>
             <ul className="list-disc list-inside text-neutral-lightText mb-6 space-y-2 font-['Lora']">
               <li>Page views and navigation patterns</li>
               <li>Browser type and version</li>
-              <li>Device type and screen resolution</li>
-              <li>Geographic location (country/region level only)</li>
+              <li>Device type and operating system</li>
+              <li>Geographic location (country level only)</li>
               <li>Referral source</li>
             </ul>
             <p className="text-neutral-lightText mb-6 font-['Lora']">
-              This data is <strong>anonymous and aggregated</strong>. Vercel Analytics does not use cookies
-              or track individual users.
+              Vercel Web Analytics does not use cookies. We only see <strong>aggregated statistics</strong>, not
+              individual visitors.
+            </p>
+            <p className="text-neutral-lightText mb-6 font-['Lora']">
+              We also use <strong>Vercel Speed Insights</strong> to measure how fast our pages load (for example
+              the Core Web Vitals), together with the page address, browser, device type and network speed.
+              Speed Insights does not use cookies either.
             </p>
 
-            <h3 className="text-2xl font-bold text-primary-amber mb-3">3.2 Comment System</h3>
+            <h3 className="text-2xl font-bold text-primary-amber mb-3">3.2 Error Tracking</h3>
+            <p className="text-neutral-lightText mb-4 font-['Lora']">
+              We use <strong>Sentry</strong> to find and fix errors on this website. When something goes wrong
+              on a page, Sentry receives a technical error report, which may include:
+            </p>
+            <ul className="list-disc list-inside text-neutral-lightText mb-6 space-y-2 font-['Lora']">
+              <li>The error message and where in our code it happened</li>
+              <li>The page address where the error occurred</li>
+              <li>Browser type and version, and operating system</li>
+            </ul>
+            <p className="text-neutral-lightText mb-6 font-['Lora']">
+              We have set up Sentry so that it does not add personal data such as your IP address or cookies to
+              these reports. Like any web server, Sentry does receive your IP address when a report is sent.
+              We do <strong>not</strong> record sessions (Session Replay is turned off), and Sentry sets no cookies
+              on this website. Error data is sent to Sentry&apos;s EU data region (ingest.de.sentry.io) and stored
+              in the EU.
+            </p>
+
+            <h3 className="text-2xl font-bold text-primary-amber mb-3">3.3 Comment System</h3>
             <p className="text-neutral-lightText mb-4 font-['Lora']">
               We use <strong>Giscus</strong> (GitHub Discussions) for blog comments. When you comment, we collect:
             </p>
@@ -115,10 +140,10 @@ export default function PrivacyPage() {
             </ul>
             <p className="text-neutral-lightText mb-6 font-['Lora']">
               This data is stored on <strong>GitHub</strong> and governed by their privacy policy.
-              Authentication is handled entirely by GitHub.
+              Authentication is handled entirely by GitHub. Reading comments does not require signing in.
             </p>
 
-            <h3 className="text-2xl font-bold text-primary-amber mb-3">3.3 Contact Form</h3>
+            <h3 className="text-2xl font-bold text-primary-amber mb-3">3.4 Contact Form</h3>
             <p className="text-neutral-lightText mb-4 font-['Lora']">
               When you submit our contact form, we collect:
             </p>
@@ -130,9 +155,10 @@ export default function PrivacyPage() {
             </ul>
             <p className="text-neutral-lightText mb-6 font-['Lora']">
               This information is transmitted via <strong>Resend</strong> and emailed to hello@zenithreborn.com.
+              We use your email address only to reply to your message.
             </p>
 
-            <h3 className="text-2xl font-bold text-primary-amber mb-3">3.4 SkillQuest Waitlist (closed)</h3>
+            <h3 className="text-2xl font-bold text-primary-amber mb-3">3.5 SkillQuest Waitlist (closed)</h3>
             <p className="text-neutral-lightText mb-6 font-['Lora']">
               The SkillQuest waitlist has closed now that the app is available in the App Store and on Google Play.
               The sign-ups it held were deleted on November 14, 2026, and this website no longer collects them.
@@ -146,6 +172,7 @@ export default function PrivacyPage() {
             </p>
             <ul className="list-disc list-inside text-neutral-lightText mb-6 space-y-2 font-['Lora']">
               <li><strong>Analytics:</strong> To understand how visitors use our website and improve user experience</li>
+              <li><strong>Performance and Errors:</strong> To keep the website fast and to find and fix errors</li>
               <li><strong>Comments:</strong> To enable community discussion on blog posts</li>
               <li><strong>Contact Form:</strong> To respond to your inquiries and provide customer support</li>
               <li><strong>Legal Compliance:</strong> To comply with applicable laws and regulations</li>
@@ -158,12 +185,12 @@ export default function PrivacyPage() {
               Under GDPR, we process your personal data based on:
             </p>
             <ul className="list-disc list-inside text-neutral-lightText mb-6 space-y-2 font-['Lora']">
-              <li><strong>Consent:</strong> When you submit forms (Art. 6(1)(a) GDPR)</li>
-              <li><strong>Legitimate Interest:</strong> For analytics to improve our website (Art. 6(1)(f) GDPR)</li>
-              <li><strong>Contractual Necessity:</strong> To provide services you request (Art. 6(1)(b) GDPR)</li>
+              <li><strong>Contact Form:</strong> Taking steps at your request and our legitimate interest in answering your message (Art. 6(1)(b) and (f) GDPR)</li>
+              <li><strong>Legitimate Interest:</strong> For analytics, performance measurement and error tracking to keep our website working and improve it, and for the comment section on our blog (Art. 6(1)(f) GDPR)</li>
+              <li><strong>Legal Obligation:</strong> Where the law requires us to keep or provide data (Art. 6(1)(c) GDPR)</li>
             </ul>
             <p className="text-neutral-lightText mb-6 font-['Lora']">
-              You have the right to withdraw consent at any time by contacting us.
+              Where we rely on legitimate interest, you can object at any time (see section 9).
             </p>
           </section>
 
@@ -174,7 +201,6 @@ export default function PrivacyPage() {
             </p>
             <ul className="list-disc list-inside text-neutral-lightText mb-6 space-y-2 font-['Lora']">
               <li>HTTPS encryption for all data transmission</li>
-              <li>Secure database access controls</li>
               <li>Regular security updates and monitoring</li>
               <li>Limited access to personal data on a need-to-know basis</li>
             </ul>
@@ -191,11 +217,30 @@ export default function PrivacyPage() {
             </p>
 
             <div className="bg-black/30 rounded-lg p-6 mb-4">
-              <h4 className="text-xl font-bold text-primary-amber mb-2">Vercel (Analytics & Hosting)</h4>
+              <h4 className="text-xl font-bold text-primary-amber mb-2">Vercel (Hosting & Web Analytics)</h4>
               <p className="text-neutral-lightText mb-2 font-['Lora']">
-                <strong>Purpose:</strong> Website hosting and anonymous analytics<br />
+                <strong>Purpose:</strong> Website hosting and cookieless analytics<br />
                 <strong>Data Location:</strong> EU/US (GDPR-compliant with Standard Contractual Clauses)<br />
                 <strong>Privacy Policy:</strong> <a href="https://vercel.com/legal/privacy-policy" target="_blank" rel="noopener noreferrer" className="text-primary-gold hover:text-primary-amber transition-colors">vercel.com/legal/privacy-policy</a>
+              </p>
+            </div>
+
+            <div className="bg-black/30 rounded-lg p-6 mb-4">
+              <h4 className="text-xl font-bold text-primary-amber mb-2">Vercel Speed Insights (Performance)</h4>
+              <p className="text-neutral-lightText mb-2 font-['Lora']">
+                <strong>Purpose:</strong> Measuring page load performance, without cookies<br />
+                <strong>Data Location:</strong> EU/US (GDPR-compliant with Standard Contractual Clauses)<br />
+                <strong>Privacy Policy:</strong> <a href="https://vercel.com/docs/speed-insights/privacy-policy" target="_blank" rel="noopener noreferrer" className="text-primary-gold hover:text-primary-amber transition-colors">vercel.com/docs/speed-insights/privacy-policy</a>
+              </p>
+            </div>
+
+            <div className="bg-black/30 rounded-lg p-6 mb-4">
+              <h4 className="text-xl font-bold text-primary-amber mb-2">Sentry (Error Tracking)</h4>
+              <p className="text-neutral-lightText mb-2 font-['Lora']">
+                <strong>Provider:</strong> Functional Software, Inc.<br />
+                <strong>Purpose:</strong> Error tracking for this website; no session recordings<br />
+                <strong>Data Location:</strong> EU (error data is sent to ingest.de.sentry.io and stored in the EU)<br />
+                <strong>Privacy Policy:</strong> <a href="https://sentry.io/privacy/" target="_blank" rel="noopener noreferrer" className="text-primary-gold hover:text-primary-amber transition-colors">sentry.io/privacy</a>
               </p>
             </div>
 
@@ -203,7 +248,7 @@ export default function PrivacyPage() {
               <h4 className="text-xl font-bold text-primary-amber mb-2">GitHub (Comments via Giscus)</h4>
               <p className="text-neutral-lightText mb-2 font-['Lora']">
                 <strong>Purpose:</strong> Comment system and authentication<br />
-                <strong>Data Location:</strong> US (GDPR-compliant)<br />
+                <strong>Data Location:</strong> US. GitHub stores the comments; the comment widget is loaded from giscus.app, which receives your IP address when a blog post loads<br />
                 <strong>Privacy Policy:</strong> <a href="https://docs.github.com/en/site-policy/privacy-policies/github-privacy-statement" target="_blank" rel="noopener noreferrer" className="text-primary-gold hover:text-primary-amber transition-colors">docs.github.com/en/site-policy/privacy-policies</a>
               </p>
             </div>
@@ -212,7 +257,7 @@ export default function PrivacyPage() {
               <h4 className="text-xl font-bold text-primary-amber mb-2">Resend (Email Delivery)</h4>
               <p className="text-neutral-lightText mb-2 font-['Lora']">
                 <strong>Purpose:</strong> Contact form email delivery<br />
-                <strong>Data Location:</strong> US (GDPR-compliant)<br />
+                <strong>Data Location:</strong> US (Standard Contractual Clauses)<br />
                 <strong>Privacy Policy:</strong> <a href="https://resend.com/legal/privacy-policy" target="_blank" rel="noopener noreferrer" className="text-primary-gold hover:text-primary-amber transition-colors">resend.com/legal/privacy-policy</a>
               </p>
             </div>
@@ -221,18 +266,19 @@ export default function PrivacyPage() {
           <section id="cookies" className="mb-12">
             <h2 className="text-3xl font-bold text-primary-gold mb-4">8. Cookies and Tracking</h2>
             <p className="text-neutral-lightText mb-4 font-['Lora']">
-              We use minimal cookies and tracking technologies:
+              This website itself sets no cookies. The services we use work as follows:
             </p>
             <ul className="list-disc list-inside text-neutral-lightText mb-6 space-y-2 font-['Lora']">
-              <li><strong>Vercel Analytics:</strong> No cookies, privacy-friendly analytics</li>
-              <li><strong>Giscus (GitHub):</strong> Authentication cookies for logged-in users only</li>
+              <li><strong>Vercel Web Analytics and Speed Insights:</strong> No cookies</li>
+              <li><strong>Sentry:</strong> No cookies, no session recordings</li>
+              <li><strong>Giscus (GitHub):</strong> Only when you sign in to comment. GitHub then sets its own cookies on github.com, and Giscus keeps a sign-in token in your browser</li>
             </ul>
             <p className="text-neutral-lightText mb-4 font-['Lora']">
               We do <strong>not</strong> use:
             </p>
             <ul className="list-disc list-inside text-neutral-lightText mb-6 space-y-2 font-['Lora']">
               <li>Advertising cookies</li>
-              <li>Third-party tracking scripts</li>
+              <li>Scripts that track you across other websites</li>
               <li>Social media tracking pixels</li>
             </ul>
             <p className="text-neutral-lightText mb-4 font-['Lora']">
@@ -290,13 +336,6 @@ export default function PrivacyPage() {
               </div>
 
               <div className="bg-black/30 rounded-lg p-6">
-                <h4 className="text-lg font-bold text-primary-amber mb-2">Right to Withdraw Consent</h4>
-                <p className="text-neutral-lightText font-['Lora']">
-                  Withdraw consent for data processing at any time.
-                </p>
-              </div>
-
-              <div className="bg-black/30 rounded-lg p-6">
                 <h4 className="text-lg font-bold text-primary-amber mb-2">Right to Lodge a Complaint</h4>
                 <p className="text-neutral-lightText font-['Lora']">
                   File a complaint with the Dutch Data Protection Authority (Autoriteit Persoonsgegevens)
@@ -317,7 +356,8 @@ export default function PrivacyPage() {
               We retain your personal data only as long as necessary:
             </p>
             <ul className="list-disc list-inside text-neutral-lightText mb-6 space-y-2 font-['Lora']">
-              <li><strong>Analytics:</strong> Anonymous data retained indefinitely (no personal identifiers)</li>
+              <li><strong>Analytics:</strong> Aggregated statistics without personal identifiers, retained indefinitely</li>
+              <li><strong>Error Reports:</strong> Deleted automatically by Sentry after its retention period</li>
               <li><strong>Comments:</strong> Retained as long as the blog post exists (stored on GitHub)</li>
               <li><strong>Contact Form:</strong> Email correspondence retained for up to 2 years</li>
             </ul>

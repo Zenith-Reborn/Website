@@ -20,16 +20,7 @@ export default function CookiesPage() {
             Cookie Policy
           </h1>
           <p className="text-neutral-lightText/70 text-lg">
-            Last updated: October 24, 2025
-          </p>
-        </div>
-
-        {/* Disclaimer */}
-        <div className="bg-secondary-deepRed/10 border border-secondary-deepRed/30 rounded-lg p-6 mb-12">
-          <p className="text-neutral-lightText/90 text-sm">
-            <strong className="text-primary-gold">Legal Disclaimer:</strong> This is a template cookie policy.
-            While we strive for accuracy and GDPR compliance, you should consult with legal counsel to ensure
-            it meets your specific needs and jurisdictional requirements.
+            Last updated: November 23, 2026
           </p>
         </div>
 
@@ -37,9 +28,9 @@ export default function CookiesPage() {
         <div className="bg-primary-gold/10 border border-primary-gold/30 rounded-lg p-6 mb-12">
           <h3 className="text-xl font-bold text-primary-gold mb-2">Privacy-Friendly Approach</h3>
           <p className="text-neutral-lightText font-['Lora']">
-            Zenith Reborn takes a <strong>privacy-first approach</strong>. We use minimal cookies and
-            tracking technologies—only what&apos;s necessary for core functionality. We do not use advertising
-            cookies, third-party trackers, or invasive analytics.
+            This website itself sets <strong>no cookies</strong>. Our analytics, performance measurement and
+            error tracking work without cookies. Cookies only come into play when you choose to sign in with
+            GitHub to comment on the blog. We do not use advertising cookies or cross-site trackers.
           </p>
         </div>
 
@@ -77,12 +68,12 @@ export default function CookiesPage() {
           <section id="how-we-use" className="mb-12">
             <h2 className="text-3xl font-bold text-primary-gold mb-4">2. How We Use Cookies</h2>
             <p className="text-neutral-lightText mb-6 font-['Lora']">
-              Zenith Reborn uses cookies and similar technologies for the following purposes:
+              Zenith Reborn does not set cookies of its own. The services we use work as follows:
             </p>
             <ul className="list-disc list-inside text-neutral-lightText mb-6 space-y-2 font-['Lora']">
-              <li><strong>Essential Website Functionality:</strong> To enable core features like authentication</li>
-              <li><strong>Anonymous Analytics:</strong> To understand how visitors use our website (no personal data)</li>
-              <li><strong>User Preferences:</strong> To remember your settings and improve your experience</li>
+              <li><strong>Cookieless Analytics:</strong> Vercel Web Analytics and Speed Insights count visits and measure page speed without cookies</li>
+              <li><strong>Error Tracking:</strong> Sentry reports errors on our pages without cookies and without session recordings</li>
+              <li><strong>Blog Comments:</strong> Only if you sign in to comment, GitHub sets its own cookies on github.com and Giscus keeps a sign-in token in your browser</li>
             </ul>
           </section>
 
@@ -95,18 +86,18 @@ export default function CookiesPage() {
             {/* Vercel Analytics */}
             <div className="bg-black/30 rounded-lg p-6 mb-6">
               <div className="flex items-start justify-between mb-3">
-                <h3 className="text-2xl font-bold text-primary-amber">Vercel Analytics</h3>
+                <h3 className="text-2xl font-bold text-primary-amber">Vercel Web Analytics</h3>
                 <span className="bg-primary-gold/20 text-primary-gold px-3 py-1 rounded-full text-sm font-semibold">
-                  Strictly Necessary
+                  Cookieless Analytics
                 </span>
               </div>
               <div className="space-y-3 text-neutral-lightText font-['Lora']">
                 <p><strong className="text-primary-gold">Provider:</strong> Vercel Inc.</p>
-                <p><strong className="text-primary-gold">Purpose:</strong> Privacy-friendly analytics to measure page views and performance</p>
-                <p><strong className="text-primary-gold">Type:</strong> No cookies (uses anonymous beacons)</p>
-                <p><strong className="text-primary-gold">Duration:</strong> N/A (no persistent storage)</p>
-                <p><strong className="text-primary-gold">Personal Data:</strong> None - fully anonymous and aggregated</p>
-                <p><strong className="text-primary-gold">GDPR Compliant:</strong> Yes - no consent required (legitimate interest)</p>
+                <p><strong className="text-primary-gold">Purpose:</strong> Counting page views and visits</p>
+                <p><strong className="text-primary-gold">Type:</strong> No cookies; nothing is stored on your device</p>
+                <p><strong className="text-primary-gold">Duration:</strong> N/A (no storage on your device)</p>
+                <p><strong className="text-primary-gold">Personal Data:</strong> No cookies or device identifiers; we only see aggregated statistics</p>
+                <p><strong className="text-primary-gold">Legal Basis:</strong> Legitimate interest (Art. 6(1)(f) GDPR), as described in our Privacy Policy</p>
                 <p>
                   <strong className="text-primary-gold">More Info:</strong>{' '}
                   <a
@@ -132,10 +123,10 @@ export default function CookiesPage() {
               <div className="space-y-3 text-neutral-lightText font-['Lora']">
                 <p><strong className="text-primary-gold">Provider:</strong> Vercel Inc.</p>
                 <p><strong className="text-primary-gold">Purpose:</strong> Real User Monitoring (RUM) for Core Web Vitals and performance metrics</p>
-                <p><strong className="text-primary-gold">Type:</strong> No cookies (uses anonymous beacons)</p>
-                <p><strong className="text-primary-gold">Duration:</strong> N/A (no persistent storage)</p>
-                <p><strong className="text-primary-gold">Personal Data:</strong> None - performance data only</p>
-                <p><strong className="text-primary-gold">GDPR Compliant:</strong> Yes - no consent required (legitimate interest)</p>
+                <p><strong className="text-primary-gold">Type:</strong> No cookies; nothing is stored on your device</p>
+                <p><strong className="text-primary-gold">Duration:</strong> N/A (no storage on your device)</p>
+                <p><strong className="text-primary-gold">Personal Data:</strong> None stored on your device; performance data only</p>
+                <p><strong className="text-primary-gold">Legal Basis:</strong> Legitimate interest (Art. 6(1)(f) GDPR), as described in our Privacy Policy</p>
                 <p>
                   <strong className="text-primary-gold">More Info:</strong>{' '}
                   <a
@@ -150,25 +141,54 @@ export default function CookiesPage() {
               </div>
             </div>
 
+            {/* Sentry */}
+            <div className="bg-black/30 rounded-lg p-6 mb-6">
+              <div className="flex items-start justify-between mb-3">
+                <h3 className="text-2xl font-bold text-primary-amber">Sentry</h3>
+                <span className="bg-primary-gold/20 text-primary-gold px-3 py-1 rounded-full text-sm font-semibold">
+                  Error Tracking
+                </span>
+              </div>
+              <div className="space-y-3 text-neutral-lightText font-['Lora']">
+                <p><strong className="text-primary-gold">Provider:</strong> Functional Software, Inc.</p>
+                <p><strong className="text-primary-gold">Purpose:</strong> Reporting errors on our pages so we can fix them</p>
+                <p><strong className="text-primary-gold">Type:</strong> No cookies; Session Replay is turned off, so no session recordings are made</p>
+                <p><strong className="text-primary-gold">Duration:</strong> N/A (no storage on your device)</p>
+                <p><strong className="text-primary-gold">Personal Data:</strong> Technical error data as described in our Privacy Policy, stored in the EU</p>
+                <p><strong className="text-primary-gold">Legal Basis:</strong> Legitimate interest (Art. 6(1)(f) GDPR), as described in our Privacy Policy</p>
+                <p>
+                  <strong className="text-primary-gold">More Info:</strong>{' '}
+                  <a
+                    href="https://sentry.io/privacy/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-primary-gold hover:text-primary-amber transition-colors underline"
+                  >
+                    Sentry Privacy Policy
+                  </a>
+                </p>
+              </div>
+            </div>
+
             {/* Giscus (GitHub) */}
             <div className="bg-black/30 rounded-lg p-6 mb-6">
               <div className="flex items-start justify-between mb-3">
-                <h3 className="text-2xl font-bold text-primary-amber">Giscus (GitHub Authentication)</h3>
+                <h3 className="text-2xl font-bold text-primary-amber">Giscus (Blog Comments)</h3>
                 <span className="bg-primary-amber/20 text-primary-amber px-3 py-1 rounded-full text-sm font-semibold">
                   Functional
                 </span>
               </div>
               <div className="space-y-3 text-neutral-lightText font-['Lora']">
-                <p><strong className="text-primary-gold">Provider:</strong> GitHub Inc.</p>
-                <p><strong className="text-primary-gold">Purpose:</strong> Authentication for blog comment system</p>
-                <p><strong className="text-primary-gold">Type:</strong> Session and persistent cookies</p>
-                <p><strong className="text-primary-gold">Cookie Names:</strong> <code className="bg-black/50 px-2 py-1 rounded text-sm">_gh_sess</code>, <code className="bg-black/50 px-2 py-1 rounded text-sm">logged_in</code>, <code className="bg-black/50 px-2 py-1 rounded text-sm">dotcom_user</code></p>
-                <p><strong className="text-primary-gold">Duration:</strong> Session cookies (deleted when browser closes) and persistent cookies (up to 1 year)</p>
+                <p><strong className="text-primary-gold">Provider:</strong> GitHub Inc. (github.com) and Giscus (giscus.app)</p>
+                <p><strong className="text-primary-gold">Purpose:</strong> Signing in to comment on blog posts</p>
+                <p><strong className="text-primary-gold">Type:</strong> GitHub sets its own cookies on github.com. After you sign in, Giscus also keeps a sign-in token in your browser&apos;s local storage on this website (<code className="bg-black/50 px-2 py-1 rounded text-sm">giscus-session</code>).</p>
+                <p><strong className="text-primary-gold">Duration:</strong> GitHub&apos;s cookies as set by GitHub; the sign-in token until you sign out of the comments or clear your browser data</p>
                 <p><strong className="text-primary-gold">Personal Data:</strong> GitHub username, profile information (only if you sign in)</p>
-                <p><strong className="text-primary-gold">GDPR Compliant:</strong> Yes - requires user action to authenticate</p>
+                <p><strong className="text-primary-gold">Legal Basis:</strong> Only set when you choose to sign in; needed for the comment function you ask for</p>
                 <p className="text-neutral-lightText/80 italic">
-                  Note: These cookies are only set if you choose to sign in with GitHub to leave a comment.
-                  They are managed entirely by GitHub and governed by their privacy policy.
+                  Note: Reading the comments does not require signing in. Nothing is set unless you choose to
+                  sign in with GitHub to leave a comment. GitHub&apos;s cookies are managed entirely by GitHub and
+                  governed by its privacy policy.
                 </p>
                 <p>
                   <strong className="text-primary-gold">More Info:</strong>{' '}
@@ -188,14 +208,15 @@ export default function CookiesPage() {
           <section id="third-party" className="mb-12">
             <h2 className="text-3xl font-bold text-primary-gold mb-4">4. Third-Party Cookies</h2>
             <p className="text-neutral-lightText mb-4 font-['Lora']">
-              We use a limited number of third-party services that may set cookies:
+              Only one service on this website can lead to third-party cookies, and only when you sign in:
             </p>
 
             <div className="bg-black/30 rounded-lg p-6 mb-6">
               <h4 className="text-lg font-bold text-primary-amber mb-3">GitHub (via Giscus)</h4>
               <p className="text-neutral-lightText mb-2 font-['Lora']">
-                When you authenticate with GitHub to comment on our blog, GitHub may set cookies to maintain
-                your session. These cookies are governed by GitHub&apos;s privacy policy and cookie policy.
+                When you sign in with GitHub to comment on our blog, GitHub sets its own cookies on github.com
+                to keep you signed in, and Giscus keeps a sign-in token in your browser. GitHub&apos;s cookies are
+                governed by its own privacy and cookie policies.
               </p>
               <p className="text-neutral-lightText font-['Lora']">
                 We do not have control over these cookies, but they are only set if you actively choose to
@@ -231,7 +252,11 @@ export default function CookiesPage() {
                 </li>
                 <li className="flex items-start">
                   <span className="text-primary-gold mr-3 text-xl">✗</span>
-                  <span><strong>Google Analytics:</strong> We use privacy-friendly Vercel Analytics instead</span>
+                  <span><strong>Google Analytics:</strong> We use cookieless Vercel Web Analytics instead</span>
+                </li>
+                <li className="flex items-start">
+                  <span className="text-primary-gold mr-3 text-xl">✗</span>
+                  <span><strong>Session Recordings:</strong> No recordings of what you do on our pages (Sentry Session Replay is turned off)</span>
                 </li>
                 <li className="flex items-start">
                   <span className="text-primary-gold mr-3 text-xl">✗</span>
@@ -344,9 +369,9 @@ export default function CookiesPage() {
             <div className="bg-black/30 rounded-lg p-6 mb-4">
               <h4 className="text-lg font-bold text-primary-amber mb-3">Legal Basis</h4>
               <ul className="list-disc list-inside text-neutral-lightText space-y-2 font-['Lora']">
-                <li><strong>Strictly Necessary Cookies:</strong> No consent required (legitimate interest)</li>
-                <li><strong>Functional Cookies:</strong> Implicit consent through user action (e.g., signing in with GitHub)</li>
-                <li><strong>Analytics Cookies:</strong> Legitimate interest (anonymous, no personal data)</li>
+                <li><strong>Cookieless Analytics and Performance (Vercel):</strong> Legitimate interest (Art. 6(1)(f) GDPR); nothing is stored on your device</li>
+                <li><strong>Error Tracking (Sentry):</strong> Legitimate interest (Art. 6(1)(f) GDPR); no cookies</li>
+                <li><strong>Comment Sign-in (Giscus and GitHub):</strong> Only set when you choose to sign in; needed for the comment function you ask for</li>
               </ul>
             </div>
 
@@ -357,8 +382,8 @@ export default function CookiesPage() {
               </p>
               <ul className="list-disc list-inside text-neutral-lightText space-y-2 font-['Lora']">
                 <li>Know what cookies are used and why</li>
-                <li>Refuse or withdraw consent for non-essential cookies</li>
-                <li>Access and delete cookie data</li>
+                <li>Refuse cookies by not signing in to comment, or by blocking them in your browser</li>
+                <li>Delete cookies and other site data in your browser at any time</li>
               </ul>
             </div>
 
@@ -387,7 +412,10 @@ export default function CookiesPage() {
             <div className="bg-black/30 rounded-lg p-6">
               <p className="text-neutral-lightText font-['Lora']">
                 <strong className="text-primary-gold">Zenith Reborn</strong><br />
-                Nederland<br />
+                Johannes Willem Vlasblom, sole proprietorship (eenmanszaak), trading as SkillQuest and Zenith Reborn<br />
+                Catharina Hoeve 13, 2804 HE Gouda, the Netherlands<br />
+                Dutch Chamber of Commerce (KvK) number: 42188670<br />
+                VAT number: NL004310890B26<br />
                 <strong className="text-primary-gold">Email:</strong> <a href="mailto:hello@zenithreborn.com" className="text-primary-gold hover:text-primary-amber transition-colors">hello@zenithreborn.com</a><br />
                 <strong className="text-primary-gold">Website:</strong> <a href="https://zenithreborn.com" className="text-primary-gold hover:text-primary-amber transition-colors">zenithreborn.com</a>
               </p>
