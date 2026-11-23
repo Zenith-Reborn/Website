@@ -107,7 +107,7 @@ export async function generateMetadata({
       title: post.title,
       description: post.summary,
       images: [ogImage],
-      creator: "@zenithreborn",
+      creator: "@Zenith_Reborn",
     },
   };
 }
@@ -223,7 +223,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
           {post.author && (
             <div className="border-primary-gold/20 mt-12 border-t pt-8">
               <p className="text-neutral-gray">
-                Geschreven door{" "}
+                Written by{" "}
                 <span className="text-primary-gold font-semibold">{post.author}</span>
               </p>
             </div>
@@ -249,7 +249,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
                   d="M15 19l-7-7 7-7"
                 />
               </svg>
-              Terug naar blog
+              Back to blog
             </Link>
             <Link
               href="/"
@@ -263,7 +263,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
                   d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"
                 />
               </svg>
-              Naar homepage
+              Back to homepage
             </Link>
           </div>
         </div>

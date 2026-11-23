@@ -85,7 +85,7 @@ export default function BlogPage() {
               Zenith Blog
             </h1>
             <p className="text-neutral-lightText/90 text-xl">
-              Weekly updates about our apps and development journey
+              Development notes about SkillQuest, our other projects and this website
             </p>
           </div>
         </div>

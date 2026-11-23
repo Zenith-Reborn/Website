@@ -2,15 +2,14 @@ import type { Metadata } from "next";
 import { generateBlogSchema } from "@/lib/structuredData";
 
 export const metadata: Metadata = {
-  title: "Zenith Blog - Weekly Updates & Development Journey",
+  title: "Zenith Blog - Development Notes",
   description:
-    "Weekly updates about our apps and development journey. Follow along as we build SkillQuest, ZenFocus, and other innovative productivity tools.",
+    "Development notes from Zenith Reborn about SkillQuest, available on the App Store and Google Play, our other projects and this website.",
   keywords: [
     "blog",
     "development",
     "updates",
     "SkillQuest",
-    "ZenFocus",
     "productivity",
     "programming",
   ],
@@ -29,9 +28,9 @@ export const metadata: Metadata = {
     canonical: "https://zenithreborn.com/blog",
   },
   openGraph: {
-    title: "Zenith Blog - Weekly Updates & Development Journey",
+    title: "Zenith Blog - Development Notes",
     description:
-      "Weekly updates about our apps and development journey. Follow along as we build innovative productivity tools.",
+      "Development notes from Zenith Reborn about SkillQuest, our other projects and this website.",
     url: "https://zenithreborn.com/blog",
     siteName: "Zenith Reborn",
     locale: "en_US",
@@ -39,19 +38,19 @@ export const metadata: Metadata = {
     images: [
       {
         url: "https://zenithreborn.com/phoenix-logo-transparent.png",
-        width: 1200,
-        height: 1200,
+        width: 1024,
+        height: 1024,
         alt: "Zenith Reborn Phoenix Logo",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Zenith Blog - Weekly Updates & Development Journey",
+    title: "Zenith Blog - Development Notes",
     description:
-      "Weekly updates about our apps and development journey. Follow along as we build innovative productivity tools.",
+      "Development notes from Zenith Reborn about SkillQuest, our other projects and this website.",
     images: ["https://zenithreborn.com/phoenix-logo-transparent.png"],
-    creator: "@zenithreborn",
+    creator: "@Zenith_Reborn",
   },
 };
 
