@@ -20,7 +20,7 @@ export default function PrivacyPage() {
             Privacy Policy
           </h1>
           <p className="text-neutral-lightText/70 text-lg">
-            Last updated: October 24, 2025
+            Last updated: November 23, 2026
           </p>
         </div>
 
@@ -132,17 +132,10 @@ export default function PrivacyPage() {
               This information is transmitted via <strong>Resend</strong> and emailed to hello@zenithreborn.com.
             </p>
 
-            <h3 className="text-2xl font-bold text-primary-amber mb-3">3.4 Waitlist Signup</h3>
-            <p className="text-neutral-lightText mb-4 font-['Lora']">
-              When you join our SkillQuest waitlist, we collect:
-            </p>
-            <ul className="list-disc list-inside text-neutral-lightText mb-6 space-y-2 font-['Lora']">
-              <li>Email address</li>
-              <li>Name (optional)</li>
-              <li>Platform preference (iOS/Android/Web)</li>
-            </ul>
+            <h3 className="text-2xl font-bold text-primary-amber mb-3">3.4 SkillQuest Waitlist (closed)</h3>
             <p className="text-neutral-lightText mb-6 font-['Lora']">
-              This data is stored in our <strong>Supabase database</strong> to notify you when SkillQuest launches.
+              The SkillQuest waitlist has closed now that the app is available in the App Store and on Google Play.
+              The sign-ups it held were deleted on November 14, 2026, and this website no longer collects them.
             </p>
           </section>
 
@@ -155,7 +148,6 @@ export default function PrivacyPage() {
               <li><strong>Analytics:</strong> To understand how visitors use our website and improve user experience</li>
               <li><strong>Comments:</strong> To enable community discussion on blog posts</li>
               <li><strong>Contact Form:</strong> To respond to your inquiries and provide customer support</li>
-              <li><strong>Waitlist:</strong> To notify you about SkillQuest launch and updates</li>
               <li><strong>Legal Compliance:</strong> To comply with applicable laws and regulations</li>
             </ul>
           </section>
@@ -166,7 +158,7 @@ export default function PrivacyPage() {
               Under GDPR, we process your personal data based on:
             </p>
             <ul className="list-disc list-inside text-neutral-lightText mb-6 space-y-2 font-['Lora']">
-              <li><strong>Consent:</strong> When you submit forms or join the waitlist (Art. 6(1)(a) GDPR)</li>
+              <li><strong>Consent:</strong> When you submit forms (Art. 6(1)(a) GDPR)</li>
               <li><strong>Legitimate Interest:</strong> For analytics to improve our website (Art. 6(1)(f) GDPR)</li>
               <li><strong>Contractual Necessity:</strong> To provide services you request (Art. 6(1)(b) GDPR)</li>
             </ul>
@@ -213,15 +205,6 @@ export default function PrivacyPage() {
                 <strong>Purpose:</strong> Comment system and authentication<br />
                 <strong>Data Location:</strong> US (GDPR-compliant)<br />
                 <strong>Privacy Policy:</strong> <a href="https://docs.github.com/en/site-policy/privacy-policies/github-privacy-statement" target="_blank" rel="noopener noreferrer" className="text-primary-gold hover:text-primary-amber transition-colors">docs.github.com/en/site-policy/privacy-policies</a>
-              </p>
-            </div>
-
-            <div className="bg-black/30 rounded-lg p-6 mb-4">
-              <h4 className="text-xl font-bold text-primary-amber mb-2">Supabase (Database)</h4>
-              <p className="text-neutral-lightText mb-2 font-['Lora']">
-                <strong>Purpose:</strong> Waitlist data storage<br />
-                <strong>Data Location:</strong> EU region<br />
-                <strong>Privacy Policy:</strong> <a href="https://supabase.com/privacy" target="_blank" rel="noopener noreferrer" className="text-primary-gold hover:text-primary-amber transition-colors">supabase.com/privacy</a>
               </p>
             </div>
 
@@ -337,7 +320,6 @@ export default function PrivacyPage() {
               <li><strong>Analytics:</strong> Anonymous data retained indefinitely (no personal identifiers)</li>
               <li><strong>Comments:</strong> Retained as long as the blog post exists (stored on GitHub)</li>
               <li><strong>Contact Form:</strong> Email correspondence retained for up to 2 years</li>
-              <li><strong>Waitlist:</strong> Retained until SkillQuest launch or until you unsubscribe</li>
             </ul>
             <p className="text-neutral-lightText mb-6 font-['Lora']">
               You can request deletion of your data at any time.
