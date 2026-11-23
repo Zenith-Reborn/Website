@@ -20,7 +20,7 @@ export default function TermsPage() {
             Terms of Service
           </h1>
           <p className="text-neutral-lightText/70 text-lg">
-            Last updated: October 24, 2025
+            Last updated: November 23, 2026
           </p>
         </div>
 
@@ -76,7 +76,6 @@ export default function TermsPage() {
             <ul className="list-disc list-inside text-neutral-lightText mb-6 space-y-2 font-['Lora']">
               <li>A marketing website showcasing our products and services</li>
               <li>A blog with articles about productivity, development, and our projects</li>
-              <li>A waitlist for our upcoming SkillQuest application</li>
               <li>A contact form for inquiries and support</li>
               <li>Information about our current and future products</li>
             </ul>
@@ -327,13 +326,10 @@ export default function TermsPage() {
           <section className="mb-12">
             <div className="bg-black/30 rounded-lg p-6">
               <h3 className="text-2xl font-bold text-primary-amber mb-3">Future App Terms</h3>
-              <p className="text-neutral-lightText mb-4 font-['Lora']">
+              <p className="text-neutral-lightText font-['Lora']">
                 When our <strong>SkillQuest</strong> application launches, it will have separate Terms of Service
                 and Privacy Policy specific to the app&apos;s functionality and features. Those terms will be presented
                 to you when you download or register for SkillQuest.
-              </p>
-              <p className="text-neutral-lightText font-['Lora']">
-                The waitlist signup on this Website is governed by these current Terms and our Privacy Policy.
               </p>
             </div>
           </section>
