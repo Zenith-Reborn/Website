@@ -15,9 +15,9 @@ export default function About() {
             <div className="border-primary-gold border-l-4 pl-6">
               <h3 className="text-primary-amber mb-4 text-2xl font-semibold">Our Mission</h3>
               <p className="text-neutral-lightText text-lg leading-relaxed">
-                At Zenith Reborn, we believe in the power of transformation. Like the phoenix rising
-                from the ashes, we help individuals rediscover their potential and reach new heights
-                of excellence.
+                Zenith Reborn is a one-person company in the Netherlands. Its app, SkillQuest, helps
+                people and families turn focused practice into visible progress. Like the phoenix
+                rising from the ashes, the name stands for starting again and growing step by step.
               </p>
             </div>
 
@@ -65,7 +65,7 @@ export default function About() {
                 <div>
                   <h4 className="text-primary-amber mb-2 text-xl font-semibold">Innovation</h4>
                   <p className="text-neutral-gray">
-                    Creating premium tools that make skill mastery accessible and engaging.
+                    Building simple tools that make practice and progress visible.
                   </p>
                 </div>
               </div>

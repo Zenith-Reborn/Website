@@ -15,19 +15,38 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.7,
   }));
 
-  // Static pages
-  const staticPages = [
+  // The blog index only changes when a post is published, so it uses the newest post date
+  // (posts are sorted newest first).
+  const newestPostDate = posts.length > 0 ? new Date(posts[0].date) : undefined;
+
+  // Static pages. lastModified is left out where no real change date is known, instead of
+  // claiming that the page changed at build time.
+  const staticPages: MetadataRoute.Sitemap = [
     {
       url: baseUrl,
-      lastModified: new Date(),
-      changeFrequency: "weekly" as const,
+      changeFrequency: "monthly",
       priority: 1.0,
     },
     {
       url: `${baseUrl}/blog`,
-      lastModified: new Date(),
-      changeFrequency: "daily" as const,
+      ...(newestPostDate && { lastModified: newestPostDate }),
+      changeFrequency: "monthly",
       priority: 0.8,
+    },
+    {
+      url: `${baseUrl}/privacy`,
+      changeFrequency: "yearly",
+      priority: 0.3,
+    },
+    {
+      url: `${baseUrl}/terms`,
+      changeFrequency: "yearly",
+      priority: 0.3,
+    },
+    {
+      url: `${baseUrl}/cookies`,
+      changeFrequency: "yearly",
+      priority: 0.3,
     },
   ];
 

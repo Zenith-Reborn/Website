@@ -23,14 +23,13 @@ export const metadata: Metadata = {
     template: "%s | Zenith Reborn",
   },
   description:
-    "Transform your skills with SkillQuest - the premium skill mastery and focus tracking app. Track progress, master skills, and rise to excellence with our innovative productivity tools.",
+    "Zenith Reborn makes SkillQuest, a skill tracker with built-in focus timers for iPhone, iPad and Android. Track practice time per skill, earn XP and follow your progress.",
   keywords: [
     "skill tracking",
     "focus timer",
     "productivity",
     "skill mastery",
     "SkillQuest",
-    "ZenFocus",
     "habit tracking",
     "personal development",
     "time management",
@@ -56,7 +55,6 @@ export const metadata: Metadata = {
   },
   manifest: "/site.webmanifest",
   alternates: {
-    canonical: "https://zenithreborn.com",
     types: {
       "application/rss+xml": "https://zenithreborn.com/blog/rss.xml",
     },
@@ -64,7 +62,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Zenith Reborn - Rise to Your Potential",
     description:
-      "Transform your skills with SkillQuest - the premium skill mastery and focus tracking app. Track progress, master skills, and rise to excellence.",
+      "Zenith Reborn makes SkillQuest, a skill tracker with built-in focus timers. Track practice time per skill, earn XP and follow your progress.",
     url: "https://zenithreborn.com",
     siteName: "Zenith Reborn",
     locale: "en_US",
@@ -72,8 +70,8 @@ export const metadata: Metadata = {
     images: [
       {
         url: "https://zenithreborn.com/phoenix-logo-transparent.png",
-        width: 1200,
-        height: 1200,
+        width: 1024,
+        height: 1024,
         alt: "Zenith Reborn Phoenix - Rise to Your Potential",
       },
     ],
@@ -82,10 +80,10 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Zenith Reborn - Rise to Your Potential",
     description:
-      "Transform your skills with SkillQuest - the premium skill mastery and focus tracking app. Track progress, master skills, and rise to excellence.",
+      "Zenith Reborn makes SkillQuest, a skill tracker with built-in focus timers. Track practice time per skill, earn XP and follow your progress.",
     images: ["https://zenithreborn.com/phoenix-logo-transparent.png"],
-    creator: "@zenithreborn",
-    site: "@zenithreborn",
+    creator: "@Zenith_Reborn",
+    site: "@Zenith_Reborn",
   },
   verification: {
     // Ready for Google Search Console verification
