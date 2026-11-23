@@ -8,7 +8,7 @@ const EMPTY_FORM = {
   email: "",
   subject: "",
   message: "",
-  website: "", // honeypot, stays empty for people
+  zr_extra: "", // honeypot, stays empty for people
 };
 
 export default function Contact() {
@@ -253,8 +253,8 @@ export default function Contact() {
                   any submission where it is filled in */}
               <input
                 type="text"
-                name="website"
-                value={formData.website}
+                name="zr_extra"
+                value={formData.zr_extra}
                 onChange={handleChange}
                 tabIndex={-1}
                 autoComplete="off"

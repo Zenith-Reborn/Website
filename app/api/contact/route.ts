@@ -15,7 +15,7 @@ interface ContactRequest {
   email?: unknown;
   subject?: unknown;
   message?: unknown;
-  website?: unknown; // honeypot: stays empty for people, bots tend to fill it in
+  zr_extra?: unknown; // honeypot: stays empty for people, bots tend to fill it in
 }
 
 // Maximum length per field, in characters
@@ -28,8 +28,8 @@ const FIELD_RULES = {
 
 type Field = keyof typeof FIELD_RULES;
 
-// Simple format check: something@domain.tld, without spaces or a second "@"
-const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+// Simple format check: something@domain.tld, without spaces, a second "@" or empty domain labels
+const EMAIL_PATTERN = /^[^\s@]+@[^\s@.]+(?:\.[^\s@.]+)+$/;
 // Characters that are rare in real addresses but would change a mailto: link
 const EMAIL_FORBIDDEN_CHARS = /[<>"(),;:?&#[\]\\]/;
 
@@ -41,6 +41,9 @@ const escapeHtml = (value: string): string =>
     .replace(/>/g, "&gt;")
     .replace(/"/g, "&quot;")
     .replace(/'/g, "&#39;");
+
+// Control characters other than tab, line feed and carriage return are never valid input
+const CONTROL_CHARS = /[\x00-\x08\x0B\x0C\x0E-\x1F\x7F]/;
 
 const asText = (value: unknown): string => (typeof value === "string" ? value.trim() : "");
 
@@ -59,7 +62,7 @@ export async function POST(request: NextRequest) {
     }
 
     // Honeypot filled in: answer as if it worked, but send nothing
-    if (body.website !== undefined && body.website !== null && String(body.website).trim() !== "") {
+    if (body.zr_extra !== undefined && body.zr_extra !== null && String(body.zr_extra).trim() !== "") {
       return NextResponse.json({ success: true }, { status: 200 });
     }
 
@@ -79,6 +82,11 @@ export async function POST(request: NextRequest) {
       );
     }
 
+    // Reject control characters
+    if ((Object.keys(FIELD_RULES) as Field[]).some((field) => CONTROL_CHARS.test(fields[field]))) {
+      return NextResponse.json({ error: "Invalid characters in the form" }, { status: 400 });
+    }
+
     // Validate maximum lengths
     for (const field of Object.keys(FIELD_RULES) as Field[]) {
       const { label, max } = FIELD_RULES[field];
@@ -96,7 +104,7 @@ export async function POST(request: NextRequest) {
     }
 
     // Validate minimum message length (prevent spam)
-    if (fields.message.length < 10) {
+    if (fields.message.replace(/\s/g, "").length < 10) {
       return NextResponse.json(
         { error: "Message must be at least 10 characters" },
         { status: 400 }
