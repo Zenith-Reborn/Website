@@ -37,7 +37,8 @@ export function generateBlogPostingSchema(post: BlogPost, url: string) {
     "@type": "BlogPosting",
     headline: post.title,
     description: post.summary,
-    image: post.coverImage || "https://zenithreborn.com/phoenix-logo-transparent.png",
+    // Schema.org needs an absolute image URL; cover images are site-relative paths.
+    image: new URL(post.coverImage || "/phoenix-logo-transparent.png", "https://zenithreborn.com").toString(),
     datePublished: datePublished,
     dateModified: dateModified, // Can be updated later if we track modification dates
     // Without a named author the post is attributed to the company, not to a person.

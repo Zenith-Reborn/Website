@@ -75,13 +75,9 @@ export default function PrivacyPage() {
                 Catharina Hoeve 13, 2804 HE Gouda, the Netherlands<br />
                 Dutch Chamber of Commerce (KvK) number: 42188670<br />
                 VAT number: NL004310890B26<br />
-                Email: <a href="mailto:hello@skill-quest.app" className="text-primary-gold hover:text-primary-amber transition-colors">hello@skill-quest.app</a>
+                Email: <a href="mailto:hello@zenithreborn.com" className="text-primary-gold hover:text-primary-amber transition-colors">hello@zenithreborn.com</a>
               </p>
             </div>
-            <p className="text-neutral-lightText mt-4 font-['Lora']">
-              For questions about this website you can also email{' '}
-              <a href="mailto:hello@zenithreborn.com" className="text-primary-gold hover:text-primary-amber transition-colors">hello@zenithreborn.com</a>.
-            </p>
           </section>
 
           <section id="data-collection" className="mb-12">
@@ -380,7 +376,7 @@ export default function PrivacyPage() {
             <p className="text-neutral-lightText mb-6 font-['Lora']">
               We may update this Privacy Policy from time to time. Changes will be posted on this page
               with an updated &quot;Last updated&quot; date. For material changes, we will provide additional notice
-              (such as an email notification or prominent website banner).
+              (such as a notice on this website).
             </p>
           </section>
 

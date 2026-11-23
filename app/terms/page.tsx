@@ -246,8 +246,8 @@ export default function TermsPage() {
           <section id="indemnification" className="mb-12">
             <h2 className="text-3xl font-bold text-primary-gold mb-4">10. Indemnification</h2>
             <p className="text-neutral-lightText mb-6 font-['Lora']">
-              You agree to indemnify, defend, and hold harmless Zenith Reborn, its affiliates, officers,
-              directors, employees, and agents from any claims, liabilities, damages, losses, costs, or
+              You agree to indemnify, defend, and hold harmless Zenith Reborn and its owner from any
+              claims, liabilities, damages, losses, costs, or
               expenses (including reasonable legal fees) arising from:
             </p>
             <ul className="list-disc list-inside text-neutral-lightText mb-6 space-y-2 font-['Lora']">
